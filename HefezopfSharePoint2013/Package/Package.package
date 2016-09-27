@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="7cb2ec15-2c6c-4068-ae48-d997545ed9cf" 
+        solutionId="7cb2ec15-2c6c-4068-ae48-d997545ed9cf" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="HefezopfSharePoint2013"
+        sharePointProductVersion="15.0">
+</package>
