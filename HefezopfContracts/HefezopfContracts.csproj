@@ -47,8 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DIService.cs" />
+    <Compile Include="DI\DIService.cs" />
+    <Compile Include="DI\FuncstructorRegisterAttribute.cs" />
+    <Compile Include="DI\IAssemblyLoaderService.cs" />
+    <Compile Include="DI\IDIService.cs" />
+    <Compile Include="DI\IFuncstructorConfiguration.cs" />
     <Compile Include="GlobalVersion.cs" />
+    <Compile Include="DI\IDependencyInjection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
