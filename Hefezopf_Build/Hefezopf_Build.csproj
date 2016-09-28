@@ -45,6 +45,10 @@
   <ItemGroup>
     <None Include="build.ps1" />
     <None Include="devbuild.bat" />
+    <None Include="Hefezopf-Pre.targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Hefezopf-Post.targets" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

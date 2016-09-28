@@ -50,6 +50,9 @@
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
+    <Compile Include="DI\CacheKey.cs" />
+    <Compile Include="DI\Funcstructor.cs" />
+    <Compile Include="DI\NullReplacement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

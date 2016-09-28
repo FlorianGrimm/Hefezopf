@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+<!--
+
+    <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
+      <Link>GlobalVersion.cs</Link>
+    </Compile>
+
+<Import Project="..\Hefezopf_Build\Hefezopf-Pre.targets" />
+<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+<Import Project="..\Hefezopf_Build\Hefezopf-Post.targets" />
+-->
+</Project>

@@ -27,6 +27,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hefezopf_Build", "Hefezopf_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfFundament_Tests", "HefezopfFundament_Tests\HefezopfFundament_Tests.csproj", "{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePointLibrary2013", "HefezopfSharePointLibrary2013\HefezopfSharePointLibrary2013.csproj", "{BE045A9B-FD10-4D26-8B00-40886D76332E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePointFrontend2013", "HefezopfSharePointFrontend2013\HefezopfSharePointFrontend2013.csproj", "{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePointApplication2013", "HefezopfSharePointApplication2013\HefezopfSharePointApplication2013.csproj", "{55465240-9EB7-43D9-81CB-CAC646DCEB8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +91,22 @@ Global
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE045A9B-FD10-4D26-8B00-40886D76332E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE045A9B-FD10-4D26-8B00-40886D76332E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE045A9B-FD10-4D26-8B00-40886D76332E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE045A9B-FD10-4D26-8B00-40886D76332E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

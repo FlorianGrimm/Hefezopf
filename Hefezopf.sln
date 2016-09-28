@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePoint2013", "HefezopfSharePoint2013\HefezopfSharePoint2013.csproj", "{36439661-D28B-4C12-A102-3E8F59A38599}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfOfficeAddIn", "HefezopfOfficeAddIn\HefezopfOfficeAddIn.csproj", "{10D1C136-A567-4AA2-A2A1-03568AA656E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfOfficeAddInWeb", "HefezopfOfficeAddInWeb\HefezopfOfficeAddInWeb.csproj", "{20457796-B3AB-4089-B328-425AE9FD863B}"
@@ -21,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfLibrary", "Hefezopf
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWindowsService", "HefezopfWindowsService\HefezopfWindowsService.csproj", "{80D5BA1D-0136-4A06-801F-921D69D873B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharepoint2013WindowsService", "HefezopfSharepoint2013WindowsService\HefezopfSharepoint2013WindowsService.csproj", "{D7F6EC50-3253-4F22-A8BD-58FAD53CBA84}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hefezopf_Build", "Hefezopf_Build\Hefezopf_Build.csproj", "{8167AA72-606C-4297-80D5-BC2B26CAF943}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfFundament_Tests", "HefezopfFundament_Tests\HefezopfFundament_Tests.csproj", "{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}"
@@ -33,12 +29,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{36439661-D28B-4C12-A102-3E8F59A38599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36439661-D28B-4C12-A102-3E8F59A38599}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36439661-D28B-4C12-A102-3E8F59A38599}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{36439661-D28B-4C12-A102-3E8F59A38599}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36439661-D28B-4C12-A102-3E8F59A38599}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36439661-D28B-4C12-A102-3E8F59A38599}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -73,10 +63,6 @@ Global
 		{80D5BA1D-0136-4A06-801F-921D69D873B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80D5BA1D-0136-4A06-801F-921D69D873B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80D5BA1D-0136-4A06-801F-921D69D873B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7F6EC50-3253-4F22-A8BD-58FAD53CBA84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7F6EC50-3253-4F22-A8BD-58FAD53CBA84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7F6EC50-3253-4F22-A8BD-58FAD53CBA84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7F6EC50-3253-4F22-A8BD-58FAD53CBA84}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8167AA72-606C-4297-80D5-BC2B26CAF943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8167AA72-606C-4297-80D5-BC2B26CAF943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8167AA72-606C-4297-80D5-BC2B26CAF943}.Release|Any CPU.ActiveCfg = Release|Any CPU

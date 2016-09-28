@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="ac202e56-b88c-42dc-8e0d-60e9352fed16" solutionId="ac202e56-b88c-42dc-8e0d-60e9352fed16" resetWebServer="false" sharePointProductVersion="15.0" name="HefezopfSharePointFrontend2013" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <projectOutputAssembly location="Hefezopf.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
+  </assemblies>
+  <projectItems>
+    <projectItemReference itemId="1c25f87e-3819-429a-b2a7-3f0def71a8a0" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
+  </projectItems>
+</package>

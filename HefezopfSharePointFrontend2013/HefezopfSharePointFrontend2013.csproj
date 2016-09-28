@@ -4,24 +4,23 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36439661-D28B-4C12-A102-3E8F59A38599}</ProjectGuid>
+    <ProjectGuid>{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hefezopf.SharePoint</RootNamespace>
-    <AssemblyName>Hefezopf.SharePoint</AssemblyName>
+    <RootNamespace>HefezopfSharePointFrontend2013</RootNamespace>
+    <AssemblyName>HefezopfSharePointFrontend2013</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetOfficeVersion>15.0</TargetOfficeVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SandboxedSolution>False</SandboxedSolution>
-    <TokenReplacementFileExtensions>svc;config</TokenReplacementFileExtensions>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;Version1000;SP2013</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;Version1000;SP2013</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
@@ -37,69 +36,41 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="Microsoft.SharePoint" />
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ISAPI\Hefezopf\Hefezopf.svc" />
-    <Compile Include="BaseServiceClient.cs" />
-    <Compile Include="HefezopfDatabase.cs" />
-    <Compile Include="HefezopfRestService.cs" />
-    <Compile Include="HefezopfIisWebService.cs" />
-    <Compile Include="HefezopfServiceApplication.cs" />
-    <Compile Include="HefezopfServiceApplicationProxy.cs" />
-    <Compile Include="HefezopfServiceHostFactory.cs" />
-    <Compile Include="HefezopfServiceInstance.cs" />
-    <Compile Include="HefezopfServiceProxy.cs" />
-    <Compile Include="HefzopfServiceClient.cs" />
-    <Compile Include="HefezopfWCFService.cs" />
-    <Compile Include="IHefezopfWCFService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="WebServices\Hefezopf\Hefezopf.svc" />
+    <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
+      <Link>GlobalVersion.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ISAPI\Hefezopf\web.config" />
-    <None Include="ISAPI\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{1c25f87e-3819-429a-b2a7-3f0def71a8a0}</SharePointProjectItemId>
-    </None>
     <None Include="key.snk" />
-    <None Include="Layouts\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{4cb000ff-0873-49aa-9b23-1d8a8e12a12d}</SharePointProjectItemId>
-    </None>
     <None Include="Package\Package.package">
-      <PackageId>{7cb2ec15-2c6c-4068-ae48-d997545ed9cf}</PackageId>
+      <PackageId>{ac202e56-b88c-42dc-8e0d-60e9352fed16}</PackageId>
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="WebClients\Hefezopf\client.config" />
-    <None Include="WebClients\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{337ae790-8816-40a2-a792-71293aa5adac}</SharePointProjectItemId>
-    </None>
-    <None Include="WebServices\Hefezopf\web.config" />
-    <None Include="WebServices\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{8020b5d4-f020-416f-8c4e-9f16cc73b80d}</SharePointProjectItemId>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\" />
-    <Folder Include="Layouts\Hefezopf\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj">
+      <Project>{36439661-d28b-4c12-a102-3e8f59a38599}</Project>
+      <Name>HefezopfSharePoint2013</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Hefezopf_Build\Hefezopf-Pre.targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
