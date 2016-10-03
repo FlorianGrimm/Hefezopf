@@ -12,11 +12,13 @@ namespace Hefezopf.Fundament.DI
     {
         private readonly IDependencyInjection _DependencyInjection;
         private readonly IAssemblyLoaderService _AssemblyLoaderService;
+
         public DIServiceImplementation() {
-            var ass = new AssemblyLoaderService();
-            this._AssemblyLoaderService = ass;
-            this._DependencyInjection = Funcstructor.CreateDefault(ass);
+            var assmblyLoaderService = new AssemblyWatcherService();
+            this._AssemblyLoaderService = assmblyLoaderService;
+            this._DependencyInjection = Funcstructor.CreateDefault(assmblyLoaderService);
         }
+
         public override IDependencyInjection GetGlobalInstance()
         {
             return this._DependencyInjection;

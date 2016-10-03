@@ -22,7 +22,8 @@ namespace Hefezopf.Fundament.DI
             var instanceFallback = new Funcstructor(ParentNameFallBack, null, null, false);
             var instanceConfiguration = new Funcstructor(ParentNameConfiguration, null, instanceFallback, false);
             var instanceRoot = new Funcstructor(ParentNameRoot, instanceConfiguration, instanceFallback, true);
-            if ((object)assemblyLoaderService == null) {
+            if ((object)assemblyLoaderService == null)
+            {
                 assemblyLoaderService.WireTo(instanceRoot);
             }
             return instanceRoot;
@@ -58,7 +59,7 @@ namespace Hefezopf.Fundament.DI
             this._ContainsInstances = containsInstances;
         }
 
-        public Funcstructor GetParent(string name)
+        public IDependencyInjectionConfigurable GetParent(string name)
         {
             if (name == null) { name = ""; }
             for (Funcstructor that = this; that != null; that = that._Parent)
@@ -71,23 +72,21 @@ namespace Hefezopf.Fundament.DI
             return null;
         }
 
-        // 0
-        public bool Register<T>(object key, Func<T> funcstructor, bool overwrite = false)
+        private bool registerAny(CacheKey cacheKey, object funcstructor, bool overwrite = false)
         {
             _ReaderWriterLock.EnterWriteLock();
             try
             {
-                CacheKey cacheKey = new CacheKey(key, typeof(T));
                 if (overwrite)
                 {
-                    _Registry[cacheKey] = funcstructor;
+                    _Registry[cacheKey] = new ItemState(cacheKey, funcstructor);
                     return true;
                 }
                 else
                 {
                     if (_Registry[cacheKey] == null)
                     {
-                        _Registry[cacheKey] = funcstructor;
+                        _Registry[cacheKey] = new ItemState(cacheKey, funcstructor);
                         return true;
                     }
                 }
@@ -98,33 +97,58 @@ namespace Hefezopf.Fundament.DI
             }
             return false;
         }
-        public bool Register<T>(string parentName, object key, Func<T> funcstructor, bool overwrite = false)
+        private ItemState GetItemState(CacheKey cacheKey)
         {
-            return this.GetParent(parentName).Register<T>(key, funcstructor, overwrite);
-        }
-        public T Get<T>(object key)
-        {
-            CacheKey cacheKey = new CacheKey(key, typeof(T));
+            ItemState itemState = null;
             for (Funcstructor that = this; that != null; that = that._Parent ?? that._FallBack)
             {
-                Func<T> funcstructor;
                 that._ReaderWriterLock.EnterReadLock();
                 try
                 {
-                    funcstructor = (Func<T>)that._Registry[cacheKey];
+                    itemState = (ItemState)that._Registry[cacheKey];
                 }
                 finally
                 {
                     that._ReaderWriterLock.ExitReadLock();
                 }
-                if (funcstructor != null)
+                if (itemState != null)
                 {
-                    return funcstructor();
+                    return itemState;
                 }
+            }
+            return itemState;
+        }
+
+        public bool Register(Type returnType, object key, Type[] parameterTypes, object funcstructor, bool overwrite = false)
+        {
+            var l = new object[parameterTypes.Length + 2];
+            l[0] = key;
+            l[1] = returnType;
+            for (int idx = 0; idx < parameterTypes.Length; idx++)
+            {
+                l[2 + idx] = parameterTypes[idx];
+            }
+            CacheKey cacheKey = new CacheKey(l);
+            return this.registerAny(cacheKey, funcstructor, overwrite);
+        }
+        // 0
+        public bool Register<T>(object key, Func<T> funcstructor, bool overwrite = false)
+        {
+            CacheKey cacheKey = new CacheKey(key, typeof(T));
+            return this.registerAny(cacheKey, funcstructor, overwrite);
+        }
+        public T Resolve<T>(object key)
+        {
+            CacheKey cacheKey = new CacheKey(key, typeof(T));
+            ItemState itemState = this.GetItemState(cacheKey);
+            if ((object)itemState != null)
+            {
+                var func = (Func<T>)(itemState.Funcstructor);
+                return func();
             }
             return default(T);
         }
-     
+
         // 1
         public void Register<P1, T>(object key, Func<P1, T> funcstructor, bool overwrite = false)
         {
@@ -149,11 +173,7 @@ namespace Hefezopf.Fundament.DI
                 _ReaderWriterLock.ExitWriteLock();
             }
         }
-        public void Register<P1, T>(string parentName, object key, Func<P1, T> funcstructor, bool overwrite = false)
-        {
-            this.GetParent(parentName).Register<P1, T>(key, funcstructor, overwrite);
-        }
-        public T Get<P1, T>(object key, P1 p1)
+        public T Resolve<P1, T>(object key, P1 p1)
         {
             CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
             for (Funcstructor that = this; that != null; that = that._Parent ?? that._FallBack)
@@ -199,11 +219,7 @@ namespace Hefezopf.Fundament.DI
                 _ReaderWriterLock.ExitWriteLock();
             }
         }
-        public void Register<P1, P2, T>(string parentName, object key, Func<P1, P2, T> funcstructor, bool overwrite = false)
-        {
-            this.GetParent(parentName).Register<P1, P2, T>(key, funcstructor, overwrite);
-        }
-        public T Get<P1, P2, T>(object key, P1 p1, P2 p2)
+        public T Resolve<P1, P2, T>(object key, P1 p1, P2 p2)
         {
             CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
             for (Funcstructor that = this; that != null; that = that._Parent ?? that._FallBack)
@@ -225,7 +241,7 @@ namespace Hefezopf.Fundament.DI
             }
             return default(T);
         }
-  
+
         // 3
         public void Register<P1, P2, P3, T>(object key, Func<P1, P2, P3, T> funcstructor, bool overwrite = false)
         {
@@ -250,11 +266,7 @@ namespace Hefezopf.Fundament.DI
                 _ReaderWriterLock.ExitWriteLock();
             }
         }
-        public void Register<P1, P2, P3, T>(string parentName, object key, Func<P1, P2, P3, T> funcstructor, bool overwrite = false)
-        {
-            this.GetParent(parentName).Register<P1, P2, P3, T>(key, funcstructor, overwrite);
-        }
-        public T Get<P1, P2, P3, T>(object key, P1 p1, P2 p2, P3 p3)
+        public T Resolve<P1, P2, P3, T>(object key, P1 p1, P2 p2, P3 p3)
         {
             CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
             for (Funcstructor that = this; that != null; that = that._Parent ?? that._FallBack)
@@ -276,44 +288,8 @@ namespace Hefezopf.Fundament.DI
             }
             return default(T);
         }
-#if weichei
+
         //
-        private bool isWired;
-        public void Wire()
-        {
-            if (!_ContainsInstances) { throw new InvalidOperationException("can only be called on a Root"); }
-            if (isWired) { return; }
-            isWired = true;
-            System.AppDomain.CurrentDomain.AssemblyLoad += CurrentDomain_AssemblyLoad;
-            foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies().ToArray())
-            {
-                ScanAssembly(assembly);
-            }
-        }
-        public void Unwire()
-        {
-            if (!isWired) { return; }
-            isWired = false;
-            System.AppDomain.CurrentDomain.AssemblyLoad -= CurrentDomain_AssemblyLoad;
-        }
-
-        void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
-        {
-            var assembly = args.LoadedAssembly;
-            ScanAssembly(assembly);
-        }
-
-        private void ScanAssembly(System.Reflection.Assembly assembly)
-        {
-            var attrs = assembly.GetCustomAttributes(typeof(FuncstructorRegisterAttribute), false);
-            for (int idx = 0; idx < attrs.Length; idx++)
-            {
-                var attr = (FuncstructorRegisterAttribute)attrs[idx];
-                var instance = (IFuncstructorConfiguration)System.Activator.CreateInstance(attr.RegisterType);
-                instance.Register(this);
-            }
-        }
-#endif
         public void RegisterLateLoad<T>(object key, string fqnType)
         {
             var that = this.GetParent(ParentNameConfiguration) ?? this;
@@ -366,6 +342,18 @@ namespace Hefezopf.Fundament.DI
                 }, false);
                 return this.Get<P1, P2, P3, T>(key, p1, p2, p3);
             }), false);
+        }
+
+        internal class ItemState
+        {
+            internal CacheKey CacheKey;
+            internal object Funcstructor;
+
+            public ItemState(CacheKey cacheKey, object funcstructor)
+            {
+                this.CacheKey = cacheKey;
+                this.Funcstructor = funcstructor;
+            }
         }
     }
 }

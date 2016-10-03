@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hefezopf.Contracts.DI
 {
-    public interface IAssemblyLoaderService
+    public interface IAssemblyWatcherService
     {
         void WireTo(IDependencyInjectionConfigurable funcstructor);
     }

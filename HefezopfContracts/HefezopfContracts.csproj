@@ -48,8 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DI\DIService.cs" />
+    <Compile Include="DI\FuncstructorConfigurationAttribute.cs" />
+    <Compile Include="DI\FuncstructorFactoryAttribute.cs" />
     <Compile Include="DI\FuncstructorRegisterAttribute.cs" />
-    <Compile Include="DI\IAssemblyLoaderService.cs" />
+    <Compile Include="DI\IAssemblyWatcherService.cs" />
     <Compile Include="DI\IDIService.cs" />
     <Compile Include="DI\IFuncstructorConfiguration.cs" />
     <Compile Include="GlobalVersion.cs" />

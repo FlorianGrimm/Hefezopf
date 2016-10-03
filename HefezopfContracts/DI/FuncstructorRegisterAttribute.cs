@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Hefezopf.Contracts.DI
 {
-    [AttributeUsage(AttributeTargets.Assembly)]
+    [AttributeUsage(AttributeTargets.Assembly|AttributeTargets.Method)]
     public class FuncstructorRegisterAttribute : Attribute
     {
-        public readonly Type RegisterType;
-        /// <summary>
-        /// which type should be called must be a <see cref="T:IFuncstructorConfiguration"/>.
-        /// </summary>
-        /// <param name="registerType"></param>
-        public FuncstructorRegisterAttribute(Type registerType)
+        public readonly object Key;
+        public FuncstructorRegisterAttribute()
         {
-            RegisterType = registerType;
+        }
+        public FuncstructorRegisterAttribute(object key)
+        {
+            this.Key = key;
         }
     }
 }
