@@ -1,0 +1,9 @@
+﻿cd C:\git\Hefezopf
+xcopy /y /s ..\irony\Irony\ast\*.* HefezopfLibrary\Irony\Ast\
+xcopy /y /s ..\irony\Irony\Parsing\*.* HefezopfLibrary\Irony\Parsing\
+xcopy /y /s ..\irony\Irony\Utilities\*.* HefezopfLibrary\Irony\Utilities\
+
+xcopy /y /s ..\irony\IronySqlLibrary\Schema\*.* HefezopfLibrary\Schema\
+
+C:\git\irony\IronySqlLibrary\Schema\SqlGrammar.cs
+ResXFileCodeGenerator
