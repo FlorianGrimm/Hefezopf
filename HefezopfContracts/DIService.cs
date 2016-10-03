@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 
 namespace Hefezopf.Contracts
 {
-   public class DIService
+    public class DIService
     {
         protected static DIService _DIService;
-        public static IDependencyInjection GlobalInstance {
-            get {
+        public static IDependencyInjection GlobalInstance
+        {
+            get
+            {
                 return _DIService.GetGlobalInstance();
             }
         }
-        public virtual IDependencyInjection GetGlobalInstance() {
+        public virtual IDependencyInjection GetGlobalInstance()
+        {
             return null;
         }
     }
-    public interface IDependencyInjection {
+    public interface IDependencyInjection
+    {
     }
 }

@@ -1,0 +1,174 @@
+﻿#region License
+/* **********************************************************************************
+ * Copyright (c) Roman Ivantsov
+ * This source code is subject to terms and conditions of the MIT License
+ * for Irony. A copy of the license can be found in the License.txt file
+ * at the root of this distribution.
+ * By using this source code in any fashion, you are agreeing to be bound by the terms of the
+ * MIT License.
+ * You must not remove this notice from this software.
+ * **********************************************************************************/
+#endregion
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace Irony.Parsing
+{
+    // Regular expression literal, like javascript literal:   /abc?/i
+    // Allows optional switches
+    // example:
+    //  regex = /abc\\\/de/
+    //  matches fragments like  "abc\/de"
+    // Note: switches are returned in token.Details field. Unlike in StringLiteral, we don't need to unescape the escaped chars,
+    // (this is the job of regex engine), we only need to correctly recognize the end of expression
+
+    [Flags]
+    public enum RegexTermOptions
+    {
+        None = 0,
+        AllowLetterAfter = 0x01, //if not set (default) then any following letter (after legal switches) is reported as invalid switch
+        CreateRegExObject = 0x02,  //if set, token.Value contains Regex object; otherwise, it contains a pattern (string)
+        UniqueSwitches = 0x04,    //require unique switches
+
+        Default = CreateRegExObject | UniqueSwitches,
+    }
+
+    public class RegexLiteral : Terminal
+    {
+        public class RegexSwitchTable : Dictionary<char, RegexOptions> { }
+
+        public Char StartSymbol = '/';
+        public Char EndSymbol = '/';
+        public Char EscapeSymbol = '\\';
+        public RegexSwitchTable Switches = new RegexSwitchTable();
+        public RegexOptions DefaultOptions = RegexOptions.None;
+        public RegexTermOptions Options = RegexTermOptions.Default;
+
+        private char[] _stopChars;
+
+        public RegexLiteral(string name)
+            : base(name)
+        {
+            this.Switches.Add('i', RegexOptions.IgnoreCase);
+            this.Switches.Add('g', RegexOptions.None); //not sure what to do with this flag? anybody, any advice?
+            this.Switches.Add('m', RegexOptions.Multiline);
+            base.SetFlag(TermFlags.IsLiteral);
+        }
+
+        public RegexLiteral(string name, char startEndSymbol, char escapeSymbol)
+            : base(name)
+        {
+            this.StartSymbol = startEndSymbol;
+            this.EndSymbol = startEndSymbol;
+            this.EscapeSymbol = escapeSymbol;
+        }//constructor
+
+        public override void Init(GrammarData grammarData)
+        {
+            base.Init(grammarData);
+            this._stopChars = new char[] { this.EndSymbol, '\r', '\n' };
+        }
+        public override IList<string> GetFirsts()
+        {
+            var result = new StringList();
+            result.Add(this.StartSymbol.ToString());
+            return result;
+        }
+
+        public override Token TryMatch(ParsingContext context, ISourceStream source)
+        {
+            while (true)
+            {
+                //Find next position
+                var newPos = source.Text.IndexOfAny(this._stopChars, source.PreviewPosition + 1);
+                //we either didn't find it
+                if (newPos == -1)
+                {
+                    return context.CreateErrorToken(Resources.ErrNoEndForRegex);// "No end symbol for regex literal."
+                }
+
+                source.PreviewPosition = newPos;
+                if (source.PreviewChar != this.EndSymbol)
+                {
+                    //we hit CR or LF, this is an error
+                    return context.CreateErrorToken(Resources.ErrNoEndForRegex);
+                }
+
+                if (!this.CheckEscaped(source))
+                {
+                    break;
+                }
+            }
+            source.PreviewPosition++; //move after end symbol
+                                      //save pattern length, we will need it
+            var patternLen = source.PreviewPosition - source.Location.Position - 2; //exclude start and end symbol
+                                                                                    //read switches and turn them into options
+            RegexOptions options = RegexOptions.None;
+            var switches = string.Empty;
+            while (this.ReadSwitch(source, ref options))
+            {
+                if (this.IsSet(RegexTermOptions.UniqueSwitches) && switches.Contains(source.PreviewChar))
+                {
+                    return context.CreateErrorToken(Resources.ErrDupRegexSwitch, source.PreviewChar); // "Duplicate switch '{0}' for regular expression"
+                }
+
+                switches += source.PreviewChar.ToString();
+                source.PreviewPosition++;
+            }
+            //check following symbol
+            if (!this.IsSet(RegexTermOptions.AllowLetterAfter))
+            {
+                var currChar = source.PreviewChar;
+                if (char.IsLetter(currChar) || currChar == '_')
+                {
+                    return context.CreateErrorToken(Resources.ErrInvRegexSwitch, currChar); // "Invalid switch '{0}' for regular expression"
+                }
+            }
+            var token = source.CreateToken(this.OutputTerminal);
+            //we have token, now what's left is to set its Value field. It is either pattern itself, or Regex instance
+            string pattern = token.Text.Substring(1, patternLen); //exclude start and end symbol
+            object value = pattern;
+            if (this.IsSet(RegexTermOptions.CreateRegExObject))
+            {
+                value = new Regex(pattern, options);
+            }
+            token.Value = value;
+            token.Details = switches; //save switches in token.Details
+            return token;
+        }
+
+        private bool CheckEscaped(ISourceStream source)
+        {
+            var savePos = source.PreviewPosition;
+            bool escaped = false;
+            source.PreviewPosition--;
+            while (source.PreviewChar == this.EscapeSymbol)
+            {
+                escaped = !escaped;
+                source.PreviewPosition--;
+            }
+            source.PreviewPosition = savePos;
+            return escaped;
+        }
+        private bool ReadSwitch(ISourceStream source, ref RegexOptions options)
+        {
+            RegexOptions option;
+            var result = this.Switches.TryGetValue(source.PreviewChar, out option);
+            if (result)
+            {
+                options |= option;
+            }
+
+            return result;
+        }
+
+        public bool IsSet(RegexTermOptions option)
+        {
+            return (this.Options & option) != 0;
+        }
+    }//class
+}//namespace

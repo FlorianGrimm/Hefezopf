@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comp\IStrategyConfiguration.cs" />
+    <Compile Include="Comp\IStrategyExecutive.cs" />
     <Compile Include="DIService.cs" />
     <Compile Include="GlobalVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

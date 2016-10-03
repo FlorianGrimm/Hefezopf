@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\Hefezopf_Build\Hefezopf.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,10 +46,121 @@
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
+    <Compile Include="Comp\StrategyConfiguration.cs" />
+    <Compile Include="Comp\StrategyExecutive.cs" />
+    <Compile Include="Schema\HZDBColumn.cs" />
+    <Compile Include="Schema\HZDBTable.cs" />
+    <None Include="Irony\Ast\AstBuilder.cs" />
+    <None Include="Irony\Ast\AstContext.cs" />
+    <None Include="Irony\Ast\AstExtensions.cs" />
+    <None Include="Irony\Ast\AstInterfaces.cs" />
+    <None Include="Irony\Ast\AstNodeConfig.cs" />
+    <None Include="Irony\Ast\AstNodeEventArgs.cs" />
+    <None Include="Irony\Parsing\Data\Construction\GrammarDataBuilder.cs" />
+    <None Include="Irony\Parsing\Data\Construction\LanguageDataBuilder.cs" />
+    <None Include="Irony\Parsing\Data\Construction\ParserDataBuilder.cs" />
+    <None Include="Irony\Parsing\Data\Construction\ParserDataBuilder_HelperClasses.cs" />
+    <None Include="Irony\Parsing\Data\Construction\ScannerDataBuilder.cs" />
+    <None Include="Irony\Parsing\Data\GrammarData.cs" />
+    <None Include="Irony\Parsing\Data\LanguageData.cs" />
+    <None Include="Irony\Parsing\Data\ParserData.cs" />
+    <None Include="Irony\Parsing\Data\ScannerData.cs" />
+    <None Include="Irony\Parsing\Grammar\BnfExpression.cs" />
+    <None Include="Irony\Parsing\Grammar\BnfTerm.cs" />
+    <None Include="Irony\Parsing\Grammar\Grammar.cs" />
+    <None Include="Irony\Parsing\Grammar\GrammarEnums.cs" />
+    <None Include="Irony\Parsing\Grammar\GrammarError.cs" />
+    <None Include="Irony\Parsing\Grammar\GrammarHint.cs" />
+    <None Include="Irony\Parsing\Grammar\ICanRunSample.cs" />
+    <None Include="Irony\Parsing\Grammar\LanguageAttribute.cs" />
+    <None Include="Irony\Parsing\Grammar\NonTerminal.cs" />
+    <None Include="Irony\Parsing\Grammar\TermReportGroups.cs" />
+    <None Include="Irony\Parsing\Parser\Parser.cs" />
+    <None Include="Irony\Parsing\Parser\ParserActions\AcceptParserAction.cs" />
+    <None Include="Irony\Parsing\Parser\ParserActions\ErrorRecoveryParserAction.cs" />
+    <None Include="Irony\Parsing\Parser\ParserActions\ReduceParserActions.cs" />
+    <None Include="Irony\Parsing\Parser\ParserActions\ShiftParserAction.cs" />
+    <None Include="Irony\Parsing\Parser\ParserActions\_ParserAction.cs" />
+    <None Include="Irony\Parsing\Parser\ParserDataPrinter.cs" />
+    <None Include="Irony\Parsing\Parser\ParserStack.cs" />
+    <None Include="Irony\Parsing\Parser\ParserTrace.cs" />
+    <None Include="Irony\Parsing\Parser\ParseTree.cs" />
+    <None Include="Irony\Parsing\Parser\ParseTreeExtensions.cs" />
+    <None Include="Irony\Parsing\Parser\ParsingContext.cs" />
+    <None Include="Irony\Parsing\Parser\ParsingEventArgs.cs" />
+    <None Include="Irony\Parsing\Parser\SpecialActionsHints\ConditionalParserAction.cs" />
+    <None Include="Irony\Parsing\Parser\SpecialActionsHints\CustomActionHintAction.cs" />
+    <None Include="Irony\Parsing\Parser\SpecialActionsHints\ImpliedPrecedenceHint.cs" />
+    <None Include="Irony\Parsing\Parser\SpecialActionsHints\PrecedenceBasedParserAction.cs" />
+    <None Include="Irony\Parsing\Parser\SpecialActionsHints\PrecedenceHint.cs" />
+    <None Include="Irony\Parsing\Parser\SpecialActionsHints\PreferredActionHint.cs" />
+    <None Include="Irony\Parsing\Parser\SpecialActionsHints\TokenPreviewHint.cs" />
+    <None Include="Irony\Parsing\Parser\SyntaxError.cs" />
+    <None Include="Irony\Parsing\Scanner\Scanner.cs" />
+    <None Include="Irony\Parsing\Scanner\SourceLocation.cs" />
+    <None Include="Irony\Parsing\Scanner\SourceStream.cs" />
+    <None Include="Irony\Parsing\Scanner\Token.cs" />
+    <None Include="Irony\Parsing\Scanner\TokenEditorInfo.cs" />
+    <None Include="Irony\Parsing\Scanner\_ISourceStream.cs" />
+    <None Include="Irony\Parsing\Terminals\CommentTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\CompoundTerminalBase.cs" />
+    <None Include="Irony\Parsing\Terminals\ConstantTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\CustomTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\DataLiteralBase.cs" />
+    <None Include="Irony\Parsing\Terminals\DsvLiteral.cs" />
+    <None Include="Irony\Parsing\Terminals\FixedLengthLiteral.cs" />
+    <None Include="Irony\Parsing\Terminals\FreeTextLiteral.cs" />
+    <None Include="Irony\Parsing\Terminals\IdentifierTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\ImpliedSymbolTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\KeyTerm.cs" />
+    <None Include="Irony\Parsing\Terminals\LineContinuationTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\NewLineTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\NumberLiteral.cs" />
+    <None Include="Irony\Parsing\Terminals\QuotedValueLiteral.cs" />
+    <None Include="Irony\Parsing\Terminals\RegExBasedTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\RegExLiteral.cs" />
+    <None Include="Irony\Parsing\Terminals\StringLiteral.cs" />
+    <None Include="Irony\Parsing\Terminals\TerminalFactory.cs" />
+    <None Include="Irony\Parsing\Terminals\WikiTerminals\WikiBlockTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\WikiTerminals\WikiTagTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\WikiTerminals\WikiTextTerminal.cs" />
+    <None Include="Irony\Parsing\Terminals\WikiTerminals\_WikiTerminalBase.cs" />
+    <None Include="Irony\Parsing\Terminals\_Terminal.cs" />
+    <None Include="Irony\Parsing\TokenFilters\CodeOutlineFilter.cs" />
+    <None Include="Irony\Parsing\TokenFilters\TokenFilter.cs" />
+    <None Include="Irony\Utilities\Extensions.cs" />
+    <None Include="Irony\Utilities\LogMessage.cs" />
+    <None Include="Irony\Utilities\StringUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\HZDatabaseModel.cs" />
+    <Compile Include="Schema\HZDBSchema.cs" />
+    <None Include="Schema\SqlGrammar.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Irony\Parsing\Parser\SpecialActionsHints\PrecedenceBasedParserAction.cs.rej" />
     <None Include="key.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\Newtonsoft.Json.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Irony\irony.txt" />
+    <None Include="Irony\Parsing\Data\Construction\_about_parser_construction.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Irony\Resources.resx">
+      <CustomToolNamespace>Irony</CustomToolNamespace>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HefezopfContracts\HefezopfContracts.csproj">
+      <Project>{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}</Project>
+      <Name>HefezopfContracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Hefezopf_Build\Hefezopf-Pre.targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
