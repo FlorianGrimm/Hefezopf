@@ -8,5 +8,6 @@ namespace Hefezopf.Contracts.Comp
 {
     public interface IStrategyConfiguration
     {
+        string GetStrategyName();
     }
 }
