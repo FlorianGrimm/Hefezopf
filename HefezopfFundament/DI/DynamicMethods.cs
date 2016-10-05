@@ -39,80 +39,31 @@ using System.Reflection.Emit;
 //namespace com.focuspoint.nexus.reflection
 namespace Hefezopf.Fundament.DI
 {
-
     public delegate object GenericInvoker(object target, params object[] arguments);
 
     public static class DynamicMethods
     {
-        private static void FindMethod(Type type, string methodName, Type[] typeArguments, Type[] parameterTypes, out MethodInfo methodInfo, out ParameterInfo[] parameters)
-        {
-
-            methodInfo = null;
-            parameters = null;
-
-            if (null == parameterTypes)
-            {
-                methodInfo = type.GetMethod(methodName, BindingFlags.Public | BindingFlags.Instance);
-                methodInfo = methodInfo.MakeGenericMethod(typeArguments);
-                parameters = methodInfo.GetParameters();
-            }
-            else
-            {
-                // Method is probably overloaded. As far as i know there's no other way to get the MethodInfo instance, we have to
-                // search for it in all the type methods
-                MethodInfo[] methods = type.GetMethods(BindingFlags.Public | BindingFlags.Instance);
-                foreach (MethodInfo method in methods)
-                {
-                    if (method.Name == methodName)
-                    {
-                        // create the generic method
-                        MethodInfo genericMethod = method.MakeGenericMethod(typeArguments);
-                        parameters = genericMethod.GetParameters();
-
-                        // compare the method parameters
-                        if (parameters.Length == parameterTypes.Length)
-                        {
-                            for (int i = 0; i < parameters.Length; i++)
-                            {
-                                if (parameters[i].ParameterType != parameterTypes[i])
-                                {
-                                    continue; // this is not the method we'r looking for
-                                }
-                            }
-
-                            // if we'r here, we got the rigth method
-                            methodInfo = genericMethod;
-                            break;
-                        }
-                    }
-                }
-
-                if (null == methodInfo)
-                {
-                    throw new InvalidOperationException("Method not found");
-                }
-            }
-        }
-
         public static GenericInvoker GenericMethodInvokerMethod(Type type, string methodName, Type[] typeArguments, Type[] parameterTypes)
         {
             MethodInfo methodInfo;
             ParameterInfo[] parameters;
             // find the method to be invoked
             FindMethod(type, methodName, typeArguments, parameterTypes, out methodInfo, out parameters);
-            return GenericMethodInvokerMethod(type, methodInfo, typeArguments, parameterTypes, parameters);
+            //return GenericMethodInvokerMethod(type, methodInfo, typeArguments, parameterTypes, parameters);
+            return GenericMethodInvokerMethod(methodInfo, parameters);
         }
         public static GenericInvoker GenericMethodInvokerMethod(Type type, MethodInfo methodInfo)
         {
             //Type[] typeArguments, Type[] parameterTypes, ParameterInfo[] parameters
-            return GenericMethodInvokerMethod(type, methodInfo, null, null, methodInfo.GetParameters());
+            //return GenericMethodInvokerMethod(type, methodInfo, null, null, methodInfo.GetParameters());
+            return GenericMethodInvokerMethod(methodInfo, methodInfo.GetParameters());
         }
         public static GenericInvoker GenericMethodInvokerMethod(MethodInfo methodInfo, ParameterInfo[] parameters)
         {
-            
             string name = string.Format("__MethodInvoker_{0}_ON_{1}", methodInfo.Name, methodInfo.DeclaringType.Name);
-            DynamicMethod dynamicMethod = new DynamicMethod(name, typeof(object), new Type[] { typeof(object), typeof(object[]) },
-              methodInfo.DeclaringType);
+
+            //DynamicMethod dynamicMethod = new DynamicMethod(name, typeof(object), new Type[] { typeof(object), typeof(object[]) },methodInfo.DeclaringType);
+            DynamicMethod dynamicMethod = new DynamicMethod(name, methodInfo.ReturnType, new Type[] { typeof(object), typeof(object[]) });
 
             ILGenerator generator = dynamicMethod.GetILGenerator();
 
@@ -178,6 +129,55 @@ namespace Hefezopf.Fundament.DI
         public static GenericInvoker GenericMethodInvokerMethod(Type type, string methodName, Type[] typeArguments)
         {
             return GenericMethodInvokerMethod(type, methodName, typeArguments, null);
+        }
+
+        private static void FindMethod(Type type, string methodName, Type[] typeArguments, Type[] parameterTypes, out MethodInfo methodInfo, out ParameterInfo[] parameters)
+        {
+            methodInfo = null;
+            parameters = null;
+
+            if ((object)parameterTypes == null)
+            {
+                methodInfo = type.GetMethod(methodName, BindingFlags.Public | BindingFlags.Instance);
+                methodInfo = methodInfo.MakeGenericMethod(typeArguments);
+                parameters = methodInfo.GetParameters();
+            }
+            else
+            {
+                // Method is probably overloaded. As far as i know there's no other way to get the MethodInfo instance, we have to
+                // search for it in all the type methods
+                MethodInfo[] methods = type.GetMethods(BindingFlags.Public | BindingFlags.Instance);
+                foreach (MethodInfo method in methods)
+                {
+                    if (method.Name == methodName)
+                    {
+                        // create the generic method
+                        MethodInfo genericMethod = method.MakeGenericMethod(typeArguments);
+                        parameters = genericMethod.GetParameters();
+
+                        // compare the method parameters
+                        if (parameters.Length == parameterTypes.Length)
+                        {
+                            for (int i = 0; i < parameters.Length; i++)
+                            {
+                                if (parameters[i].ParameterType != parameterTypes[i])
+                                {
+                                    continue; // this is not the method we'r looking for
+                                }
+                            }
+
+                            // if we'r here, we got the rigth method
+                            methodInfo = genericMethod;
+                            break;
+                        }
+                    }
+                }
+
+                if ((object)methodInfo == null)
+                {
+                    throw new InvalidOperationException("Method not found");
+                }
+            }
         }
     }
 }

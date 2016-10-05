@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hefezopf_Build", "Hefezopf_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfFundament_Tests", "HefezopfFundament_Tests\HefezopfFundament_Tests.csproj", "{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsaelzbrotLibrary", "..\Gsaelzbrot\GsaelzbrotLibrary\GsaelzbrotLibrary.csproj", "{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

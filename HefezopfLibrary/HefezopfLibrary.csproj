@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -46,10 +50,9 @@
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
-    <Compile Include="Comp\StrategyConfiguration.cs" />
-    <Compile Include="Comp\StrategyExecutive.cs" />
-    <Compile Include="Schema\HZDBColumn.cs" />
-    <Compile Include="Schema\HZDBTable.cs" />
+    <None Include="Schema\HZDBColumn.cs" />
+    <None Include="Schema\HZDBTable.cs" />
+    <Compile Include="Schema\HefezopfConfiguration.cs" />
     <None Include="Irony\Ast\AstBuilder.cs" />
     <None Include="Irony\Ast\AstContext.cs" />
     <None Include="Irony\Ast\AstExtensions.cs" />
@@ -132,8 +135,8 @@
     <None Include="Irony\Utilities\LogMessage.cs" />
     <None Include="Irony\Utilities\StringUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Schema\HZDatabaseModel.cs" />
-    <Compile Include="Schema\HZDBSchema.cs" />
+    <None Include="Schema\HZDatabaseModel.cs" />
+    <None Include="Schema\HZDBSchema.cs" />
     <None Include="Schema\SqlGrammar.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -155,11 +158,21 @@
       <CustomToolNamespace>Irony</CustomToolNamespace>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Folder Include="Comp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Gsaelzbrot\GsaelzbrotLibrary\GsaelzbrotLibrary.csproj">
+      <Project>{dda3dc61-feea-4bcb-867c-c67c4a6165d4}</Project>
+      <Name>GsaelzbrotLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HefezopfContracts\HefezopfContracts.csproj">
       <Project>{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}</Project>
       <Name>HefezopfContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HefezopfFundament\HefezopfFundament.csproj">
+      <Project>{82A0DB66-F923-4110-A478-050028FC2FF0}</Project>
+      <Name>HefezopfFundament</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\Hefezopf_Build\Hefezopf-Pre.targets" />

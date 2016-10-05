@@ -10,13 +10,15 @@ namespace Hefezopf.Contracts.DI
     public class FuncstructorConfigurationAttribute : Attribute
     {
         public readonly Type RegisterType;
+
         /// <summary>
+        /// Initializes a new instance of the <see cref="FuncstructorConfigurationAttribute"/> class.
         /// which type should be called must be a <see cref="T:IFuncstructorConfiguration"/>.
         /// </summary>
-        /// <param name="registerType"></param>
+        /// <param name="registerType">the type registers the factories.</param>
         public FuncstructorConfigurationAttribute(Type registerType)
         {
-            RegisterType = registerType;
+            this.RegisterType = registerType;
         }
     }
 }

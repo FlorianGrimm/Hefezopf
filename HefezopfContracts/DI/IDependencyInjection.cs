@@ -21,7 +21,7 @@ namespace Hefezopf.Contracts.DI
         T Resolve<P1, P2, P3, T>(object key, P1 p1, P2 p2, P3 p3);
     }
 
-    public interface IDependencyInjectionConfigurable: IDependencyInjection
+    public interface IDependencyInjectionConfigurable : IDependencyInjection
     {
         IDependencyInjectionConfigurable GetParent(string name);
 
@@ -31,12 +31,12 @@ namespace Hefezopf.Contracts.DI
         bool Register<T>(object key, Func<T> funcstructor, bool overwrite = false);
 
         // 1
-        void Register<P1, T>(object key, Func<P1, T> funcstructor, bool overwrite = false);
+        bool Register<P1, T>(object key, Func<P1, T> funcstructor, bool overwrite = false);
 
         // 2
-        void Register<P1, P2, T>(object key, Func<P1, P2, T> funcstructor, bool overwrite = false);
+        bool Register<P1, P2, T>(object key, Func<P1, P2, T> funcstructor, bool overwrite = false);
 
         // 3
-        void Register<P1, P2, P3, T>(object key, Func<P1, P2, P3, T> funcstructor, bool overwrite = false);
+        bool Register<P1, P2, P3, T>(object key, Func<P1, P2, P3, T> funcstructor, bool overwrite = false);
     }
 }

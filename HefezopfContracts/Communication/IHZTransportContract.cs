@@ -16,5 +16,4 @@ namespace Hefezopf.Contracts.Communication
         [System.ServiceModel.OperationContract]
         void ExecuteQueue(string target, string action, string parameter);
     }
-
 }

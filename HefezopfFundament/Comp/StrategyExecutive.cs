@@ -9,5 +9,9 @@ namespace Hefezopf.Fundament.Comp
 {
     public class StrategyExecutive : IStrategyExecutive
     {
+        public string GetStrategyName()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

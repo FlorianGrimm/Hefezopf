@@ -37,23 +37,23 @@ namespace Hefezopf.Fundament.DI
         public void Wire()
         {
             //if (!_ContainsInstances) { throw new InvalidOperationException("can only be called on a Root"); }
-            if (_IsWired) { return; }
-            _IsWired = true;
-            System.AppDomain.CurrentDomain.AssemblyLoad += CurrentDomain_AssemblyLoad;
+            if (this._IsWired) { return; }
+            this._IsWired = true;
+            System.AppDomain.CurrentDomain.AssemblyLoad += this.CurrentDomain_AssemblyLoad;
             foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies().ToArray())
             {
-                ScanAssembly(assembly);
+                this.ScanAssembly(assembly);
             }
             this.CallFuncstructorConfigurations();
         }
         public void Unwire()
         {
-            if (!_IsWired) { return; }
-            _IsWired = false;
-            System.AppDomain.CurrentDomain.AssemblyLoad -= CurrentDomain_AssemblyLoad;
+            if (!this._IsWired) { return; }
+            this._IsWired = false;
+            System.AppDomain.CurrentDomain.AssemblyLoad -= this.CurrentDomain_AssemblyLoad;
         }
 
-        void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
+        private void CurrentDomain_AssemblyLoad(object sender, AssemblyLoadEventArgs args)
         {
             var assembly = args.LoadedAssembly;
             this.ScanAssembly(assembly);
@@ -76,8 +76,7 @@ namespace Hefezopf.Fundament.DI
                     && (publicKeyToken[4] == 0x19)
                     && (publicKeyToken[5] == 0x34)
                     && (publicKeyToken[6] == 0xe0)
-                    && (publicKeyToken[7] == 0x89)
-                    )
+                    && (publicKeyToken[7] == 0x89))
                 {
                     return;
                 }
@@ -88,8 +87,7 @@ namespace Hefezopf.Fundament.DI
                     && (publicKeyToken[4] == 0x11)
                     && (publicKeyToken[5] == 0xd5)
                     && (publicKeyToken[6] == 0x0a)
-                    && (publicKeyToken[7] == 0x3a)
-                    )
+                    && (publicKeyToken[7] == 0x3a))
                 {
                     return;
                 }
@@ -116,7 +114,6 @@ namespace Hefezopf.Fundament.DI
                     var constructor = registerType.GetConstructor(Type.EmptyTypes);
                     var instance = (IFuncstructorConfiguration)constructor.Invoke(new object[0]);
                     this._FuncstructorConfigurations.Add(instance);
-
                 }
             }
             {
@@ -131,7 +128,6 @@ namespace Hefezopf.Fundament.DI
                         var methodAttrs = method.GetCustomAttributes<FuncstructorRegisterAttribute>(false);
                         foreach (var methodAttr in methodAttrs)
                         {
-
                             //method.Invoke(null, parameters)
                             this._FuncstructorConfigurations.Add(new MethodFuncstructorConfiguration(method, methodAttr.Key));
                         }
@@ -175,72 +171,61 @@ namespace Hefezopf.Fundament.DI
         }
         internal class MethodFuncstructorConfiguration : IFuncstructorConfiguration
         {
-            private object key;
-            private MethodInfo method;
+            private object _Key;
+            private MethodInfo _MethodInfo;
 
             public MethodFuncstructorConfiguration(MethodInfo method, object key)
             {
-                this.method = method;
-                this.key = key;
+                this._MethodInfo = method;
+                this._Key = key;
             }
 
             public void Register(IDependencyInjectionConfigurable funcstructor)
             {
-                var returnType = method.ReturnType;
-                var methodParameters = method.GetParameters();
+                var returnType = this._MethodInfo.ReturnType;
+                var methodParameters = this._MethodInfo.GetParameters();
                 var parameterTypes = new Type[methodParameters.Length];
+                var genericParameterTypes = new Type[methodParameters.Length + 1];
                 for (int idx = 0; idx < methodParameters.Length; idx++)
                 {
                     var methodParameter = methodParameters[idx];
                     var parameterType = methodParameter.ParameterType;
                     parameterTypes[idx] = parameterType;
+                    genericParameterTypes[idx] = parameterType;
                 }
-                funcstructor.Register(returnType, key, parameterTypes, null, false);
+                genericParameterTypes[methodParameters.Length] = returnType;
+                //
+                Type typeFunc;
+                switch (methodParameters.Length)
+                {
+                    case 0:
+                        typeFunc = typeof(Func<>);
+                        break;
+                    case 1:
+                        typeFunc = typeof(Func<,>);
+                        break;
+                    case 2:
+                        typeFunc = typeof(Func<,,>);
+                        break;
+                    case 3:
+                        typeFunc = typeof(Func<,,,>);
+                        break;
+                    case 4:
+                        typeFunc = typeof(Func<,,,,>);
+                        break;
+                    case 5:
+                        typeFunc = typeof(Func<,,,,,>);
+                        break;
+                    case 6:
+                        typeFunc = typeof(Func<,,,,,,>);
+                        break;
+                    default:
+                        throw new NotSupportedException();
+                }
+                var typeFuncT = typeFunc.MakeGenericType(genericParameterTypes);
+                var delegateT = Delegate.CreateDelegate(typeFuncT, this._MethodInfo);
+                funcstructor.Register(returnType, this._Key, parameterTypes, delegateT, false);
             }
-            //public static FastInvokeHandler GetMethodInvoker(MethodInfo methodInfo)
-            //{
-            //    DynamicMethod dynamicMethod = new DynamicMethod(string.Empty,
-            //                     typeof(object), new Type[] { typeof(object),
-            //         typeof(object[]) },
-            //                     methodInfo.DeclaringType.Module);
-            //    ILGenerator il = dynamicMethod.GetILGenerator();
-            //    ParameterInfo[] ps = methodInfo.GetParameters();
-            //    Type[] paramTypes = new Type[ps.Length];
-            //    for (int i = 0; i < paramTypes.Length; i++)
-            //    {
-            //        paramTypes[i] = ps[i].ParameterType;
-            //    }
-            //    LocalBuilder[] locals = new LocalBuilder[paramTypes.Length];
-            //    for (int i = 0; i < paramTypes.Length; i++)
-            //    {
-            //        locals[i] = il.DeclareLocal(paramTypes[i]);
-            //    }
-            //    for (int i = 0; i < paramTypes.Length; i++)
-            //    {
-            //        il.Emit(OpCodes.Ldarg_1);
-            //        EmitFastInt(il, i);
-            //        il.Emit(OpCodes.Ldelem_Ref);
-            //        EmitCastToReference(il, paramTypes[i]);
-            //        il.Emit(OpCodes.Stloc, locals[i]);
-            //    }
-            //    il.Emit(OpCodes.Ldarg_0);
-            //    for (int i = 0; i < paramTypes.Length; i++)
-            //    {
-            //        il.Emit(OpCodes.Ldloc, locals[i]);
-            //    }
-            //    il.EmitCall(OpCodes.Call, methodInfo, null);
-            //    if (methodInfo.ReturnType == typeof(void))
-            //        il.Emit(OpCodes.Ldnull);
-            //    else
-            //        EmitBoxIfNeeded(il, methodInfo.ReturnType);
-            //    il.Emit(OpCodes.Ret);
-            //    FastInvokeHandler invoder =
-            //      (FastInvokeHandler)dynamicMethod.CreateDelegate(
-            //      typeof(FastInvokeHandler));
-            //    return invoder;
-            //}
-
-
         }
     }
 }

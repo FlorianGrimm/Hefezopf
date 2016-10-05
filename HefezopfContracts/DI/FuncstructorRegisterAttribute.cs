@@ -6,22 +6,18 @@ using System.Threading.Tasks;
 
 namespace Hefezopf.Contracts.DI
 {
-    public class DIService
+    [AttributeUsage(AttributeTargets.Method)]
+    public class FuncstructorRegisterAttribute : Attribute
     {
-        protected static DIService _DIService;
-        public static IDependencyInjection GlobalInstance
+        public readonly object Key;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FuncstructorRegisterAttribute"/> class.
+        /// </summary>
+        /// <param name="key">TODO</param>
+        public FuncstructorRegisterAttribute(object key)
         {
-            get
-            {
-                return _DIService.GetGlobalInstance();
-            }
+            this.Key = key;
         }
-        public virtual IDependencyInjection GetGlobalInstance()
-        {
-            return null;
-        }
-    }
-    public interface IDependencyInjection
-    {
     }
 }

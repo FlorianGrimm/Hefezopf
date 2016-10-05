@@ -10,58 +10,58 @@ using System.Threading.Tasks;
 
 namespace Hefezopf.Fundament.DI
 {
+#pragma warning disable SA1313 // Parameter names must begin with lower-case letter
+
     public class Funcstructor
         : IDependencyInjection
         , IDependencyInjectionConfigurable
     {
         public const string ParentNameRoot = "Root";
-        public const string ParentNameConfiguration = "Configuration";
-        public const string ParentNameFallBack = "Funcstructor-FallBack";
-        public static Funcstructor CreateDefault(IAssemblyLoaderService assemblyLoaderService)
-        {
-            var instanceFallback = new Funcstructor(ParentNameFallBack, null, null, false);
-            var instanceConfiguration = new Funcstructor(ParentNameConfiguration, null, instanceFallback, false);
-            var instanceRoot = new Funcstructor(ParentNameRoot, instanceConfiguration, instanceFallback, true);
-            if ((object)assemblyLoaderService == null)
-            {
-                assemblyLoaderService.WireTo(instanceRoot);
-            }
-            return instanceRoot;
-        }
+        public const string ParentNameLateInstance = "LateInstance";
+        public const string ParentNameLateLoad = "LateLoad";
 
-        private ReaderWriterLockSlim _ReaderWriterLock;
-        private Hashtable _Registry;
         public readonly string Name;
-        private Funcstructor _Parent;
         private readonly bool _ContainsInstances;
-        private Funcstructor _FallBack;
+        private ReaderWriterLockSlim _ReaderWriterLock;
+        private Hashtable _RegistryItemState;
+        private Funcstructor _Parent;
 
-        public Funcstructor(string name, Funcstructor parent, Funcstructor fallBack)
+        public Funcstructor(string name, Funcstructor parent)
         {
             //if (ParentNameFallBack.Equals(name)) { throw new ArgumentException("Funcstructor-FallBack is not allowed", "name"); }
             this._ReaderWriterLock = new ReaderWriterLockSlim();
-            this._Registry = new Hashtable();
-            this.Name = name ?? "";
+            this._RegistryItemState = new Hashtable();
+            this.Name = name ?? string.Empty;
             this._Parent = parent;
-            this._FallBack = fallBack;
             this._ContainsInstances = true;
             //this._FallBack = new Funcstructor(ParentNameFallBack, null);
         }
 
-        private Funcstructor(string name, Funcstructor parent, Funcstructor fallBack, bool containsInstances)
+        private Funcstructor(string name, Funcstructor parent, bool containsInstances)
         {
             this._ReaderWriterLock = new ReaderWriterLockSlim();
-            this._Registry = new Hashtable();
+            this._RegistryItemState = new Hashtable();
             this.Name = name;
             this._Parent = parent;
-            this._FallBack = fallBack;
             //this._ContainsInstances = string.Equals(ParentNameRoot, this.Name, StringComparison.Ordinal);
             this._ContainsInstances = containsInstances;
         }
 
+        public static Funcstructor CreateDefault(IAssemblyWatcherService assemblyWatcherService)
+        {
+            var instanceConfiguration = new Funcstructor(ParentNameLateLoad, null,  false);
+            var instanceLateInstance = new Funcstructor(ParentNameLateInstance, instanceConfiguration, false);
+            var instanceRoot = new Funcstructor(ParentNameRoot, instanceLateInstance, true);
+            if ((object)assemblyWatcherService == null)
+            {
+                assemblyWatcherService.WireTo(instanceRoot);
+            }
+            return instanceRoot;
+        }
+
         public IDependencyInjectionConfigurable GetParent(string name)
         {
-            if (name == null) { name = ""; }
+            if (name == null) { name = string.Empty; }
             for (Funcstructor that = this; that != null; that = that._Parent)
             {
                 if (that.Name.Equals(name))
@@ -70,53 +70,6 @@ namespace Hefezopf.Fundament.DI
                 }
             }
             return null;
-        }
-
-        private bool registerAny(CacheKey cacheKey, object funcstructor, bool overwrite = false)
-        {
-            _ReaderWriterLock.EnterWriteLock();
-            try
-            {
-                if (overwrite)
-                {
-                    _Registry[cacheKey] = new ItemState(cacheKey, funcstructor);
-                    return true;
-                }
-                else
-                {
-                    if (_Registry[cacheKey] == null)
-                    {
-                        _Registry[cacheKey] = new ItemState(cacheKey, funcstructor);
-                        return true;
-                    }
-                }
-            }
-            finally
-            {
-                _ReaderWriterLock.ExitWriteLock();
-            }
-            return false;
-        }
-        private ItemState GetItemState(CacheKey cacheKey)
-        {
-            ItemState itemState = null;
-            for (Funcstructor that = this; that != null; that = that._Parent ?? that._FallBack)
-            {
-                that._ReaderWriterLock.EnterReadLock();
-                try
-                {
-                    itemState = (ItemState)that._Registry[cacheKey];
-                }
-                finally
-                {
-                    that._ReaderWriterLock.ExitReadLock();
-                }
-                if (itemState != null)
-                {
-                    return itemState;
-                }
-            }
-            return itemState;
         }
 
         public bool Register(Type returnType, object key, Type[] parameterTypes, object funcstructor, bool overwrite = false)
@@ -150,141 +103,54 @@ namespace Hefezopf.Fundament.DI
         }
 
         // 1
-        public void Register<P1, T>(object key, Func<P1, T> funcstructor, bool overwrite = false)
+        public bool Register<P1, T>(object key, Func<P1, T> funcstructor, bool overwrite = false)
         {
-            _ReaderWriterLock.EnterWriteLock();
-            try
-            {
-                CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
-                if (overwrite)
-                {
-                    _Registry[cacheKey] = funcstructor;
-                }
-                else
-                {
-                    if (_Registry[cacheKey] == null)
-                    {
-                        _Registry[cacheKey] = funcstructor;
-                    }
-                }
-            }
-            finally
-            {
-                _ReaderWriterLock.ExitWriteLock();
-            }
+            CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
+            return this.registerAny(cacheKey, funcstructor, overwrite);
         }
         public T Resolve<P1, T>(object key, P1 p1)
         {
             CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
-            for (Funcstructor that = this; that != null; that = that._Parent ?? that._FallBack)
+            ItemState itemState = this.GetItemState(cacheKey);
+            if ((object)itemState != null)
             {
-                Func<P1, T> funcstructor;
-                that._ReaderWriterLock.EnterReadLock();
-                try
-                {
-                    funcstructor = (Func<P1, T>)that._Registry[cacheKey];
-                }
-                finally
-                {
-                    that._ReaderWriterLock.ExitReadLock();
-                }
-                if (funcstructor != null)
-                {
-                    return funcstructor(p1);
-                }
+                var func = (Func<P1, T>)(itemState.Funcstructor);
+                return func(p1);
             }
             return default(T);
         }
         // 2
-        public void Register<P1, P2, T>(object key, Func<P1, P2, T> funcstructor, bool overwrite = false)
+        public bool Register<P1, P2, T>(object key, Func<P1, P2, T> funcstructor, bool overwrite = false)
         {
-            _ReaderWriterLock.EnterWriteLock();
-            try
-            {
-                CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
-                if (overwrite)
-                {
-                    _Registry[cacheKey] = funcstructor;
-                }
-                else
-                {
-                    if (_Registry[cacheKey] == null)
-                    {
-                        _Registry[cacheKey] = funcstructor;
-                    }
-                }
-            }
-            finally
-            {
-                _ReaderWriterLock.ExitWriteLock();
-            }
+            CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
+            return this.registerAny(cacheKey, funcstructor, overwrite);
         }
         public T Resolve<P1, P2, T>(object key, P1 p1, P2 p2)
         {
             CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
-            for (Funcstructor that = this; that != null; that = that._Parent ?? that._FallBack)
+            ItemState itemState = this.GetItemState(cacheKey);
+            if ((object)itemState != null)
             {
-                Func<P1, P2, T> funcstructor;
-                that._ReaderWriterLock.EnterReadLock();
-                try
-                {
-                    funcstructor = (Func<P1, P2, T>)that._Registry[cacheKey];
-                }
-                finally
-                {
-                    that._ReaderWriterLock.ExitReadLock();
-                }
-                if (funcstructor != null)
-                {
-                    return funcstructor(p1, p2);
-                }
+                var func = (Func<P1, P2, T>)(itemState.Funcstructor);
+                return func(p1, p2);
             }
             return default(T);
         }
 
         // 3
-        public void Register<P1, P2, P3, T>(object key, Func<P1, P2, P3, T> funcstructor, bool overwrite = false)
+        public bool Register<P1, P2, P3, T>(object key, Func<P1, P2, P3, T> funcstructor, bool overwrite = false)
         {
-            _ReaderWriterLock.EnterWriteLock();
-            try
-            {
-                CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
-                if (overwrite)
-                {
-                    _Registry[cacheKey] = funcstructor;
-                }
-                else
-                {
-                    if (_Registry[cacheKey] == null)
-                    {
-                        _Registry[cacheKey] = funcstructor;
-                    }
-                }
-            }
-            finally
-            {
-                _ReaderWriterLock.ExitWriteLock();
-            }
+            CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
+            return this.registerAny(cacheKey, funcstructor, overwrite);
         }
         public T Resolve<P1, P2, P3, T>(object key, P1 p1, P2 p2, P3 p3)
         {
             CacheKey cacheKey = new CacheKey(key, typeof(T), typeof(P1));
-            for (Funcstructor that = this; that != null; that = that._Parent ?? that._FallBack)
+            ItemState itemState = this.GetItemState(cacheKey);
+            if ((object)itemState != null)
             {
-                Func<P1, P2, P3, T> funcstructor;
-                that._ReaderWriterLock.EnterReadLock();
-                try
-                {
-                    funcstructor = (Func<P1, P2, P3, T>)that._Registry[cacheKey];
-                }
-                finally
-                {
-                    that._ReaderWriterLock.ExitReadLock();
-                }
-                if (funcstructor != null)
-                {
-                    return funcstructor(p1, p2, p3);
-                }
+                var func = (Func<P1, P2, P3, T>)(itemState.Funcstructor);
+                return func(p1, p2, p3);
             }
             return default(T);
         }
@@ -292,56 +158,136 @@ namespace Hefezopf.Fundament.DI
         //
         public void RegisterLateLoad<T>(object key, string fqnType)
         {
-            var that = this.GetParent(ParentNameConfiguration) ?? this;
-            that.Register<T>(key, (delegate ()
-            {
-                that.Register<T>(key, null, true);
-                var type = System.Type.GetType(fqnType, true, false);
-                that._FallBack.Register<T>(key, () => (T)System.Activator.CreateInstance(type), false);
-                return this.Get<T>(key);
-            }), false);
+            var lateLoad = this.GetParent(ParentNameLateLoad) ?? this;
+            var itemState = new ItemStateLateLoad(key, fqnType);
+            Func<T> funcLateLoad = (delegate ()
+                {
+                    var lateInstance = this.GetParent(ParentNameLateInstance) ?? this;
+                    Func<T> funcLateInstance = (delegate ()
+                    {
+                        return (T)System.Activator.CreateInstance(itemState.GetClassType());
+                    });
+                    lateInstance.Register<T>(key, funcLateInstance, false);
+                    return this.Resolve<T>(itemState.Key);
+                });
+            itemState.Funcstructor = funcLateLoad;
+            this.Register(typeof(T), key, null, itemState, false);
         }
         public void RegisterLateLoad<P1, T>(object key, string fqnType)
         {
-            var that = this.GetParent(ParentNameConfiguration) ?? this;
-            that.Register<P1, T>(key, (delegate (P1 p1)
+            var lateLoad = this.GetParent(ParentNameLateLoad) ?? this;
+            var itemState = new ItemStateLateLoad(key, fqnType);
+            Func<P1, T> funcLateLoad = (delegate (P1 l1)
             {
-                that.Register<P1, T>(key, null, true);
-                var type = System.Type.GetType(fqnType, true, false);
-                that._FallBack.Register<P1, T>(key, (Func<P1, T>)delegate (P1 _p1)
+                var lateInstance = this.GetParent(ParentNameLateInstance) ?? this;
+                Func<P1, T> funcLateInstance = (delegate (P1 i1)
                 {
-                    return (T)System.Activator.CreateInstance(type, _p1);
-                }, false);
-                return this.Get<P1, T>(key, p1);
-            }), false);
+                    return (T)System.Activator.CreateInstance(itemState.GetClassType(), i1);
+                });
+                lateInstance.Register<P1, T>(key, funcLateInstance, false);
+                return this.Resolve<P1, T>(itemState.Key, l1);
+            });
+            itemState.Funcstructor = funcLateLoad;
+            this.Register(typeof(T), key, new Type[] { typeof(P1) }, itemState, false);
         }
         public void RegisterLateLoad<P1, P2, T>(object key, string fqnType)
         {
-            var that = this.GetParent(ParentNameConfiguration) ?? this;
-            that.Register<P1, P2, T>(key, (delegate (P1 p1, P2 p2)
+            var lateLoad = this.GetParent(ParentNameLateLoad) ?? this;
+            var itemState = new ItemStateLateLoad(key, fqnType);
+            Func<P1, P2, T> funcLateLoad = (delegate (P1 l1, P2 l2)
             {
-                that.Register<P1, P2, T>(key, null, true);
-                var type = System.Type.GetType(fqnType, true, false);
-                that._FallBack.Register<P1, P2, T>(key, delegate (P1 _p1, P2 _p2)
+                var lateInstance = this.GetParent(ParentNameLateInstance) ?? this;
+                Func<P1, P2, T> funcLateInstance = (delegate (P1 i1, P2 i2)
                 {
-                    return (T)System.Activator.CreateInstance(type, _p1, _p2);
-                }, false);
-                return this.Get<P1, P2, T>(key, p1, p2);
-            }), false);
+                    return (T)System.Activator.CreateInstance(itemState.GetClassType(), i1, i2);
+                });
+                lateInstance.Register<P1, P2, T>(key, funcLateInstance, false);
+                return this.Resolve<P1, P2, T>(itemState.Key, l1, l2);
+            });
+            itemState.Funcstructor = funcLateLoad;
+            this.Register(typeof(T), key, new Type[] { typeof(P1), typeof(P2) }, itemState, false);
         }
         public void RegisterLateLoad<P1, P2, P3, T>(object key, string fqnType)
         {
-            var that = this.GetParent(ParentNameConfiguration) ?? this;
-            that.Register<P1, P2, P3, T>(key, (delegate (P1 p1, P2 p2, P3 p3)
+            var lateLoad = this.GetParent(ParentNameLateLoad) ?? this;
+            var itemState = new ItemStateLateLoad(key, fqnType);
+            Func<P1, P2, P3, T> funcLateLoad = (delegate (P1 l1, P2 l2, P3 l3)
             {
-                that.Register<P1, P2, P3, T>(key, null, true);
-                var type = System.Type.GetType(fqnType, true, false);
-                that._FallBack.Register<P1, P2, P3, T>(key, delegate (P1 _p1, P2 _p2, P3 _p3)
+                var lateInstance = this.GetParent(ParentNameLateInstance) ?? this;
+                Func<P1, P2, P3, T> funcLateInstance = (delegate (P1 i1, P2 i2, P3 i3)
                 {
-                    return (T)System.Activator.CreateInstance(type, _p1, _p2, _p3);
-                }, false);
-                return this.Get<P1, P2, P3, T>(key, p1, p2, p3);
-            }), false);
+                    return (T)System.Activator.CreateInstance(itemState.GetClassType(), i1, i2, i3);
+                });
+                lateInstance.Register<P1, P2, P3, T>(key, funcLateInstance, false);
+                return this.Resolve<P1, P2, P3, T>(itemState.Key, l1, l2, l3);
+            });
+            itemState.Funcstructor = funcLateLoad;
+            this.Register(typeof(T), key, new Type[] { typeof(P1), typeof(P2), typeof(P3) }, itemState, false);
+        }
+
+        private bool registerAny(CacheKey cacheKey, object funcstructor, bool overwrite = false)
+        {
+            this._ReaderWriterLock.EnterWriteLock();
+            try
+            {
+                if (overwrite)
+                {
+                    var itemState = funcstructor as ItemState;
+                    if (itemState != null)
+                    {
+                        itemState.CacheKey = cacheKey;
+                    }
+                    else
+                    {
+                        itemState = new ItemState(cacheKey, funcstructor);
+                    }
+                    this._RegistryItemState[cacheKey] = itemState;
+                    return true;
+                }
+                else
+                {
+                    if (this._RegistryItemState[cacheKey] == null)
+                    {
+                        var itemState = funcstructor as ItemState;
+                        if (itemState != null)
+                        {
+                            itemState.CacheKey = cacheKey;
+                        }
+                        else
+                        {
+                            itemState = new ItemState(cacheKey, funcstructor);
+                        }
+                        this._RegistryItemState[cacheKey] = itemState;
+                        return true;
+                    }
+                }
+            }
+            finally
+            {
+                this._ReaderWriterLock.ExitWriteLock();
+            }
+            return false;
+        }
+        private ItemState GetItemState(CacheKey cacheKey)
+        {
+            ItemState itemState = null;
+            for (Funcstructor that = this; that != null; that = that._Parent)
+            {
+                that._ReaderWriterLock.EnterReadLock();
+                try
+                {
+                    itemState = (ItemState)that._RegistryItemState[cacheKey];
+                }
+                finally
+                {
+                    that._ReaderWriterLock.ExitReadLock();
+                }
+                if (itemState != null)
+                {
+                    return itemState;
+                }
+            }
+            return itemState;
         }
 
         internal class ItemState
@@ -353,6 +299,31 @@ namespace Hefezopf.Fundament.DI
             {
                 this.CacheKey = cacheKey;
                 this.Funcstructor = funcstructor;
+            }
+
+        }
+
+        internal class ItemStateLateLoad : ItemState
+        {
+            internal object Key;
+            internal string ClassName;
+            internal Type Type;
+
+            public ItemStateLateLoad(object key, string className)
+                : base(null, null)
+            {
+                this.Key = key;
+                this.ClassName = className;
+                this.Funcstructor = null;
+            }
+            internal Type GetClassType()
+            {
+                if (this.Type == null)
+                {
+                    //base.Prepare();
+                    this.Type = System.Type.GetType(this.ClassName, true);
+                }
+                return this.Type;
             }
         }
     }

@@ -7,14 +7,18 @@ using System.Threading.Tasks;
 namespace Hefezopf.Fundament.DI
 {
     //http://csharpindepth.com/articles/general/singleton.aspx
+
     /// <summary>
     /// a singleton for another NULL
     /// </summary>
     public sealed class NullReplacement
     {
+        private static readonly NullReplacement _NULL = new NullReplacement();
+
         // Explicit static constructor to tell C# compiler
         // not to mark type as beforefieldinit
         static NullReplacement() { }
+
         private NullReplacement() { }
         public static object NULL
         {
@@ -23,7 +27,7 @@ namespace Hefezopf.Fundament.DI
                 return _NULL;
             }
         }
-        private static readonly NullReplacement _NULL = new NullReplacement();
+
         /// <summary>
         /// Determines whether obj is also this.
         /// </summary>
@@ -33,10 +37,11 @@ namespace Hefezopf.Fundament.DI
         {
             return ReferenceEquals(this, obj);
         }
+
         /// <summary>
         /// returns 0
         /// </summary>
-        /// <returns>returns 0</returns>
+        /// <returns>returns alwasy 0.</returns>
         public override int GetHashCode()
         {
             // must be null

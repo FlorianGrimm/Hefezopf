@@ -10,13 +10,15 @@ namespace Hefezopf.Contracts.DI
     public class FuncstructorFactoryAttribute : Attribute
     {
         public readonly Type FactoryType;
+
         /// <summary>
+        /// Initializes a new instance of the <see cref="FuncstructorFactoryAttribute"/> class.
         /// which type should be called must be a <see cref="T:IFuncstructorConfiguration"/>.
         /// </summary>
-        /// <param name="factoryType"></param>
+        /// <param name="factoryType">the type of the factory</param>
         public FuncstructorFactoryAttribute(Type factoryType)
         {
-            FactoryType = factoryType;
+            this.FactoryType = factoryType;
         }
     }
 }
