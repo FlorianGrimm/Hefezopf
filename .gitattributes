@@ -13,4 +13,4 @@
 
 *.filters text eol=crlf*.cs diff=csharp
 
-*.cs diff=csharp
+*.cs diff=csharp linguist-language=csharp
