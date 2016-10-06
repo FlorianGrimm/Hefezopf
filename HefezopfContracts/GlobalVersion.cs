@@ -1,6 +1,7 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
+// Copyright (c) 2016 Florian Grimm
+
 #pragma warning disable SA1649
 
 using System.Reflection;

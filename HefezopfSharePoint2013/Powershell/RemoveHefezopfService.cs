@@ -1,6 +1,6 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service.PowerShell
 {
@@ -50,7 +50,7 @@ namespace Hefezopf.Service.PowerShell
             if (this.ShouldProcess(SPFarm.Local.Name))
             {
                 // Remove the service
-                HefezopfService.RemoveService();
+                HefezopfIisWebService.RemoveService();
             }
         }
     }

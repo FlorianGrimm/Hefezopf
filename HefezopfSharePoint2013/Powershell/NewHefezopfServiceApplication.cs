@@ -1,6 +1,6 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service.PowerShell
 {
@@ -115,7 +115,7 @@ namespace Hefezopf.Service.PowerShell
             if (this.ShouldProcess(this.Name))
             {
                 // Get or create the service
-                HefezopfService service = HefezopfService.GetOrCreateService();
+                HefezopfIisWebService service = HefezopfIisWebService.GetOrCreateService();
 
                 // Get or create the service proxy
                 HefezopfServiceProxy.GetOrCreateServiceProxy();
@@ -183,7 +183,7 @@ namespace Hefezopf.Service.PowerShell
             }
 
             // Get the service
-            HefezopfService service = SPFarm.Local.Services.GetValue<HefezopfService>();
+            HefezopfIisWebService service = SPFarm.Local.Services.GetValue<HefezopfIisWebService>();
 
             if (service != null)
             {

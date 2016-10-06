@@ -1,20 +1,19 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="DatabaseSettings.aspx.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian Grimm
+
 namespace Hefezopf.Service.Administration
 {
     using System;
     using System.Globalization;
     using System.Web;
     using System.Web.UI.WebControls;
+    using Hefezopf.Service;
     using Microsoft.SharePoint;
     using Microsoft.SharePoint.Administration;
     using Microsoft.SharePoint.ApplicationPages;
     using Microsoft.SharePoint.Utilities;
     using Microsoft.SharePoint.WebControls;
-    using Hefezopf.Service;
 
     /// <summary>
     /// The Database Settings Page
@@ -61,7 +60,7 @@ namespace Hefezopf.Service.Administration
 
             ContentDatabaseSection databaseSectionControl = this.databaseSection as ContentDatabaseSection;
 
-            if (!Page.IsPostBack)
+            if (!this.Page.IsPostBack)
             {
                 if (this.ServiceApplication.Database == null)
                 {
@@ -85,7 +84,7 @@ namespace Hefezopf.Service.Administration
         /// <param name="e">The EventArgs.</param>
         protected void Page_Error(object sender, EventArgs e)
         {
-            Exception ex = Server.GetLastError();
+            Exception ex = this.Server.GetLastError();
             if (ex != null)
             {
             }
@@ -221,7 +220,7 @@ namespace Hefezopf.Service.Administration
         /// <param name="e">The EventArgs.</param>
         protected void ButtonCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect(string.Format(CultureInfo.InvariantCulture, "ManageApplication.aspx?id={0}", SPHttpUtility.UrlKeyValueEncode(this.ServiceApplication.Id)));
+            this.Response.Redirect(string.Format(CultureInfo.InvariantCulture, "ManageApplication.aspx?id={0}", SPHttpUtility.UrlKeyValueEncode(this.ServiceApplication.Id)));
         }
 
         #endregion

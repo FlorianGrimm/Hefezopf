@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="ManageService.aspx.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service.Administration
 {
@@ -37,10 +35,10 @@ namespace Hefezopf.Service.Administration
         /// <param name="e">The EventArgs.</param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!this.Page.IsPostBack)
             {
                 // Populate the controls with default values
-                HefezopfService service = SPFarm.Local.Services.GetValue<HefezopfService>();
+                HefezopfIisWebService service = SPFarm.Local.Services.GetValue<HefezopfIisWebService>();
                 HefezopfServiceProxy proxy = SPFarm.Local.ServiceProxies.GetValue<HefezopfServiceProxy>();
 
                 if (service != null)
@@ -81,7 +79,12 @@ namespace Hefezopf.Service.Administration
 
                 foreach (SPServer server in SPFarm.Local.Servers)
                 {
-                    if (server.Role == SPServerRole.Application || server.Role == SPServerRole.SingleServer || server.Role == SPServerRole.WebFrontEnd)
+#if SP2016
+                    var isValidRole = (server.Role == SPServerRole.Application || server.Role == SPServerRole.SingleServerFarm || server.Role == SPServerRole.WebFrontEnd);
+#else
+                    var isValidRole = (server.Role == SPServerRole.Application || server.Role == SPServerRole.SingleServer || server.Role == SPServerRole.WebFrontEnd);
+#endif
+                    if (isValidRole)
                     {
                         ServiceInstanceStatus serviceInstance = new ServiceInstanceStatus();
                         serviceInstance.ServerName = server.Name;
@@ -121,9 +124,9 @@ namespace Hefezopf.Service.Administration
             }
         }
 
-        #endregion
+#endregion
 
-        #region Control Events
+#region Control Events
 
         /// <summary>
         /// Click event.
@@ -139,7 +142,7 @@ namespace Hefezopf.Service.Administration
                 operation.Begin();
 
                 // Install the service
-                HefezopfService service = HefezopfService.GetOrCreateService();
+                HefezopfIisWebService service = HefezopfIisWebService.GetOrCreateService();
 
                 // Install the service instances but do not start (provision) them (let the admin do this on the services on server screen).
                 HefezopfServiceInstance.CreateServiceInstances(service);
@@ -164,7 +167,7 @@ namespace Hefezopf.Service.Administration
                 operation.TrailingHTML = HttpContext.GetGlobalResourceObject("Hefezopf.Service.ServiceAdminResources", "ManageServiceRemoveOperationTrailingHtml", CultureInfo.CurrentCulture).ToString();
                 operation.Begin();
 
-                HefezopfService.RemoveService();
+                HefezopfIisWebService.RemoveService();
 
                 operation.End("/_admin/Hefezopf.Service/ManageService.aspx");
             }
@@ -184,7 +187,7 @@ namespace Hefezopf.Service.Administration
                 operation.Begin();
 
                 // Get the service
-                HefezopfService service = HefezopfService.GetOrCreateService();
+                HefezopfIisWebService service = HefezopfIisWebService.GetOrCreateService();
 
                 // Create the service instances
                 HefezopfServiceInstance.CreateServiceInstances(service);
@@ -193,9 +196,9 @@ namespace Hefezopf.Service.Administration
             }
         }
 
-        #endregion
+#endregion
 
-        #region Internal Classes
+#region Internal Classes
 
         /// <summary>
         /// Class used for data binding to the Service Instance grid view
@@ -233,6 +236,6 @@ namespace Hefezopf.Service.Administration
             public bool IsInstalled { get; set; }
         }
 
-        #endregion
+#endregion
     }
 }

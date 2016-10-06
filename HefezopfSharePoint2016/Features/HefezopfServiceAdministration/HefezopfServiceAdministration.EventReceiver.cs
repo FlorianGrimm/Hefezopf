@@ -1,8 +1,6 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="HefezopfServiceAdministration.EventReceiver.cs" company="">
-// Copyright © 
-// </copyright>
-// -----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service.Administration.Features
 {
@@ -12,6 +10,8 @@ namespace Hefezopf.Service.Administration.Features
     using System.Text;
     using Microsoft.SharePoint;
     using Microsoft.SharePoint.Administration;
+
+#pragma warning disable SA1649 // File name must match first type name.
 
     /// <summary>
     /// This class handles events raised during feature activation, deactivation, installation, uninstallation, and upgrade.
@@ -31,8 +31,8 @@ namespace Hefezopf.Service.Administration.Features
             try
             {
                 // Ensure that the resource files in CONFIG\ADMINRESOURCES are copied to App_GlobalResources.
-                // If you have Central Administration on another server, you will need to run 
-                // stsadm -o copyappbincontent or Install-SPApplicationContent on that server directly, 
+                // If you have Central Administration on another server, you will need to run
+                // stsadm -o copyappbincontent or Install-SPApplicationContent on that server directly,
                 // as the call below only runs on the server that the WSP is deployed on.
                 SPWebService.AdministrationService.ApplyApplicationContentToLocalServer();
             }

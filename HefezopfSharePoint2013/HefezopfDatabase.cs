@@ -1,6 +1,6 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service
 {
@@ -78,7 +78,7 @@ namespace Hefezopf.Service
         }
 
         /// <summary>
-        /// Grants the application pool service account rights to the database. Call this after you call Provision() 
+        /// Grants the application pool service account rights to the database. Call this after you call Provision()
         /// on this class.
         /// </summary>
         /// <param name="processSecurityIdentifier">The application pool service account.</param>

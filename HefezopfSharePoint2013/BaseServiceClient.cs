@@ -1,6 +1,6 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service
 {
@@ -128,11 +128,11 @@ namespace Hefezopf.Service
         /// <param name="asProcess">Whether to run as the passed-through identity of the user (supported in claims mode), or the app pool account.</param>
         /// <typeparam name="TChannel">The type of channel.</typeparam>
         /// <remarks>
-        /// This is a good place to use an SPMonitoredScope so that you can 
+        /// This is a good place to use an SPMonitoredScope so that you can
         /// monitor execution times of your service calls.
-        /// This method sets up the load balancer, and calls into the service application.  
-        /// If an exception occurs  during the load balancer operation, make sure to report it as a failure if it is due to a 
-        /// communication issue. Otherwise, if it is an exception in your application logic or execution, do not report the failure 
+        /// This method sets up the load balancer, and calls into the service application.
+        /// If an exception occurs  during the load balancer operation, make sure to report it as a failure if it is due to a
+        /// communication issue. Otherwise, if it is an exception in your application logic or execution, do not report the failure
         /// to ensure that the server is not taken out of the load balancer.
         /// </remarks>
         protected void ExecuteOnChannel<TChannel>(CodeToExecuteOnChannel<TChannel> codeToExecute, bool asProcess)
@@ -246,8 +246,8 @@ namespace Hefezopf.Service
         }
 
         /// <summary>
-        /// This method gets the end point address to the WCF service. This is where you can support multiple .svc files per service application, 
-        /// by looking for the default end point name defined in the ServiceApplication class, and swapping it for the EndPoint property that you 
+        /// This method gets the end point address to the WCF service. This is where you can support multiple .svc files per service application,
+        /// by looking for the default end point name defined in the ServiceApplication class, and swapping it for the EndPoint property that you
         /// set in your Service Client.
         /// </summary>
         /// <param name="loadBalancerContext">The LoadBalancer context obtained from the Service Application proxy</param>

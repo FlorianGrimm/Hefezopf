@@ -1,6 +1,6 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service.PowerShell
 {

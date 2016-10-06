@@ -1,8 +1,7 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="ManageApplication.aspx.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian Grimm
+
 namespace Hefezopf.Service.Administration
 {
     using System;

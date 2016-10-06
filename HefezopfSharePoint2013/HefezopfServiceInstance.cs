@@ -1,6 +1,6 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service
 {
@@ -9,8 +9,8 @@ namespace Hefezopf.Service
     using Microsoft.SharePoint.Administration;
 
     /// <summary>
-    /// The service instance. Appears on the Services on Server screen in SharePoint Central Administration. There can be 
-    /// one service instance per server on the farm. Administrators can stop/start the service on individual servers. Each 
+    /// The service instance. Appears on the Services on Server screen in SharePoint Central Administration. There can be
+    /// one service instance per server on the farm. Administrators can stop/start the service on individual servers. Each
     /// server that the service is started on will participate in the automatic load-balancing in the service application proxy.
     /// </summary>
     [System.Runtime.InteropServices.Guid("ba7b0518-9024-41b2-8132-26deafc28b5d")]
@@ -32,7 +32,7 @@ namespace Hefezopf.Service
         /// </summary>
         /// <param name="server">The SPServer to install the instance to.</param>
         /// <param name="service">The service to associate the service instance with.</param>
-        internal HefezopfServiceInstance(SPServer server, HefezopfService service)
+        internal HefezopfServiceInstance(SPServer server, HefezopfIisWebService service)
             : base(server, service)
         {
         }
@@ -60,7 +60,7 @@ namespace Hefezopf.Service
         /// Installs the service instances on servers in the farm (does not start them).
         /// </summary>
         /// <param name="service">The service associated with these instances.</param>
-        internal static void CreateServiceInstances(HefezopfService service)
+        internal static void CreateServiceInstances(HefezopfIisWebService service)
         {
             if (service == null)
             {
@@ -95,6 +95,6 @@ namespace Hefezopf.Service
             }
         }
 
-#endregion
+        #endregion
     }
 }

@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Properties.aspx.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service.Administration
 {
@@ -10,12 +8,12 @@ namespace Hefezopf.Service.Administration
     using System.Globalization;
     using System.Web;
     using System.Web.UI.WebControls;
+    using Hefezopf.Service.Administration;
     using Microsoft.SharePoint;
     using Microsoft.SharePoint.Administration;
     using Microsoft.SharePoint.ApplicationPages;
     using Microsoft.SharePoint.Utilities;
     using Microsoft.SharePoint.WebControls;
-    using Hefezopf.Service.Administration;
 
     /// <summary>
     /// The Application Properties Page.
@@ -55,7 +53,7 @@ namespace Hefezopf.Service.Administration
                 SPUtility.TransferToErrorPage(HttpContext.GetGlobalResourceObject("Hefezopf.Service.ServiceAdminResources", "ErrorNoServiceApplication", CultureInfo.CurrentCulture).ToString());
             }
 
-            ((DialogMaster)Page.Master).OkButton.Click += new EventHandler(this.OkButton_Click);
+            ((DialogMaster)this.Page.Master).OkButton.Click += new EventHandler(this.OkButton_Click);
 
             if (!this.IsPostBack)
             {
@@ -64,7 +62,7 @@ namespace Hefezopf.Service.Administration
             }
 
             // set masterpage's ok button as submit for form
-            Form.DefaultButton = ((DialogMaster)Master).OkButton.UniqueID;
+            this.Form.DefaultButton = ((DialogMaster)this.Master).OkButton.UniqueID;
         }
 
         #endregion
@@ -115,7 +113,7 @@ namespace Hefezopf.Service.Administration
             }
 
             // Get the service
-            HefezopfService service = HefezopfService.GetOrCreateService();
+            HefezopfIisWebService service = HefezopfIisWebService.GetOrCreateService();
 
             // Try to get a duplicate service application
             HefezopfServiceApplication duplicate = SPFarm.Local.GetObject(serviceName, service.Id, typeof(HefezopfServiceApplication)) as HefezopfServiceApplication;

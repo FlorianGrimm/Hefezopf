@@ -87,10 +87,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Activation" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Management.Automation" />
     <Reference Include="System.Xml" />
@@ -158,33 +160,40 @@
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\BaseAdminPage.cs" />
+    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\BaseAdminPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\CreateApplication.aspx.cs">
       <DependentUpon>CreateApplication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\CreateApplication.aspx.designer.cs">
       <DependentUpon>CreateApplication.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\DatabaseSettings.aspx.cs">
       <DependentUpon>DatabaseSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\DatabaseSettings.aspx.designer.cs">
       <DependentUpon>DatabaseSettings.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\ManageApplication.aspx.cs">
       <DependentUpon>ManageApplication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\ManageApplication.aspx.designer.cs">
       <DependentUpon>ManageApplication.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\ManageService.aspx.cs">
       <DependentUpon>ManageService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\ManageService.aspx.designer.cs">
       <DependentUpon>ManageService.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\Properties.aspx.cs">
       <DependentUpon>Properties.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\Properties.aspx.designer.cs">
       <DependentUpon>Properties.aspx.cs</DependentUpon>
@@ -279,12 +288,14 @@
     <Content Include="SPR_Template_ADMIN\Hefezopf.Service\ServiceNotInstalled.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Features\HefezopfServiceAdministration\Resources.de-DE.resx" />
+    <Content Include="Resources\Hefezopf.Service.ServiceResources.de-DE.resx" />
     <EmbeddedResource Include="SPR_Config_AdminResources\Hefezopf.Service.ServiceAdminResources.en-US.resx" />
     <EmbeddedResource Include="SPR_Config_AdminResources\Hefezopf.Service.ServiceAdminResources.resx" />
-    <EmbeddedResource Include="Features\HefezopfServiceAdministration\Resources.en-US.resx" />
-    <EmbeddedResource Include="Features\HefezopfServiceAdministration\Resources.resx" />
-    <EmbeddedResource Include="Resources\Hefezopf.Service.ServiceResources.en-US.resx" />
-    <EmbeddedResource Include="Resources\Hefezopf.Service.ServiceResources.resx" />
+    <Content Include="Features\HefezopfServiceAdministration\Resources.en-US.resx" />
+    <Content Include="Features\HefezopfServiceAdministration\Resources.resx" />
+    <Content Include="Resources\Hefezopf.Service.ServiceResources.en-US.resx" />
+    <Content Include="Resources\Hefezopf.Service.ServiceResources.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

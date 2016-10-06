@@ -1,7 +1,6 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
-
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service.PowerShell
 {
@@ -74,7 +73,7 @@ namespace Hefezopf.Service.PowerShell
         /// Gets or sets the name of the proxy
         /// </summary>
         [Parameter(Mandatory = false, ParameterSetName = "Application")]
-        [ Parameter(Mandatory = true, ParameterSetName = "Uri")]
+        [Parameter(Mandatory = true, ParameterSetName = "Uri")]
         public string Name
         {
             get
@@ -133,7 +132,7 @@ namespace Hefezopf.Service.PowerShell
             if (this.ShouldProcess(this.Name))
             {
                 // Ensure the service exists
-                HefezopfService.GetOrCreateService();
+                HefezopfIisWebService.GetOrCreateService();
 
                 // Ensure the proxy exists
                 HefezopfServiceProxy serviceProxy = HefezopfServiceProxy.GetOrCreateServiceProxy();

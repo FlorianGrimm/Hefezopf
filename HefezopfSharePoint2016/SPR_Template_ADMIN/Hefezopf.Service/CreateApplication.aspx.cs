@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="CreateApplication.aspx.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service.Administration
 {
@@ -48,7 +46,7 @@ namespace Hefezopf.Service.Administration
         /// <param name="e">The EventArgs.</param>
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!this.Page.IsPostBack)
             {
             }
         }
@@ -60,7 +58,7 @@ namespace Hefezopf.Service.Administration
         /// <param name="e">The event args.</param>
         protected void Page_Error(object sender, EventArgs e)
         {
-            Exception ex = Server.GetLastError();
+            Exception ex = this.Server.GetLastError();
             if (ex != null)
             {
             }
@@ -105,7 +103,7 @@ namespace Hefezopf.Service.Administration
             string serviceName = e.Value;
 
             // Get the service
-            HefezopfService service = HefezopfService.GetOrCreateService();
+            HefezopfIisWebService service = HefezopfIisWebService.GetOrCreateService();
 
             // Try to get a duplicate service application
             HefezopfServiceApplication duplicate = SPFarm.Local.GetObject(serviceName, service.Id, typeof(HefezopfServiceApplication)) as HefezopfServiceApplication;
@@ -137,7 +135,7 @@ namespace Hefezopf.Service.Administration
 
                 try
                 {
-                    HefezopfService service = HefezopfService.GetOrCreateService();
+                    HefezopfIisWebService service = HefezopfIisWebService.GetOrCreateService();
                     HefezopfServiceProxy serviceProxy = HefezopfServiceProxy.GetOrCreateServiceProxy();
 
                     // Create the application pool

@@ -1,6 +1,6 @@
 ﻿// Hefezopf
 // MIT License
-// Copyright (c) 2016 Florian GRimm
+// Copyright (c) 2016 Florian Grimm
 
 namespace Hefezopf.Service
 {
@@ -14,23 +14,23 @@ namespace Hefezopf.Service
     /// The Service. This is registered once per farm.
     /// </summary>
     [System.Runtime.InteropServices.Guid("43d13cf0-7b98-4ecc-a972-b5bf288d248b")]
-    public sealed class HefezopfService : SPIisWebService, IServiceAdministration
+    public sealed class HefezopfIisWebService : SPIisWebService, IServiceAdministration
     {
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HefezopfService"/> class. Default constructor (required for SPPersistedObject serialization). Never call this directly.
+        /// Initializes a new instance of the <see cref="HefezopfIisWebService"/> class. Default constructor (required for SPPersistedObject serialization). Never call this directly.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public HefezopfService()
+        public HefezopfIisWebService()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HefezopfService"/> class. Use this constructor to install the service in the farm if it doesn't exist.
+        /// Initializes a new instance of the <see cref="HefezopfIisWebService"/> class. Use this constructor to install the service in the farm if it doesn't exist.
         /// </summary>
         /// <param name="farm">The <see cref="Microsoft.SharePoint.Administration.SPFarm"/> that this service will be installed in.</param>
-        internal HefezopfService(SPFarm farm)
+        internal HefezopfIisWebService(SPFarm farm)
             : base(farm)
         {
         }
@@ -112,7 +112,7 @@ namespace Hefezopf.Service
         /// Gets a friendly name and description for this service application for display in the farm configuration wizard. You can localize these values.
         /// </summary>
         /// <param name="serviceApplicationType">The <see cref="System.Type" /> of service application.</param>
-        /// <returns>An <see cref="Microsoft.SharePoint.SPPersistedTypeDescription"/> containing the name and description of the service application.</returns>
+        /// <returns>An <see cref="T:Microsoft.SharePoint.SPPersistedTypeDescription"/> containing the name and description of the service application.</returns>
         public SPPersistedTypeDescription GetApplicationTypeDescription(Type serviceApplicationType)
         {
             if (serviceApplicationType != typeof(HefezopfServiceApplication))
@@ -138,12 +138,12 @@ namespace Hefezopf.Service
         /// Gets an existing service or creates it if it doesn't exist.
         /// </summary>
         /// <returns>An instance of the Service.</returns>
-        internal static HefezopfService GetOrCreateService()
+        internal static HefezopfIisWebService GetOrCreateService()
         {
-            HefezopfService service = SPFarm.Local.Services.GetValue<HefezopfService>();
+            HefezopfIisWebService service = SPFarm.Local.Services.GetValue<HefezopfIisWebService>();
             if (service == null)
             {
-                service = new HefezopfService(SPFarm.Local);
+                service = new HefezopfIisWebService(SPFarm.Local);
                 service.Status = SPObjectStatus.Online;
                 service.Update();
             }
@@ -156,7 +156,7 @@ namespace Hefezopf.Service
         /// </summary>
         internal static void RemoveService()
         {
-            HefezopfService service = SPFarm.Local.Services.GetValue<HefezopfService>();
+            HefezopfIisWebService service = SPFarm.Local.Services.GetValue<HefezopfIisWebService>();
             HefezopfServiceProxy serviceProxy = SPFarm.Local.ServiceProxies.GetValue<HefezopfServiceProxy>();
 
             // Uninstall any service applications
