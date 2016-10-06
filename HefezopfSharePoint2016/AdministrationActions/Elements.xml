@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomActionGroup
+      Id="d3d7e7b3-132d-4751-961e-c6938c8bbe2f"
+      Location="Microsoft.SharePoint.Administration.Applications"
+      Title="$Resources:CustomActionGroupTitle"
+      ImageUrl="/_admin/Hefezopf.Service/ca-icon.png"
+      Sequence="1001"/>
+
+  <CustomAction Description="$Resources:CustomActionDescription" GroupId="d3d7e7b3-132d-4751-961e-c6938c8bbe2f" Id="138144ff-6d51-4e96-ba85-fc13b6163891" Sequence="100" Location="Microsoft.SharePoint.Administration.Applications" Title="$Resources:CustomActionTitle" RequiredAdmin="Delegated">
+    <UrlAction Url="/_admin/Hefezopf.Service/ManageService.aspx" />
+  </CustomAction>  
+</Elements>
