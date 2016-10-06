@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace Hefezopf.Contracts.Communication
 {
-    [System.ServiceModel.ServiceContract]
+    [System.ServiceModel.ServiceContract(Namespace = ContractConsts.Namespace)]
     public interface IHZServiceContract
     {
         [System.ServiceModel.OperationContract]
-        HZServiceResponce Execute(HZServiceRequest request);
+        HZServiceResponce ExecuteOneAction(HZServiceRequest request);
 
         [System.ServiceModel.OperationContract]
-        HZServiceResponce ExecuteMany(HZServiceRequest request);
+        HZServiceResponce[] ExecuteManyActions(HZServiceRequest[] requests);
+
+        [System.ServiceModel.OperationContract]
+        HZServiceResponce ExecuteOneActionQueued(HZServiceRequest request);
     }
 }

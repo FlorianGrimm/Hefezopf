@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="IHelloWorldWCFService.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian GRimm
 
 namespace Hefezopf.Service
 {
@@ -12,28 +10,11 @@ namespace Hefezopf.Service
     /// <summary>
     /// The Service Contract.
     /// </summary>
-    [ServiceContract]
+    [ServiceContract(Namespace = Hefezopf.Contracts.ContractConsts.Namespace)]
     [System.Runtime.InteropServices.Guid("79f521b0-e048-479e-8c54-7a93b636e6a4")]
-    internal interface IHelloWorldWCFService
+    internal interface IHefezopfWCFService
+        : Hefezopf.Contracts.Communication.IHZTransportContract
+        , Contracts.Communication.IHZServiceContract
     {
-        #region Methods
-
-        /// <summary>
-        /// Returns a hello world string.
-        /// </summary>
-        /// <param name="helloWorld">An input string of text.</param>
-        /// <returns>A string of text echoing the input value.</returns>
-        [OperationContract]
-        string HelloWorld(string helloWorld);
-
-        /// <summary>
-        /// Returns a hello world string.
-        /// </summary>
-        /// <param name="helloWorld">An input string of text.</param>
-        /// <returns>A string of text echoing the input value.</returns>
-        [OperationContract]
-        string HelloWorldFromDatabase(string helloWorld);
-
-        #endregion
     }
 }

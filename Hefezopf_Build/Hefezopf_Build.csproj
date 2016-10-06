@@ -51,6 +51,11 @@
     <None Include="Hefezopf-Post.targets" />
     <None Include="Hefezopf.ruleset" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SP2016\Microsoft.SharePoint.Client.ServerRuntime.dll" />
+    <Content Include="SP2016\Microsoft.SharePoint.dll" />
+    <Content Include="SP2016\Microsoft.SharePoint.Powershell.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

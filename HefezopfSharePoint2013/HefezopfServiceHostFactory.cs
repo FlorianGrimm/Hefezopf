@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="HefezopfServiceHostFactory.cs" company="">
-// Copyright ©
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian GRimm
 
 namespace Hefezopf.Service
 {

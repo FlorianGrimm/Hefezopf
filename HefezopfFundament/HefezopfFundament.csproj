@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Hefezopf_Build\Hefezopf.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>bin\Debug\Hefezopf.Fundament.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Hefezopf.Fundament.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -52,17 +54,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\AssemblyWatcherService.cs">
+      <Link>DI\AssemblyWatcherService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\CacheKey.cs">
+      <Link>DI\CacheKey.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\EmbeddedResourceAssemblyLoader.cs">
+      <Link>DI\EmbeddedResourceAssemblyLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\Funcstructor.cs">
+      <Link>DI\Funcstructor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\NullReplacement.cs">
+      <Link>DI\NullReplacement.cs</Link>
+    </Compile>
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
     <Compile Include="Comp\StrategyConfiguration.cs" />
     <Compile Include="Comp\StrategyExecutive.cs" />
-    <Compile Include="DI\AssemblyWatcherService.cs" />
-    <Compile Include="DI\CacheKey.cs" />
     <Compile Include="DI\DIServiceImplementation.cs" />
-    <None Include="DI\DynamicMethods.cs" />
-    <Compile Include="DI\Funcstructor.cs" />
-    <Compile Include="DI\NullReplacement.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\HZDatabase.cs" />

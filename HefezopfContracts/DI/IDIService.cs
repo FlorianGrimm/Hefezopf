@@ -1,13 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hefezopf.Contracts.DI
+﻿namespace Hefezopf.Contracts.DI
 {
+    using Brimborium.Funcstructors;
+
+    /// <summary>
+    /// Get an instance of funcstructor.
+    /// </summary>
     public interface IDIService
     {
-        IDependencyInjection GetGlobalInstance();
+        /// <summary>
+        /// Get an old or new instance of funcstructor.
+        /// </summary>
+        /// <returns>a funcstructor.</returns>
+        IFuncstructor GetGlobalFuncstructor();
     }
 }

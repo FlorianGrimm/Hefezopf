@@ -1,0 +1,32 @@
+﻿<ps:Config xmlns:ps="urn:Microsoft.SharePoint.PowerShell"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:schemaLocation="urn:Microsoft.SharePoint.PowerShell SPCmdletSchema.xml">
+  <ps:Assembly Name="$SharePoint.Project.AssemblyFullName$">
+    <ps:Cmdlet>
+      <ps:VerbName>New-HefezopfServiceApplication</ps:VerbName>
+      <ps:ClassName>$SharePoint.Type.abba090b-118a-437f-b138-8bb1c709b43b.FullName$</ps:ClassName>
+      <ps:HelpFile />
+    </ps:Cmdlet>
+    <ps:Cmdlet>
+      <ps:VerbName>Remove-HefezopfService</ps:VerbName>
+      <ps:ClassName>$SharePoint.Type.4858ed11-d1e5-4187-b944-b880ff7dfdbb.FullName$</ps:ClassName>
+      <ps:HelpFile />
+    </ps:Cmdlet>
+    <ps:Cmdlet>
+      <ps:VerbName>New-HefezopfServiceApplicationProxy</ps:VerbName>
+      <ps:ClassName>$SharePoint.Type.321b8ff3-16a4-4895-a3ac-cbe3021a863f.FullName$</ps:ClassName>
+      <ps:HelpFile />
+    </ps:Cmdlet>
+    <ps:Cmdlet>
+      <ps:VerbName>Set-HefezopfServiceApplication</ps:VerbName>
+      <ps:ClassName>$SharePoint.Type.84d862e0-1a2d-4a25-9e7a-5b706297691f.FullName$</ps:ClassName>
+      <ps:HelpFile />
+    </ps:Cmdlet>
+    <ps:Cmdlet>
+      <ps:VerbName>Set-HefezopfServiceApplicationProxy</ps:VerbName>
+      <ps:ClassName>$SharePoint.Type.0684beae-74e4-4b51-8684-680fea8b6e65.FullName$</ps:ClassName>
+      <ps:HelpFile />
+    </ps:Cmdlet>
+  </ps:Assembly>
+</ps:Config>
+

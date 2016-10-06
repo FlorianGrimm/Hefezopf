@@ -5,14 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePoint2016", "HefezopfSharePoint2016\HefezopfSharePoint2016.csproj", "{36439661-D28B-4C12-A102-3E8F59A38599}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfOfficeAddIn", "HefezopfOfficeAddIn\HefezopfOfficeAddIn.csproj", "{10D1C136-A567-4AA2-A2A1-03568AA656E0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfOfficeAddInWeb", "HefezopfOfficeAddInWeb\HefezopfOfficeAddInWeb.csproj", "{20457796-B3AB-4089-B328-425AE9FD863B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWeb", "HefezopfWeb\HefezopfWeb.csproj", "{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWeb_Tests", "HefezopfWeb_Tests\HefezopfWeb_Tests.csproj", "{24627236-4789-4E76-A20F-CF8FDB4B3C53}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfContracts", "HefezopfContracts\HefezopfContracts.csproj", "{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfFundament", "HefezopfFundament\HefezopfFundament.csproj", "{82A0DB66-F923-4110-A478-050028FC2FF0}"
@@ -27,6 +19,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hefezopf_Build", "Hefezopf_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfFundament_Tests", "HefezopfFundament_Tests\HefezopfFundament_Tests.csproj", "{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsaelzbrotLibrary", "..\Gsaelzbrot\GsaelzbrotLibrary\GsaelzbrotLibrary.csproj", "{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePointFrontend2016", "HefezopfSharePointFrontend2016\HefezopfSharePointFrontend2016.csproj", "{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePointApplication2016", "HefezopfSharePointApplication2016\HefezopfSharePointApplication2016.csproj", "{55465240-9EB7-43D9-81CB-CAC646DCEB8F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FF55164E-9A9C-472D-BF89-EFB5B5D801B8} = {FF55164E-9A9C-472D-BF89-EFB5B5D801B8}
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4} = {DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}
+		{82A0DB66-F923-4110-A478-050028FC2FF0} = {82A0DB66-F923-4110-A478-050028FC2FF0}
+		{1553A9CD-069B-47BD-973C-E74E08F57C5D} = {1553A9CD-069B-47BD-973C-E74E08F57C5D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePoint2013_helper", "HefezopfSharePoint2013\HefezopfSharePoint2013_helper.csproj", "{36439661-D28B-4C12-A102-3E8F59A385AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,24 +45,6 @@ Global
 		{36439661-D28B-4C12-A102-3E8F59A38599}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36439661-D28B-4C12-A102-3E8F59A38599}.Release|Any CPU.Build.0 = Release|Any CPU
 		{36439661-D28B-4C12-A102-3E8F59A38599}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10D1C136-A567-4AA2-A2A1-03568AA656E0}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{20457796-B3AB-4089-B328-425AE9FD863B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20457796-B3AB-4089-B328-425AE9FD863B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20457796-B3AB-4089-B328-425AE9FD863B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20457796-B3AB-4089-B328-425AE9FD863B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24627236-4789-4E76-A20F-CF8FDB4B3C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24627236-4789-4E76-A20F-CF8FDB4B3C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24627236-4789-4E76-A20F-CF8FDB4B3C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24627236-4789-4E76-A20F-CF8FDB4B3C53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -85,6 +73,28 @@ Global
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0414A811-6EE6-4C3B-B8B3-6B0525926C8E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{36439661-D28B-4C12-A102-3E8F59A385AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36439661-D28B-4C12-A102-3E8F59A385AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36439661-D28B-4C12-A102-3E8F59A385AA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{36439661-D28B-4C12-A102-3E8F59A385AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36439661-D28B-4C12-A102-3E8F59A385AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36439661-D28B-4C12-A102-3E8F59A385AA}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

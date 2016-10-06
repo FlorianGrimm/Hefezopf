@@ -1,4 +1,8 @@
-﻿#pragma warning disable SA1649
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian GRimm
+#pragma warning disable SA1649
+
 using System.Reflection;
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]

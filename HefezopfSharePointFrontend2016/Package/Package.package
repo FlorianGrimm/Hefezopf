@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="ac202e56-b88c-42dc-8e0d-60e9352fed16" solutionId="ac202e56-b88c-42dc-8e0d-60e9352fed16" resetWebServer="false" title="HefezopfSharePointFrontend" description="HefezopfSharePointFrontend" sharePointProductVersion="16.0" name="HefezopfSharePointFrontend" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <projectOutputAssembly location="Hefezopf.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
+  </assemblies>
+  <projectItems>
+    <projectItemReference itemId="1c25f87e-3819-429a-b2a7-3f0def71a8a0" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
+    <projectItemReference itemId="4cb000ff-0873-49aa-9b23-1d8a8e12a12d" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
+    <projectItemReference itemId="31e07f73-fdac-4fea-8c0f-dba06ff8a35a" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
+    <projectItemReference itemId="337ae790-8816-40a2-a792-71293aa5adac" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
+  </projectItems>
+</package>

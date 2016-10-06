@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="HefezopfServiceApplication.cs" company="">
-// Copyright ©
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian GRimm
 
 namespace Hefezopf.Service
 {
@@ -180,7 +178,7 @@ namespace Hefezopf.Service
         public override void Provision()
         {
             // First change the status of the object, this is not done in the base class implementations of Provision.
-            if (SPObjectStatus.Provisioning != this.Status)
+            if (this.Status != SPObjectStatus.Provisioning)
             {
                 this.Status = SPObjectStatus.Provisioning;
                 this.Update();
@@ -197,7 +195,7 @@ namespace Hefezopf.Service
         public override void Unprovision(bool deleteData)
         {
             // First mark the status, this is not done in the base class implementations of Unprovision
-            if (SPObjectStatus.Unprovisioning != this.Status)
+            if (this.Status != SPObjectStatus.Unprovisioning)
             {
                 this.Status = SPObjectStatus.Unprovisioning;
                 this.Update();

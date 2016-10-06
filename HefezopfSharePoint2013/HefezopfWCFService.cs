@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="HelloWorldWCFService.cs" company="">
-// Copyright ©
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian GRimm
 
 namespace Hefezopf.Service
 {
@@ -10,6 +8,7 @@ namespace Hefezopf.Service
     using System.Data;
     using System.Data.SqlClient;
     using System.ServiceModel;
+    using Contracts.Communication;
     using Microsoft.SharePoint.Administration;
 
     /// <summary>
@@ -17,8 +16,9 @@ namespace Hefezopf.Service
     /// </summary>
     [System.Runtime.InteropServices.Guid("a43db183-e3a5-4e98-9f63-ad4d69f327f6")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1812:AvoidUninstantiatedInternalClasses", Justification = "Instantiated by the WCF runtime automatically.")]
-    public class HefezopfWCFService : IHelloWorldWCFService
+    public class HefezopfWCFService : IHefezopfWCFService
     {
+#if no
         #region Methods
 
         /// <summary>
@@ -65,5 +65,35 @@ namespace Hefezopf.Service
         }
 
         #endregion
+#endif
+        public string Execute(string request)
+        {
+            return request;
+        }
+
+        public string[] ExecuteMany(string[] requests)
+        {
+            return requests;
+        }
+
+        public string ExecuteQueue(string request)
+        {
+            return null;
+        }
+
+        public HZServiceResponce[] ExecuteManyActions(HZServiceRequest[] requests)
+        {
+            return null;
+        }
+
+        public HZServiceResponce ExecuteOneAction(HZServiceRequest request)
+        {
+            return null;
+        }
+
+        public HZServiceResponce ExecuteOneActionQueued(HZServiceRequest request)
+        {
+            return null;
+        }
     }
 }

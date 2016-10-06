@@ -1,27 +1,38 @@
-﻿using Hefezopf.Contracts;
-using Hefezopf.Contracts.DI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Hefezopf.Fundament.DI
+﻿namespace Hefezopf.Fundament.DI
 {
+    using Brimborium.Funcstructors;
+    using Hefezopf.Contracts;
+    using Hefezopf.Contracts.DI;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// The dependency injection service.
+    /// </summary>
     public class DIServiceImplementation : DIService
     {
-        private readonly IDependencyInjection _DependencyInjection;
+        private readonly IFuncstructor _GlobalFuncstructor;
         private readonly IAssemblyWatcherService _AssemblyWatcherService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DIServiceImplementation"/> class.
+        /// </summary>
         public DIServiceImplementation() {
             var assemblyWatcherService = new AssemblyWatcherService();
             this._AssemblyWatcherService = assemblyWatcherService;
-            this._DependencyInjection = Funcstructor.CreateDefault(assemblyWatcherService);
+            this._GlobalFuncstructor = Funcstructor.CreateDefault(assemblyWatcherService);
         }
 
-        public override IDependencyInjection GetGlobalInstance()
+        /// <summary>
+        /// Get an old or new instance of funcstructor.
+        /// </summary>
+        /// <returns>a funcstructor.</returns>
+        public override IFuncstructor GetGlobalFuncstructor()
         {
-            return this._DependencyInjection;
+            return this._GlobalFuncstructor;
         }
     }
 }

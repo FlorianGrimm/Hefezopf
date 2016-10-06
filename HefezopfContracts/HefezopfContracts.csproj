@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\Hefezopf_Build\Hefezopf.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>true</RunCodeAnalysis>
+    <DocumentationFile>bin\Debug\Hefezopf.Contracts.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Hefezopf.Contracts.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -62,21 +64,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\AssemblyInjectionAttribute.cs">
+      <Link>DI\AssemblyInjectionAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\FuncstructorConfigurationAttribute.cs">
+      <Link>DI\FuncstructorConfigurationAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\FuncstructorConstant.cs">
+      <Link>DI\FuncstructorConstant.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\FuncstructorFactoryAttribute.cs">
+      <Link>DI\FuncstructorFactoryAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\FuncstructorRegisterAttribute.cs">
+      <Link>DI\FuncstructorRegisterAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\IAssemblyWatcherService.cs">
+      <Link>DI\IAssemblyWatcherService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\IFuncstructor.cs">
+      <Link>DI\IFuncstructor.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\IFuncstructorConfigurable.cs">
+      <Link>DI\IFuncstructorConfigurable.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Contracts\IFuncstructorConfiguration.cs">
+      <Link>DI\IFuncstructorConfiguration.cs</Link>
+    </Compile>
     <Compile Include="Communication\IHZServiceContract.cs" />
     <Compile Include="Communication\HZServiceRequest.cs" />
     <Compile Include="Communication\HZServiceResponce.cs" />
     <Compile Include="Communication\IHZTransportContract.cs" />
+    <Compile Include="ContractConsts.cs" />
     <Compile Include="DI\DIService.cs" />
-    <Compile Include="DI\FuncstructorConfigurationAttribute.cs" />
-    <Compile Include="DI\FuncstructorFactoryAttribute.cs" />
-    <Compile Include="DI\FuncstructorRegisterAttribute.cs" />
-    <Compile Include="DI\IAssemblyWatcherService.cs" />
     <Compile Include="DI\IDIService.cs" />
-    <Compile Include="DI\IFuncstructorConfiguration.cs" />
     <Compile Include="Comp\IStrategyConfiguration.cs" />
     <Compile Include="Comp\IStrategyExecutive.cs" />
     <Compile Include="GlobalVersion.cs" />
-    <Compile Include="DI\IDependencyInjection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

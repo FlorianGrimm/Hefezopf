@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="HefezopfServiceInstance.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian GRimm
 
 namespace Hefezopf.Service
 {
@@ -71,6 +69,17 @@ namespace Hefezopf.Service
 
             foreach (SPServer server in SPFarm.Local.Servers)
             {
+#if SP2016
+                if (server.Role == SPServerRole.Application || server.Role == SPServerRole.SingleServerFarm || server.Role == SPServerRole.WebFrontEnd)
+                {
+                    HefezopfServiceInstance instance = server.ServiceInstances.GetValue<HefezopfServiceInstance>();
+                    if (instance == null)
+                    {
+                        instance = new HefezopfServiceInstance(server, service);
+                        instance.Update();
+                    }
+                }
+#elif SP2013
                 if (server.Role == SPServerRole.Application || server.Role == SPServerRole.SingleServer || server.Role == SPServerRole.WebFrontEnd)
                 {
                     HefezopfServiceInstance instance = server.ServiceInstances.GetValue<HefezopfServiceInstance>();
@@ -80,9 +89,12 @@ namespace Hefezopf.Service
                         instance.Update();
                     }
                 }
+#else
+#error SP2016 || SP2013 needed
+#endif
             }
         }
 
-        #endregion
+#endregion
     }
 }

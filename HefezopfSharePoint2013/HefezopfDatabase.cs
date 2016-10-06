@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="HefezopfDatabase.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian GRimm
 
 namespace Hefezopf.Service
 {
@@ -68,11 +66,11 @@ namespace Hefezopf.Service
                 // Create any DB options
                 Dictionary<DatabaseOptions, bool> options = new Dictionary<DatabaseOptions, bool>();
                 options.Add(SPDatabase.DatabaseOptions.AutoClose, false);
-
-                SPDatabase.Provision(
-                    this.DatabaseConnectionString,
-                    SPUtility.GetVersionedGenericSetupPath(@"TEMPLATE\SQL\Hefezopf.Service\CreateDatabase.sql", 15),
-                    options);
+                using (System.IO.TextReader textReader = new System.IO.StringReader("SET NOCOUNT ON;"))
+                {
+                    var csb = new System.Data.SqlClient.SqlConnectionStringBuilder(this.DatabaseConnectionString);
+                    SPDatabase.Provision(csb, textReader, options);
+                }
             }
 
             this.Status = SPObjectStatus.Online;

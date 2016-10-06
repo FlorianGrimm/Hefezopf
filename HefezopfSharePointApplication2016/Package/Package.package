@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="85ef0bec-74e1-43ad-8dd1-36cda4ccfeef" solutionId="85ef0bec-74e1-43ad-8dd1-36cda4ccfeef" resetWebServer="false" deploymentServerType="ApplicationServer" title="HefezopfSharePointApplication" description="HefezopfSharePointApplication" sharePointProductVersion="16.0" name="HefezopfSharePointApplication" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <projectOutputAssembly location="Hefezopf.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
+    <projectOutputAssembly location="Gsaelzbrot.Library.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\..\Gsaelzbrot\GsaelzbrotLibrary\GsaelzbrotLibrary.csproj" />
+    <projectOutputAssembly location="Hefezopf.Contracts.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\HefezopfContracts\HefezopfContracts.csproj" />
+    <projectOutputAssembly location="Hefezopf.Fundament.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\HefezopfFundament\HefezopfFundament.csproj" />
+    <projectOutputAssembly location="Hefezopf.Library.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\HefezopfLibrary\HefezopfLibrary.csproj" />
+  </assemblies>
+  <projectItems>
+    <projectItemReference itemId="8020b5d4-f020-416f-8c4e-9f16cc73b80d" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
+  </projectItems>
+</package>

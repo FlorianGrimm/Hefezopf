@@ -2,7 +2,7 @@
 
 namespace Hefezopf.Contracts.Communication
 {
-    [DataContract]
+    [DataContract(Namespace = ContractConsts.Namespace)]
     public class HZServiceRequest
     {
         public HZServiceRequest() { }

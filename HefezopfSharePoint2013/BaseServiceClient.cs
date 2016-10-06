@@ -1,8 +1,6 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="BaseServiceClient.cs" company="">
-// Copyright © 
-// </copyright>
-//-----------------------------------------------------------------------
+﻿// Hefezopf
+// MIT License
+// Copyright (c) 2016 Florian GRimm
 
 namespace Hefezopf.Service
 {
@@ -308,7 +306,7 @@ namespace Hefezopf.Service
 
                     if (currentFactory == null)
                     {
-                        // Create a channel factory to be cached                     
+                        // Create a channel factory to be cached
                         currentFactory = new ConfigurationChannelFactory<TChannel>(
                             endPointConfigurationName,
                             this.Proxy.Configuration,

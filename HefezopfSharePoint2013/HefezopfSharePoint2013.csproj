@@ -67,7 +67,7 @@
     <Compile Include="HefezopfServiceHostFactory.cs" />
     <Compile Include="HefezopfServiceInstance.cs" />
     <Compile Include="HefezopfServiceProxy.cs" />
-    <Compile Include="HefzopfServiceClient.cs" />
+    <Compile Include="HefezopfServiceClient.cs" />
     <Compile Include="HefezopfWCFService.cs" />
     <Compile Include="IHefezopfWCFService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
