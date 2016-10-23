@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gsaelzbrot.Library;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,9 +8,11 @@ using System.Threading.Tasks;
 
 namespace Hefezopf.Fundament.Schema
 {
-    public class HZDBSchema : HZNamed
+    /// <summary>
+    /// Represent a schema
+    /// </summary>
+    public class HZDBSchema : HZNamed, IGsbSchema
     {
-        //private readonly List<INamed> _Named;
         private readonly HZDBOwnedCollection<HZDBSynonym, HZDBSchema> _Synonyms;
         private readonly HZDBOwnedCollection<HZDBTable, HZDBSchema> _Tables;
         private readonly HZDBOwnedCollection<HZDBView, HZDBSchema> _Views;
@@ -19,6 +22,9 @@ namespace Hefezopf.Fundament.Schema
         private readonly HZDBOwnedCollection<HZDBUserDefinedType, HZDBSchema> _UserDefinedTypes;
         private readonly HZDBOwnedCollection<HZDBTableType, HZDBSchema> _TableType;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HZDBSchema"/> class.
+        /// </summary>
         public HZDBSchema()
         {
             this._Synonyms = new HZDBOwnedCollection<HZDBSynonym, HZDBSchema>(this);
@@ -47,24 +53,4 @@ namespace Hefezopf.Fundament.Schema
         }
     }
 
-    public class HZDBSchemaOwned : HZNamed, IHZDBOwned<HZDBSchema>
-    {
-        private HZDBSchema _Schema;
-
-        public HZDBSchemaOwned()
-        {
-        }
-
-        public HZDBSchema Schema
-        {
-            get
-            {
-                return this._Schema;
-            }
-        }
-        public void SetOwner(HZDBSchema owner)
-        {
-            this._Schema = owner;
-        }
-    }
 }

@@ -1,9 +1,12 @@
-﻿namespace Hefezopf.Fundament.Schema
-{
-    public class HZDBUserDefinedType : HZDBSchemaOwned
-    {
-        public HZDBUserDefinedType()
-        {
+﻿namespace Hefezopf.Fundament.Schema {
+    /// <summary>
+    /// Represent userdefined type.
+    /// </summary>
+    public class HZDBUserDefinedType : HZDBSchemaOwned {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HZDBUserDefinedType"/> class.
+        /// </summary>
+        public HZDBUserDefinedType() {
         }
 
         public System.Data.SqlDbType Type { get; set; }

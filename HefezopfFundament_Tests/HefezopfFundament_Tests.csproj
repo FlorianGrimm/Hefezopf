@@ -60,6 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Gsaelzbrot\GsaelzbrotLibrary\GsaelzbrotLibrary.csproj">
+      <Project>{dda3dc61-feea-4bcb-867c-c67c4a6165d4}</Project>
+      <Name>GsaelzbrotLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HefezopfContracts\HefezopfContracts.csproj">
       <Project>{ff55164e-9a9c-472d-bf89-efb5b5d801b8}</Project>
       <Name>HefezopfContracts</Name>
