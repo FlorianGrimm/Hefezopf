@@ -11,15 +11,15 @@ namespace Hefezopf.Fundament.Schema {
     /// </summary>
     public class HZDBObjectWithColumn
         : HZDBSchemaOwned {
-        protected readonly HZDBOwnedCollection<HZDBColumn, HZDBObjectWithColumn> _HZColumns;
-        protected readonly HZCastingList<IGsbColumn, HZDBColumn> _GsbColumns;
+        protected readonly List<HZDBColumn> _HZColumns;
+        protected readonly HZCastingList<GsbColumn, HZDBColumn> _GsbColumns;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HZDBObjectWithColumn"/> class.
         /// </summary>
         public HZDBObjectWithColumn() {
-            this._HZColumns = new HZDBOwnedCollection<HZDBColumn, HZDBObjectWithColumn>(this);
-            this._GsbColumns = new HZCastingList<IGsbColumn, HZDBColumn>(this._HZColumns, (gsb) => (HZDBColumn)gsb, (hz) => (IGsbColumn)hz);
+            this._HZColumns = new List<HZDBColumn>();
+            this._GsbColumns = new HZCastingList<GsbColumn, HZDBColumn>(this._HZColumns, (gsb) => (HZDBColumn)gsb, (hz) => (GsbColumn)hz);
         }
 
         public IList<HZDBColumn> Columns {
@@ -34,7 +34,6 @@ namespace Hefezopf.Fundament.Schema {
         public HZDBColumn AddColumn(string name) {
             //this.Database.Factory.CreateGsbSchema
             var result = new HZDBColumn();
-            result.Database = this.Database;
             result.Name = name;
             this.Columns.Add(result);
             return result;

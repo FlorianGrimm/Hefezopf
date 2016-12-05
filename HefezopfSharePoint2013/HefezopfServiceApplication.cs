@@ -52,7 +52,7 @@ namespace Hefezopf.Service
         /// <param name="name">The name of the service application.</param>
         /// <param name="service">The <see cref="HefezopfIisWebService" />.</param>
         /// <param name="applicationPool">The application pool.</param>
-        internal HefezopfServiceApplication(string name, HefezopfIisWebService service, SPIisWebServiceApplicationPool applicationPool)
+        public HefezopfServiceApplication(string name, HefezopfIisWebService service, SPIisWebServiceApplicationPool applicationPool)
             : base(name, service, applicationPool)
         {
         }
@@ -64,7 +64,7 @@ namespace Hefezopf.Service
         /// <param name="service">The <see cref="HefezopfIisWebService" />.</param>
         /// <param name="customDatabase">A custom database to associate with this service application.</param>
         /// <param name="applicationPool">The application pool.</param>
-        internal HefezopfServiceApplication(string name, HefezopfIisWebService service, HefezopfDatabase customDatabase, SPIisWebServiceApplicationPool applicationPool)
+        public HefezopfServiceApplication(string name, HefezopfIisWebService service, HefezopfDatabase customDatabase, SPIisWebServiceApplicationPool applicationPool)
             : base(name, service, applicationPool)
         {
             if (customDatabase == null)
@@ -135,7 +135,7 @@ namespace Hefezopf.Service
         /// <summary>
         /// Gets or sets the custom database.
         /// </summary>
-        internal HefezopfDatabase Database
+        public HefezopfDatabase Database
         {
             get
             {

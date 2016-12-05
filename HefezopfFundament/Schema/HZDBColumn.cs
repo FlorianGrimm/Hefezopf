@@ -1,33 +1,75 @@
 ﻿namespace Hefezopf.Fundament.Schema {
+    using Gsaelzbrot.Library;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Represent a column.
+    /// </summary>
     public class HZDBColumn
         : HZNamed
-        , IHZDBOwned<HZDBObjectWithColumn> {
-        private HZDBObjectWithColumn _Owner;
-
+        , GsbColumn {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HZDBColumn"/> class.
+        /// </summary>
         public HZDBColumn() {
         }
 
-        public HZDBObjectWithColumn Owner => this._Owner;
-
+        /// <summary>
+        /// Gets or sets the DataType.
+        /// </summary>
         public HZDBDataType DataType { get; set; }
 
-        public bool NotNULL { get; set; }
+        /// <summary>
+        /// Gets or sets the collation.
+        /// </summary>
+        public string Collation { get; set; }
 
-        public string Collaction { get; set; }
+        GsbDataType GsbColumn.DataType {
+            get {
+                return this.DataType;
+            }
 
-        public void SetOwner(HZDBObjectWithColumn owner) {
-            this._Owner = owner;
+            set {
+                if (value == null) {
+                    this.DataType = null;
+                } else {
+                    this.DataType = (value as HZDBDataType) ?? new HZDBDataType(value);
+                }
+            }
         }
 
-        public HZDBColumn SetType(System.Data.SqlDbType sqlDbType) {
+        /// <summary>
+        /// Gets or sets a value indicating whether this column has incremental identity.
+        /// </summary>
+        public bool Identity { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this column is NULL-able.
+        /// </summary>
+        public bool Nullable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the default expression.
+        /// </summary>
+        public string Default { get; set; }
+
+        /// <summary>
+        /// Gets or sets the computed Text
+        /// </summary>
+        public string ComputedText { get; set; }
+
+        /// <summary>
+        /// Sets the DataType-
+        /// </summary>
+        /// <param name="sqlDbType">the type as SqlDbType.</param>
+        /// <returns>this</returns>
+        public HZDBColumn SetDbType(System.Data.SqlDbType sqlDbType) {
             this.DataType = HZDBDataType.From(sqlDbType);
-            throw new NotImplementedException();
+            return this;
         }
     }
 }

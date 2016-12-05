@@ -12,44 +12,42 @@
 
         public IGsbSchema CreateGsbSchema() {
             var result = new HZDBSchema();
-            result.Database = this._Database;
             return result;
         }
 
-        public IGsbColumn CreateGsbColumn() {
+        public GsbColumn CreateGsbColumn() {
             throw new NotImplementedException();
         }
 
-        public IGsbDataType CreateGsbDataType() {
+        public GsbDataType CreateGsbDataType() {
             throw new NotImplementedException();
         }
 
-        public IGsbFunction CreateGsbFunction() {
+        public GsbFunction CreateGsbFunction() {
             throw new NotImplementedException();
         }
 
-        public IGsbIndex CreateGsbIndex() {
+        public GsbIndex CreateGsbIndex() {
             throw new NotImplementedException();
         }
 
-        public IGsbIndexedColumn CreateGsbIndexedColumn() {
+        public GsbIndexedColumn CreateGsbIndexedColumn() {
             throw new NotImplementedException();
         }
 
-        public IGsbParameter CreateGsbParameter() {
+        public GsbParameter CreateGsbParameter() {
             throw new NotImplementedException();
         }
 
-
-        public IGsbStoredProcedure CreateGsbStoredProcedure() {
+        public GsbStoredProcedure CreateGsbStoredProcedure() {
             throw new NotImplementedException();
         }
 
-        public IGsbTable CreateGsbTable() {
+        public GsbTable CreateGsbTable() {
             throw new NotImplementedException();
         }
 
-        public IGsbView CreateGsbView() {
+        public GsbView CreateGsbView() {
             throw new NotImplementedException();
         }
     }

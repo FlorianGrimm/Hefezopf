@@ -1,21 +1,31 @@
-﻿using Hefezopf.Fundament.Schema;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Hefezopf.Library.Schema {
+    using Gsaelzbrot.Library;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace Hefezopf.Library.Schema
-{
-    public class HefezopfConfiguration
-    {
-        public readonly HZDBSchema Hefezopf;
-        public readonly HZDBTable Hefezopf_ZombieState;
+    /// <summary>
+    /// The Hefezopf Configuration
+    /// </summary>
+    public class HefezopfConfiguration {
+        /// <summary>The target.</summary>
+        public readonly GsbDatabase DBHefezopf;
 
-        public HefezopfConfiguration()
-        {
-            this.Hefezopf = new HZDBSchema() { Name = "Hefezopf" };
-            this.Hefezopf_ZombieState = this.Hefezopf.NewDBTable("ZombieState");
+        /// <summary>Hefezops</summary>
+        public readonly GsbSchema SchemaHefezopf;
+
+        /// <summary>ZomieSate</summary>
+        public readonly GsbTable Hefezopf_ZombieState;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HefezopfConfiguration"/> class.
+        /// </summary>
+        public HefezopfConfiguration() {
+            this.DBHefezopf = new GsbDatabase();
+            this.SchemaHefezopf = this.DBHefezopf.AddSchema("Hefezopf");
+#warning TODO this.Hefezopf_ZombieState = this.SchemaHefezopf.AddTable("ZombieState", this.DBHefezopf);
             this.Hefezopf_ZombieState.AddColumn("Name");
         }
     }

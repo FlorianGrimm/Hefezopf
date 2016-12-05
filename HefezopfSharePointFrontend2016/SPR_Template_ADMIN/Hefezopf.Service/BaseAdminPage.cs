@@ -33,7 +33,7 @@ namespace Hefezopf.Service.Administration
         /// <summary>
         /// Gets the current service application to manage from the query string.
         /// </summary>
-        internal HefezopfServiceApplication ServiceApplication
+        public HefezopfServiceApplication ServiceApplication
         {
             get
             {

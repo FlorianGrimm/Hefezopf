@@ -138,7 +138,7 @@ namespace Hefezopf.Service
         /// Gets an existing service or creates it if it doesn't exist.
         /// </summary>
         /// <returns>An instance of the Service.</returns>
-        internal static HefezopfIisWebService GetOrCreateService()
+        public static HefezopfIisWebService GetOrCreateService()
         {
             HefezopfIisWebService service = SPFarm.Local.Services.GetValue<HefezopfIisWebService>();
             if (service == null)
@@ -154,7 +154,7 @@ namespace Hefezopf.Service
         /// <summary>
         /// Removes the service and components from the farm.
         /// </summary>
-        internal static void RemoveService()
+        public static void RemoveService()
         {
             HefezopfIisWebService service = SPFarm.Local.Services.GetValue<HefezopfIisWebService>();
             HefezopfServiceProxy serviceProxy = SPFarm.Local.ServiceProxies.GetValue<HefezopfServiceProxy>();

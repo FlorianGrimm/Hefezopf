@@ -12,15 +12,15 @@ namespace Hefezopf.Fundament.Schema {
     /// Basetype for table, view and table type.
     /// </summary>
     public class HZDBObjectWithColumnAndIndex : HZDBObjectWithColumn {
-        protected readonly HZDBOwnedCollection<HZDBIndex, HZDBObjectWithColumnAndIndex> _HZIndexes;
-        protected readonly HZCastingList<IGsbIndex, HZDBIndex> _GsbIndexes;
+        protected readonly List<HZDBIndex> _HZIndexes;
+        protected readonly HZCastingList<GsbIndex, HZDBIndex> _GsbIndexes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HZDBObjectWithColumnAndIndex"/> class.
         /// </summary>
         public HZDBObjectWithColumnAndIndex() {
-            this._HZIndexes = new HZDBOwnedCollection<HZDBIndex, HZDBObjectWithColumnAndIndex>(this);
-            this._GsbIndexes = new HZCastingList<IGsbIndex, HZDBIndex>(this._HZIndexes, (gsb) => (HZDBIndex)gsb, (hz) => (IGsbIndex)hz);
+            this._HZIndexes = new List<HZDBIndex>();
+            this._GsbIndexes = new HZCastingList<GsbIndex, HZDBIndex>(this._HZIndexes, (gsb) => (HZDBIndex)gsb, (hz) => (GsbIndex)hz);
         }
 
         public ICollection<HZDBIndex> Indexes {
@@ -32,11 +32,5 @@ namespace Hefezopf.Fundament.Schema {
             }
         }
 
-        public HZDBIndex AddIndex(string name) {
-            var result = new HZDBIndex();
-            result.Name = name;
-            this.Indexes.Add(result);
-            return result;
-        }
     }
 }

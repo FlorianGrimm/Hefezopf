@@ -8,5 +8,6 @@
     <projectItemReference itemId="4cb000ff-0873-49aa-9b23-1d8a8e12a12d" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
     <projectItemReference itemId="31e07f73-fdac-4fea-8c0f-dba06ff8a35a" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
     <projectItemReference itemId="337ae790-8816-40a2-a792-71293aa5adac" projectPath="..\HefezopfSharePoint2016\HefezopfSharePoint2016.csproj" />
+    <projectItemReference itemId="124bd169-7b45-4792-95bc-f697505b311b" />
   </projectItems>
 </package>

@@ -35,7 +35,7 @@ namespace Hefezopf.Service
         /// Initializes a new instance of the <see cref="HefezopfDatabase"/> class. Use this constructor when creating a new database in the farm.
         /// </summary>
         /// <param name="databaseParameters">The database parameters to use when creating the new database.</param>
-        internal HefezopfDatabase(SPDatabaseParameters databaseParameters)
+        public HefezopfDatabase(SPDatabaseParameters databaseParameters)
             : base(databaseParameters)
         {
             this.Status = SPObjectStatus.Disabled;
@@ -82,7 +82,7 @@ namespace Hefezopf.Service
         /// on this class.
         /// </summary>
         /// <param name="processSecurityIdentifier">The application pool service account.</param>
-        internal void GrantApplicationPoolAccess(SecurityIdentifier processSecurityIdentifier)
+        public void GrantApplicationPoolAccess(SecurityIdentifier processSecurityIdentifier)
         {
             this.GrantAccess(processSecurityIdentifier, "db_owner");
         }

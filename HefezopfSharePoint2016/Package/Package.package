@@ -1,8 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="7cb2ec15-2c6c-4068-ae48-d997545ed9cf" solutionId="7cb2ec15-2c6c-4068-ae48-d997545ed9cf" resetWebServer="false" sharePointProductVersion="16.0" name="HefezopfSharePoint" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
-  <projectItems>
-    <projectItemReference itemId="870c020b-e28c-42b0-9566-6c2701796ed7" />
-    <projectItemReference itemId="42a58e48-a372-4999-9dfd-25ad24df8f43" />
-    <projectItemReference itemId="f5a509a0-3495-489b-9c14-145c48a69a38" />
-  </projectItems>
-</package>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="7cb2ec15-2c6c-4068-ae48-d997545ed9cf" solutionId="7cb2ec15-2c6c-4068-ae48-d997545ed9cf" resetWebServer="false" sharePointProductVersion="16.0" name="HefezopfSharePoint" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" />

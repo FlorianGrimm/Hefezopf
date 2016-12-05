@@ -60,7 +60,7 @@ namespace Hefezopf.Service
         /// Installs the service instances on servers in the farm (does not start them).
         /// </summary>
         /// <param name="service">The service associated with these instances.</param>
-        internal static void CreateServiceInstances(HefezopfIisWebService service)
+        public static void CreateServiceInstances(HefezopfIisWebService service)
         {
             if (service == null)
             {

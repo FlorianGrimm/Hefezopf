@@ -1,4 +1,5 @@
-﻿namespace Hefezopf.Fundament.Schema {
+﻿namespace Hefezopf.Fundament.Schema
+{
     using Gsaelzbrot.Library;
     using System;
     using System.Collections.Generic;
@@ -10,9 +11,8 @@
     /// Scan a database
     /// </summary>
     public class HZDBDatabaseScanner
-        : IGsbModelFactory {
+        : GsbDatabaseScanner {
         private readonly HZDatabase _Database;
-        private readonly IGsaelzbrot _Gsaelzbrot;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HZDBDatabaseScanner"/> class.
@@ -21,12 +21,14 @@
         /// <param name="databaseName">The database name</param>
         /// <param name="modelFactory">The model factory - can be null.</param>
         /// <param name="database">the target database - can be null.</param>
-        public HZDBDatabaseScanner(string serverInstance, string databaseName, IGsbModelFactory modelFactory, HZDatabase database) {
-            if (database == null) {
+        public HZDBDatabaseScanner(string serverInstance, string databaseName, IGsbModelFactory modelFactory, HZDatabase database)
+            : base(global::Gsaelzbrot.Library.Factory.Instance.GsaelzbrotConnection(serverInstance, databaseName, modelFactory ?? new HZDBModelFactory()))
+        {
+            if (database == null)
+            {
                 database = new HZDatabase();
             }
             this._Database = database;
-            this._Gsaelzbrot = global::Gsaelzbrot.Library.Factory.Instance.GsaelzbrotConnection(serverInstance, databaseName, modelFactory ?? this);
         }
 
         /// <summary>
@@ -34,80 +36,103 @@
         /// </summary>
         /// <param name="gsaelzbrot">The Gsaelzbrot</param>
         /// <param name="database">the target database - can be null.</param>
-        public HZDBDatabaseScanner(IGsaelzbrot gsaelzbrot, HZDatabase database) {
-            if (database == null) {
+        public HZDBDatabaseScanner(IGsaelzbrot gsaelzbrot, HZDatabase database)
+            : base(gsaelzbrot)
+        {
+            if (database == null)
+            {
                 database = new HZDatabase();
             }
             this._Database = database;
-            this._Gsaelzbrot = gsaelzbrot;
         }
 
-        /// <summary>
-        /// Scan the database.
-        /// </summary>
+        protected override void AddSchema(IGsbSchema schema)
+        {
+            //base.AddSchema(schema);
+            if (this._Database.GetSchema(schema.Name) == null)
+            {
+                this._Database.Schemas.Add((HZDBSchema)schema);
+            }
+        }
+
+        protected override void AddTable(GsbTable table)
+        {
+            //base.AddTable(table);
+            if (this._Database.GetTable(table.Schema, table.Name) == null)
+            {
+                this._Database.Tables.Add((HZDBTable)table);
+            }
+        }
+
+        protected override void AddView(GsbView view)
+        {
+            //base.AddView(view);
+            if (this._Database.GetView(view.Schema, view.Name) == null)
+            {
+                this._Database.Views.Add((HZDBView)view);
+            }
+        }
+
+        
+        /*
         /// <returns>this.</returns>
-        public HZDatabase Scan() {
+        public HZDatabase Scan()
+        {
             this.ScanSchema();
+            this.ScanTable();
             return this._Database;
         }
 
-        /// <summary>
-        /// Scan the datbase for schemas.
-        /// </summary>
         /// <returns>this.</returns>
-        public HZDatabase ScanSchema() {
+        public HZDatabase ScanSchema()
+        {
             var schemas = this._Gsaelzbrot.GetSchemas();
-            if (schemas != null) {
-                foreach (IGsbSchema schema in schemas) {
-                    this._Database.Schemas.Add((HZDBSchema)schema);
+            if (schemas != null)
+            {
+                foreach (IGsbSchema schema in schemas)
+                {
+                    if (this._Database.GetSchema(schema.Name) == null)
+                    {
+                        this._Database.Schemas.Add((HZDBSchema)schema);
+                    }
                 }
             }
             return this._Database;
         }
 
-        /// <summary>
-        /// Creates a schema.
-        /// </summary>
-        /// <returns>a new schema.</returns>
-        public IGsbSchema CreateGsbSchema() {
-            return new HZDBSchema();
+        /// <returns>The target.</returns>
+        public HZDatabase ScanTable()
+        {
+            var tables = this._Gsaelzbrot.GetTables();
+            if (tables != null)
+            {
+                foreach (IGsbTable gsbTable in tables)
+                {
+                    var hzTable = gsbTable as HZDBTable;
+                    if (hzTable != null)
+                    {
+                        this._Database.AddTable(hzTable);
+                    }
+                    else
+                    {
+                        //var schema = this._Database.AddSchema(gsbTable.Schema);
+                        //hzTable = this._Database.GetTable(gsbTable.Schema, gsbTable.Name);
+                        //if (hzTable == null)
+                        //{
+                        //    hzTable = this._Database.AddTable(gsbTable.Schema, gsbTable.Name);
+                        //}
+                        //else { }
+                        //foreach (var gsbColumn in gsbTable.Columns)
+                        //{
+                        //    //hzTable.AddColumn();
+                        //}
+                        throw new NotImplementedException("TODO");
+                    }
+                }
+            }
+            return this._Database;
         }
+        */
 
-        public IGsbTable CreateGsbTable() {
-            return new HZDBTable();
-            throw new NotImplementedException();
-        }
-
-        public IGsbColumn CreateGsbColumn() {
-            throw new NotImplementedException();
-        }
-
-        public IGsbDataType CreateGsbDataType() {
-            throw new NotImplementedException();
-        }
-
-        public IGsbIndex CreateGsbIndex() {
-            throw new NotImplementedException();
-        }
-
-        public IGsbIndexedColumn CreateGsbIndexedColumn() {
-            throw new NotImplementedException();
-        }
-
-        public IGsbView CreateGsbView() {
-            throw new NotImplementedException();
-        }
-
-        public IGsbStoredProcedure CreateGsbStoredProcedure() {
-            throw new NotImplementedException();
-        }
-
-        public IGsbFunction CreateGsbFunction() {
-            throw new NotImplementedException();
-        }
-
-        public IGsbParameter CreateGsbParameter() {
-            throw new NotImplementedException();
-        }
     }
 }

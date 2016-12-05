@@ -97,7 +97,7 @@ namespace Hefezopf.Service
         /// Gets an existing service proxy or creates it if it doesn't exist.
         /// </summary>
         /// <returns>An instance of this service proxy.</returns>
-        internal static HefezopfServiceProxy GetOrCreateServiceProxy()
+        public static HefezopfServiceProxy GetOrCreateServiceProxy()
         {
             HefezopfServiceProxy serviceProxy = SPFarm.Local.ServiceProxies.GetValue<HefezopfServiceProxy>();
             if (serviceProxy == null)

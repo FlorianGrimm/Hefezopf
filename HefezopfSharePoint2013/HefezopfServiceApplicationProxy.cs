@@ -45,7 +45,7 @@ namespace Hefezopf.Service
         /// <param name="name">The name of the Service Application Proxy to create. This name will not be localized.</param>
         /// <param name="serviceProxy">A reference to the Service Proxy class.</param>
         /// <param name="serviceEndpointUri">The endpoint uri to the service.</param>
-        internal HefezopfServiceApplicationProxy(string name, HefezopfServiceProxy serviceProxy, Uri serviceEndpointUri)
+        public HefezopfServiceApplicationProxy(string name, HefezopfServiceProxy serviceProxy, Uri serviceEndpointUri)
             : base(name, serviceProxy, serviceEndpointUri)
         {
             this.loadBalancer = new SPRoundRobinServiceLoadBalancer(serviceEndpointUri);

@@ -6,20 +6,12 @@
     /// Basetype with a name.
     /// </summary>
     public class HZNamed
-        : HZDatabaseOwned
-        , INamed
+        : INamed
         , IGsbNamed {
         /// <summary>
         /// Initializes a new instance of the <see cref="HZNamed"/> class.
         /// </summary>
         public HZNamed() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="HZNamed"/> class.
-        /// </summary>
-        /// <param name="database">The database.</param>
-        public HZNamed(HZDatabase database)
-            : base(database) { }
 
         /// <summary>
         /// Gets or sets the name,
@@ -43,18 +35,6 @@
                 result = true;
             }
             return result;
-        }
-
-        public static bool SetterListProperty<O, T>(ICollection<T> list, O owner, ICollection<T> value)
-            where T : IHZDBOwned<O> {
-            if (ReferenceEquals(list, value)) { return false; }
-            list.Clear();
-            if (ReferenceEquals(null, value)) { return false; }
-            foreach (var item in value) {
-                list.Add(item);
-                item.SetOwner(owner);
-            }
-            return true;
         }
     }
 }

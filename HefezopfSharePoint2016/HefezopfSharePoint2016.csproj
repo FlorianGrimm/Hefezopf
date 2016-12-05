@@ -160,44 +160,6 @@
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\BaseAdminPage.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\CreateApplication.aspx.cs">
-      <DependentUpon>CreateApplication.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\CreateApplication.aspx.designer.cs">
-      <DependentUpon>CreateApplication.aspx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\DatabaseSettings.aspx.cs">
-      <DependentUpon>DatabaseSettings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\DatabaseSettings.aspx.designer.cs">
-      <DependentUpon>DatabaseSettings.aspx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\ManageApplication.aspx.cs">
-      <DependentUpon>ManageApplication.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\ManageApplication.aspx.designer.cs">
-      <DependentUpon>ManageApplication.aspx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\ManageService.aspx.cs">
-      <DependentUpon>ManageService.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\ManageService.aspx.designer.cs">
-      <DependentUpon>ManageService.aspx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\Properties.aspx.cs">
-      <DependentUpon>Properties.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SPR_Template_ADMIN\Hefezopf.Service\Properties.aspx.designer.cs">
-      <DependentUpon>Properties.aspx.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="AdministrationActions\SharePointProjectItem.spdata">
@@ -211,9 +173,6 @@
     </None>
     <None Include="Resources\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{42a58e48-a372-4999-9dfd-25ad24df8f43}</SharePointProjectItemId>
-    </None>
-    <None Include="SPR_Template_ADMIN\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{870c020b-e28c-42b0-9566-6c2701796ed7}</SharePointProjectItemId>
     </None>
     <None Include="SPR_ISAPI\Hefezopf\web.config" />
     <None Include="SPR_ISAPI\SharePointProjectItem.spdata">
@@ -274,18 +233,6 @@
       <DependentUpon>HefezopfServiceAdministration.feature</DependentUpon>
     </Content>
     <Content Include="SPR_Config_Powershell_Registration\Hefezopf.SharePoint.Powershell.Cmdlets.xml" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\ca-icon.png" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\CreateApplication.aspx" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\DatabaseSettings.aspx" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\HLTHERR.png" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\HLTHFAIL.png" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\HLTHSUCC.png" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\ManageApplication.aspx" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\ManageService.aspx" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\Properties.aspx" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\ServiceApplication16.png" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\ServiceInstalled.gif" />
-    <Content Include="SPR_Template_ADMIN\Hefezopf.Service\ServiceNotInstalled.gif" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\HefezopfServiceAdministration\Resources.de-DE.resx" />
