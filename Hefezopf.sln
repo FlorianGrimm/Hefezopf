@@ -21,7 +21,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfFundament_Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsaelzbrotLibrary", "..\Gsaelzbrot\GsaelzbrotLibrary\GsaelzbrotLibrary.csproj", "{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{BB9595C7-8369-42C5-82DE-75792C8C0D71}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FuncstructorLibrary.Contracts.Shared", "..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.shproj", "{24336EA2-C6B4-4C97-B4DE-B9DCB23F544A}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FuncstructorLibrary.Implementation.Shared", "..\Funcstructor\FuncstructorLibrary.Implementation.Shared\FuncstructorLibrary.Implementation.Shared.shproj", "{C75605CD-D1FA-453F-839D-84F26C070F63}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HefezopfWindowsService.Shared", "HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.shproj", "{5601FD20-071A-4808-BFCF-BBFE1C226EBA}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.projitems*{24336ea2-c6b4-4c97-b4de-b9dcb23f544a}*SharedItemsImports = 13
+		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{5601fd20-071a-4808-bfcf-bbfe1c226eba}*SharedItemsImports = 13
+		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{80d5ba1d-0136-4a06-801f-921d69d873b3}*SharedItemsImports = 4
+		..\Funcstructor\FuncstructorLibrary.Implementation.Shared\FuncstructorLibrary.Implementation.Shared.projitems*{82a0db66-f923-4110-a478-050028fc2ff0}*SharedItemsImports = 4
+		..\Funcstructor\FuncstructorLibrary.Implementation.Shared\FuncstructorLibrary.Implementation.Shared.projitems*{c75605cd-d1fa-453f-839d-84f26c070f63}*SharedItemsImports = 13
+		..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.projitems*{ff55164e-9a9c-472d-bf89-efb5b5d801b8}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -66,5 +82,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{24336EA2-C6B4-4C97-B4DE-B9DCB23F544A} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
+		{C75605CD-D1FA-453F-839D-84F26C070F63} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
+		{5601FD20-071A-4808-BFCF-BBFE1C226EBA} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
 	EndGlobalSection
 EndGlobal

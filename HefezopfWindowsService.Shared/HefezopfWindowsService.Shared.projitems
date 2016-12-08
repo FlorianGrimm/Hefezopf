@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5601fd20-071a-4808-bfcf-bbfe1c226eba</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>HefezopfWindowsService.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)HZBootingService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IHZServiceBaseWithArguments.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HZProjectInstallerBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HZServiceBaseWithArguments.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HZWindowConsoleUtility.cs" />
+  </ItemGroup>
+</Project>

@@ -54,21 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\AssemblyWatcherService.cs">
-      <Link>DI\AssemblyWatcherService.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\CacheKey.cs">
-      <Link>DI\CacheKey.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\EmbeddedResourceAssemblyLoader.cs">
-      <Link>DI\EmbeddedResourceAssemblyLoader.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\Funcstructor.cs">
-      <Link>DI\Funcstructor.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Funcstructor\FuncstructorLibrary\Implementation\NullReplacement.cs">
-      <Link>DI\NullReplacement.cs</Link>
-    </Compile>
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
@@ -122,6 +107,7 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
+  <Import Project="..\..\Funcstructor\FuncstructorLibrary.Implementation.Shared\FuncstructorLibrary.Implementation.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

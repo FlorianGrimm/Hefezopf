@@ -25,7 +25,8 @@
         public HefezopfConfiguration() {
             this.DBHefezopf = new GsbDatabase();
             this.SchemaHefezopf = this.DBHefezopf.AddSchema("Hefezopf");
-#warning TODO this.Hefezopf_ZombieState = this.SchemaHefezopf.AddTable("ZombieState", this.DBHefezopf);
+            this.Hefezopf_ZombieState = this.SchemaHefezopf.AddTable("ZombieState");
+            this.Hefezopf_ZombieState = this.DBHefezopf.AddTable(this.SchemaHefezopf.Name, "ZombieState");
             this.Hefezopf_ZombieState.AddColumn("Name");
         }
     }
