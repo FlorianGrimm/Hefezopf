@@ -62,7 +62,11 @@
 
     [RunInstaller(true)]
     public partial class ProjectInstaller : global::HefezopfWindowsService.Shared.HZProjectInstallerBase {
-        public ProjectInstaller() : base(global::HefezopfWindowsService.Shared.HZBootingService.ServiceNameForInstaller ?? Consts.DefaultServiceName) {
+        public ProjectInstaller() : base(
+            global::HefezopfWindowsService.Shared.HZBootingService.ServiceNameForInstaller ?? Consts.DefaultServiceName,
+            global::HefezopfWindowsService.Shared.HZBootingService.ServiceUsernameForInstaller,
+            global::HefezopfWindowsService.Shared.HZBootingService.ServicePasswordForInstaller
+            ) {
         }
     }
 }

@@ -14,15 +14,27 @@
         /// for the installer only
         /// </summary>
         internal static string ServiceNameForInstaller;
+        internal static string ServiceUsernameForInstaller;
+        internal static string ServicePasswordForInstaller;
 
         private readonly Func<Assembly> _GetAssembly;
         private readonly Func<string, ServiceBase> _CreateService;
         private readonly string _EventLogName;
         private string _ServiceName;
+        private string _Location;
+        private string _ServiceUsername;
+        private string _ServicePassword;
         private Action<string> OutWriteLine;
         private Action<string> ErrorWriteLine;
-        private string _Location;
+        private bool _ConsoleIsAttached;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="getAssembly">func that returns the assembly.</param>
+        /// <param name="createService">func that create a new service.</param>
+        /// <param name="serviceName">the servicename.</param>
+        /// <param name="eventLogName">the event log source name</param>
         public HZBootingService(Func<Assembly> getAssembly, Func<string, ServiceBase> createService, string serviceName, string eventLogName) {
             this._GetAssembly = getAssembly;
             this._CreateService = createService;
@@ -41,7 +53,13 @@
             }
         }
 
+        /// <summary>
+        /// Parse the given args and execute the given commands.
+        /// </summary>
+        /// <param name="args">The args from the commandline.</param>
+        /// <returns>0 for succes</returns>
         public int Main(string[] args) {
+            int result = 0;
             bool bVerbose = false;
             bool bSilent = false;
             var stepsParsed = new List<KeyValuePair<string, List<string>>>();
@@ -53,6 +71,7 @@
                 // Parse args            
                 foreach (var argument in args) {
                     string name = null;
+                    // only / not - ; - is reserved for the service specific ones.
                     if (argument.StartsWith("/", StringComparison.OrdinalIgnoreCase)) {
                         name = argument.TrimStart(new char[] { '/' });
                         if (string.Equals("verbose", name, StringComparison.InvariantCultureIgnoreCase)) {
@@ -71,16 +90,30 @@
                 // global args               
                 foreach (var step in stepsParsed) {
                     if (string.Equals("name", step.Key, StringComparison.InvariantCultureIgnoreCase)) {
-                        string name = step.Value.FirstOrDefault();
-                        if (!string.IsNullOrEmpty(name)) {
-                            this._ServiceName = name;
+                        string value = step.Value.FirstOrDefault();
+                        if (!string.IsNullOrEmpty(value)) {
+                            this._ServiceName = value;
                         }
                         continue;
                     }
                     if (string.Equals("location", step.Key, StringComparison.InvariantCultureIgnoreCase)) {
-                        string location = step.Value.FirstOrDefault();
-                        if (!string.IsNullOrEmpty(location)) {
-                            this._Location = location;
+                        string value = step.Value.FirstOrDefault();
+                        if (!string.IsNullOrEmpty(value)) {
+                            this._Location = value;
+                        }
+                        continue;
+                    }
+                    if (string.Equals("username", step.Key, StringComparison.InvariantCultureIgnoreCase)) {
+                        string value = step.Value.FirstOrDefault();
+                        if (!string.IsNullOrEmpty(value)) {
+                            this._ServiceUsername = value;
+                        }
+                        continue;
+                    }
+                    if (string.Equals("password", step.Key, StringComparison.InvariantCultureIgnoreCase)) {
+                        string value = step.Value.FirstOrDefault();
+                        if (!string.IsNullOrEmpty(value)) {
+                            this._ServicePassword = value;
                         }
                         continue;
                     }
@@ -106,17 +139,7 @@
                 // console
                 if (bSilent) {
                 } else if (bVerbose) {
-                    var bAttachConsole = HZWindowConsoleUtility.AttachConsole();
-                    if (!bAttachConsole) {
-                        bAttachConsole = HZWindowConsoleUtility.CreateConsole();
-                    }
-                    if (bAttachConsole) {
-                        HZWindowConsoleUtility.AdjustConsoleCodePage();
-                        this.OutWriteLine = this.ConsoleOutWriteLine;
-
-                        this.ErrorWriteLine = this.ConsoleErrorWriteLine;
-
-                    }
+                    this.attachConsole();
                 }
             }
             if (stepsToRun.Any()) {
@@ -124,6 +147,11 @@
                 // evaluate args
                 try {
                     foreach (var step in stepsToRun) {
+                        if (string.Equals("help", step.Key, StringComparison.InvariantCultureIgnoreCase)
+                            || string.Equals("?", step.Key, StringComparison.InvariantCultureIgnoreCase)) {
+                            this.ShowHelp(new KeyValuePair<string, List<string>>(null, null));
+                            continue;
+                        }
                         if (string.Equals("install", step.Key, StringComparison.InvariantCultureIgnoreCase)) {
                             this.Install(step);
                             continue;
@@ -152,17 +180,49 @@
                             this.Debug(step.Value);
                             continue;
                         }
+                        {
+                            this.ShowHelp(step);
+                        }
                     }
                 } catch (Exception exception) {
                     this.DefaultErrorWriteLine(exception.ToString());
+                    result = 1;
                 }
             } else {
                 this.Run(programArgs);
             }
-            return 0;
+            return result;
+        }
+
+
+        public void ShowHelp(KeyValuePair<string, List<string>> step) {
+            this.attachConsole();
+            if (step.Key != null) {
+                OutWriteLine("Unkown command");
+                OutWriteLine(step.Key);
+            }
+            OutWriteLine("Commands");
+            OutWriteLine("/install   installs the servive with the name /name at the current location or /location with the /úsername and /password or LocaalSystem.");
+            OutWriteLine("/update    updates the servive with the name /name at the current location.");
+            OutWriteLine("/uninstall uninstalls the service with the name /name.");
+            OutWriteLine("/start     starts the service with the name /name.");
+            OutWriteLine("/stop      stops the service with the name /name.");
+            OutWriteLine("/help /?   show help");
+            OutWriteLine("");
+            OutWriteLine("Parameter");
+            OutWriteLine("/name <ServiceName> set the servicename. for all. ");
+            OutWriteLine("/location <ServiceName> set the location. for /install");
+            OutWriteLine("/username <windowsusername> set the service account. for /install");
+            OutWriteLine("/password <password> set the service password. for /install");
+            OutWriteLine("");
+            OutWriteLine("/silent no console output.");
+            OutWriteLine("/verbose enable console output.");
+            OutWriteLine("");
         }
         public void Install(KeyValuePair<string, List<string>> step) {
             ServiceNameForInstaller = this._ServiceName;
+            ServiceUsernameForInstaller = this._ServiceUsername;
+            ServicePasswordForInstaller = this._ServicePassword;
             string serviceLocation = GetServiceLocation(this._Location);
             var assembly = this._GetAssembly();
 
@@ -184,6 +244,9 @@
             //            SetServiceCommandLine(serviceLocation);
             var serviceArgs = $"\"{serviceLocation}\" /name \"{this._ServiceName}\"";
             NativeMethods.SetServicePathName(this._ServiceName, serviceArgs);
+            ServiceNameForInstaller = null;
+            ServiceUsernameForInstaller = null;
+            ServicePasswordForInstaller = null;
         }
 
         public void Uninstall(KeyValuePair<string, List<string>> step) {
@@ -197,6 +260,7 @@
             System.Collections.IDictionary savedState = null;
             transactedInstaller.Uninstall(savedState);
         }
+
         public void Start(KeyValuePair<string, List<string>> step) {
             var sc = new ServiceController(this._ServiceName);
             if (sc.Status == ServiceControllerStatus.Stopped) {
@@ -210,6 +274,7 @@
                 sc.WaitForStatus(ServiceControllerStatus.Running, TimeSpan.FromSeconds(10));
             }
         }
+
         public void Stop(KeyValuePair<string, List<string>> step) {
             var sc = new ServiceController(this._ServiceName);
             if (sc.Status == ServiceControllerStatus.Running) {
@@ -219,6 +284,7 @@
                 sc.WaitForStatus(ServiceControllerStatus.Stopped, TimeSpan.FromSeconds(10));
             }
         }
+
         public void Update(KeyValuePair<string, List<string>> step) {
             var sc = new ServiceController(this._ServiceName);
             if (sc.Status == ServiceControllerStatus.Running) {
@@ -267,7 +333,6 @@
             return;
         }
 
-
         private void DefaultOutWriteLine(string msg) {
             System.Diagnostics.Trace.WriteLine(msg);
         }
@@ -278,6 +343,7 @@
                 System.Diagnostics.EventLog.WriteEntry(this._EventLogName, msg, System.Diagnostics.EventLogEntryType.Error);
             } catch { }
         }
+
         private void ConsoleOutWriteLine(string msg) {
             try {
                 System.Diagnostics.Trace.WriteLine(msg);
@@ -347,17 +413,19 @@
             return false;
         }
 
-        /*
-try
-                        {
+        private void attachConsole() {
+            if (!_ConsoleIsAttached) {
+                _ConsoleIsAttached = HZWindowConsoleUtility.AttachConsole();
+                if (!_ConsoleIsAttached) {
+                    _ConsoleIsAttached = HZWindowConsoleUtility.CreateConsole();
+                }
+                if (_ConsoleIsAttached) {
+                    HZWindowConsoleUtility.AdjustConsoleCodePage();
+                    this.OutWriteLine = this.ConsoleOutWriteLine;
 
-                            service.StartFromExternal();
-                            //System.Console.CancelKeyPress += Console_CancelKeyPress;
-                        }
-                        finally
-                        {
-                            service.StopFromExternal();
-                        }         
-         */
+                    this.ErrorWriteLine = this.ConsoleErrorWriteLine;
+                }
+            }
+        }
     }
 }

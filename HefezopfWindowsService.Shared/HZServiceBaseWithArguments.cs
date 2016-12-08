@@ -41,6 +41,7 @@
         }
 
         protected virtual void Parse(IEnumerable<string> args) {
+            // the Prefix - is reserved for you.
         }
 
         protected virtual object GetStartArguments() {

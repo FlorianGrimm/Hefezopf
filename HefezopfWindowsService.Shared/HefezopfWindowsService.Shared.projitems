@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)HZBootingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IHZServiceBaseWithArguments.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LASUtility.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NativeMethods.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HZProjectInstallerBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HZServiceBaseWithArguments.cs" />
