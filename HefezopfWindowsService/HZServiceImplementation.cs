@@ -1,22 +1,32 @@
 ﻿namespace HefezopfWindowsService {
-    using Shared;
+    using Hefezopf.WindowsService.Shared;
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using System.ServiceProcess;
 
     public class HZServiceImplementation : IHZService, IDisposable {
         private bool _IsDisposed;
+        private HefezopfWindowsService.Assembly.HZAssemblyInResource _AssemblyInResource;
+        private string _ServiceName;
 
         public HZServiceImplementation() {
         }
-
+        public void SetOwner(ServiceBase owner) {
+            this._ServiceName = owner.ServiceName;
+        }
         public void Start(object args) {
+            this._AssemblyInResource = new HefezopfWindowsService.Assembly.HZAssemblyInResource();
+            var binFolderPath = System.IO.Path.Combine(
+                System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)
+                , "bin");
+            this._AssemblyInResource.ExtractTo(binFolderPath);
+            var assembly = System.Reflection.Assembly.Load("Hefezopf.Contracts, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = 2d8ec664ab7d64f1");
         }
 
         public void Stop() {
+            using (var d = this._AssemblyInResource) {
+                this._AssemblyInResource = null;
+            }
         }
 
         protected virtual void Dispose(bool disposing) {
@@ -25,8 +35,9 @@
                     // TODO: dispose managed state (managed objects).
                 }
 
-                // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.
-                // TODO: set large fields to null.
+                using (var d = this._AssemblyInResource) {
+                    this._AssemblyInResource = null;
+                }
                 this._IsDisposed = true;
             }
         }
@@ -36,8 +47,10 @@
             Dispose(true);
             // GC.SuppressFinalize(this);
         }
+
+
     }
-        
+
     public class HZService : HZServiceBaseWithArguments {
 
         public HZService() : this(null) {
@@ -61,11 +74,11 @@
     }
 
     [RunInstaller(true)]
-    public partial class ProjectInstaller : global::HefezopfWindowsService.Shared.HZProjectInstallerBase {
+    public partial class ProjectInstaller : global::Hefezopf.WindowsService.Shared.HZProjectInstallerBase {
         public ProjectInstaller() : base(
-            global::HefezopfWindowsService.Shared.HZBootingService.ServiceNameForInstaller ?? Consts.DefaultServiceName,
-            global::HefezopfWindowsService.Shared.HZBootingService.ServiceUsernameForInstaller,
-            global::HefezopfWindowsService.Shared.HZBootingService.ServicePasswordForInstaller
+            global::Hefezopf.WindowsService.Shared.HZBootingService.ServiceNameForInstaller ?? Consts.DefaultServiceName,
+            global::Hefezopf.WindowsService.Shared.HZBootingService.ServiceUsernameForInstaller,
+            global::Hefezopf.WindowsService.Shared.HZBootingService.ServicePasswordForInstaller
             ) {
         }
     }

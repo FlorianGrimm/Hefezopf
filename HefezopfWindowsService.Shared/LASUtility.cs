@@ -1,6 +1,6 @@
 ﻿// https://gallery.technet.microsoft.com/scriptcenter/Grant-Revoke-Query-user-26e259b0
 
-namespace HefezopfWindowsService.Shared {
+namespace Hefezopf.WindowsService.Shared {
     using System;
     using System.ComponentModel;
     using System.Runtime.InteropServices;

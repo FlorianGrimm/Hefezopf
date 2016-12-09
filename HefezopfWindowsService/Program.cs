@@ -1,5 +1,5 @@
 ﻿namespace HefezopfWindowsService {
-    using HefezopfWindowsService.Shared;
+    using Hefezopf.WindowsService.Shared;
 
     /// <summary>
     /// The main entry point for the service.

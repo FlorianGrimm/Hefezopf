@@ -1,4 +1,4 @@
-﻿namespace HefezopfWindowsService.Shared {
+﻿namespace Hefezopf.WindowsService.Shared {
     using System;
     using System.Runtime.ConstrainedExecution;
     using System.Runtime.InteropServices;

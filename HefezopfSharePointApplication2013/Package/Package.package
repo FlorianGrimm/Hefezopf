@@ -3,9 +3,15 @@
   <assemblies>
     <projectOutputAssembly location="Hefezopf.SharePoint.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
   </assemblies>
+  <features>
+    <featureReference itemId="a247915e-6c50-4c3d-99fc-610f61a47290" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
+  </features>
   <projectItems>
     <projectItemReference itemId="4cb000ff-0873-49aa-9b23-1d8a8e12a12d" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
     <projectItemReference itemId="337ae790-8816-40a2-a792-71293aa5adac" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
     <projectItemReference itemId="8020b5d4-f020-416f-8c4e-9f16cc73b80d" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
+    <projectItemReference itemId="e870ea8f-8180-484c-98a8-d6e9bed14e42" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
+    <projectItemReference itemId="4f67f498-dc64-48de-8e23-16517c0e5941" projectPath="..\HefezopfSharePoint2013\HefezopfSharePoint2013.csproj" />
+    <projectItemReference itemId="0def11af-7eb4-4ec0-9cd0-5686c3cc40de" />
   </projectItems>
 </package>

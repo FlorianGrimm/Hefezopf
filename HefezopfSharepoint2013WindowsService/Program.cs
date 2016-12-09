@@ -1,25 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace HefezopfSharepoint2013WindowsService {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.ServiceProcess;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Hefezopf.WindowsService.Shared;
 
-namespace HefezopfSharepoint2013WindowsService
-{
-    static class Program
-    {
+    /// <summary>
+    /// The main entry point for the service.
+    /// </summary>
+    public static class Program {
         /// <summary>
-        /// The main entry point for the application.
+        /// The main entry point for the service.
         /// </summary>
-        static void Main()
-        {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
-            {
-                new HZService()
-            };
-            ServiceBase.Run(ServicesToRun);
+        public static int Main(string[] args) {
+            var bootingService = new HZBootingService(
+                () => typeof(HZService).Assembly,
+                (serviceName) => new HZService(serviceName),
+                Consts.DefaultServiceName,
+                Consts.EventSourceName);
+            return bootingService.Main(args);
         }
     }
 }

@@ -1,13 +1,11 @@
-﻿namespace HefezopfWindowsService.Shared {
+﻿namespace Hefezopf.WindowsService.Shared {
     using System;
     using System.Collections.Generic;
     using System.Configuration.Install;
     using System.Linq;
     using System.Reflection;
     using System.ServiceProcess;
-    using System.Text;
     using System.Threading;
-    using System.Threading.Tasks;
 
     public class HZBootingService {
         /// <summary>
@@ -322,7 +320,7 @@
             if (args == null) { args = new string[0]; }
             var serviceBaseWithArguments = (IHZServiceBaseWithArguments)serviceBase;
             serviceBaseWithArguments.SetArguments(args);
-            using (var stop = serviceBaseWithArguments.Debug(args)) {
+            using (var stop = serviceBaseWithArguments.Debug()) {
                 this.OutWriteLine("Press CTRL-C to exit.");
                 using (var autoResetEventStop = new AutoResetEvent(false)) {
                     System.Console.CancelKeyPress += delegate (object sender, ConsoleCancelEventArgs e) { autoResetEventStop.Set(); e.Cancel = true; };

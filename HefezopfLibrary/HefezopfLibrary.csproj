@@ -53,9 +53,6 @@
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
-    <None Include="Schema\HZDBColumn.cs" />
-    <None Include="Schema\HZDBTable.cs" />
-    <Compile Include="Schema\HefezopfConfiguration.cs" />
     <None Include="Irony\Ast\AstBuilder.cs" />
     <None Include="Irony\Ast\AstContext.cs" />
     <None Include="Irony\Ast\AstExtensions.cs" />
@@ -138,8 +135,6 @@
     <None Include="Irony\Utilities\LogMessage.cs" />
     <None Include="Irony\Utilities\StringUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Schema\HZDatabaseModel.cs" />
-    <None Include="Schema\HZDBSchema.cs" />
     <None Include="Schema\SqlGrammar.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>dc5f0524-2c46-46a3-b85a-03fba17b4a38</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Hefezopf.SharePoint.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BaseServiceClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfDatabase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfIisWebService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfRestService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceApplication.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceApplicationProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceHostFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceInstance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfWCFService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IHefezopfRESTService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IHefezopfWCFService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Powershell\NewHefezopfServiceApplication.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Powershell\NewHefezopfServiceApplicationProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Powershell\RemoveHefezopfService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Powershell\SetHefezopfServiceApplication.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Powershell\SetHefezopfServiceApplicationProxy.cs" />
+  </ItemGroup>
+</Project>

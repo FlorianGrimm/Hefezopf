@@ -15,6 +15,7 @@
     <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SandboxedSolution>False</SandboxedSolution>
     <TokenReplacementFileExtensions>svc;config</TokenReplacementFileExtensions>
+    <IncludeAssemblyInPackage>False</IncludeAssemblyInPackage>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,6 +43,22 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libSP2013\Microsoft.SharePoint.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libSP2013\Microsoft.SharePoint.Client.ServerRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.PowerShell, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libSP2013\Microsoft.SharePoint.PowerShell.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -53,53 +70,95 @@
     <Reference Include="System.Web" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
-    <Reference Include="Microsoft.SharePoint" />
-    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+    <Reference Include="System.Management.Automation">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Management" />
+  </ItemGroup>
+  <Import Project="..\Hefezopf.SPDiagnostics.Shared\Hefezopf.SPDiagnostics.Shared.projitems" Label="Shared" />
+  <Import Project="..\Hefezopf.SharePoint.Shared\Hefezopf.SharePoint.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <Content Include="AdministrationActions\Elements.xml" />
+    <Content Include="Features\HefezopfServiceAdministration\HefezopfServiceAdministration.Template.xml">
+      <DependentUpon>HefezopfServiceAdministration.feature</DependentUpon>
+    </Content>
+    <Content Include="SPR_Config_Powershell_Registration\Hefezopf.SharePoint.Powershell.Cmdlets.xml" />
+    <Content Include="SPR_ISAPI\Hefezopf\Hefezopf.svc" />
+    <Content Include="SPR_WebServices\Hefezopf\Hefezopf.svc" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ISAPI\Hefezopf\Hefezopf.svc" />
-    <Compile Include="BaseServiceClient.cs" />
-    <Compile Include="HefezopfDatabase.cs" />
-    <Compile Include="HefezopfRestService.cs" />
-    <Compile Include="HefezopfIisWebService.cs" />
-    <Compile Include="HefezopfServiceApplication.cs" />
-    <Compile Include="HefezopfServiceApplicationProxy.cs" />
-    <Compile Include="HefezopfServiceHostFactory.cs" />
-    <Compile Include="HefezopfServiceInstance.cs" />
-    <Compile Include="HefezopfServiceProxy.cs" />
-    <Compile Include="HefezopfServiceClient.cs" />
-    <Compile Include="HefezopfWCFService.cs" />
-    <Compile Include="IHefezopfWCFService.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="WebServices\Hefezopf\Hefezopf.svc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ISAPI\Hefezopf\web.config" />
-    <None Include="ISAPI\SharePointProjectItem.spdata">
+    <None Include="AdministrationActions\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bac77306-8bb1-4563-b983-5405b2b5ed6e}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\HefezopfServiceAdministration\HefezopfServiceAdministration.feature">
+      <FeatureId>{a247915e-6c50-4c3d-99fc-610f61a47290}</FeatureId>
+    </None>
+    <None Include="Resources\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e870ea8f-8180-484c-98a8-d6e9bed14e42}</SharePointProjectItemId>
+    </None>
+    <None Include="SPR_Config_AdminResources\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{4f67f498-dc64-48de-8e23-16517c0e5941}</SharePointProjectItemId>
+    </None>
+    <None Include="SPR_Config_Powershell_Registration\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f2e78080-aa19-467c-bdca-58f2815da4b0}</SharePointProjectItemId>
+    </None>
+    <None Include="SPR_ISAPI\Hefezopf\web.config" />
+    <None Include="SPR_ISAPI\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{1c25f87e-3819-429a-b2a7-3f0def71a8a0}</SharePointProjectItemId>
     </None>
     <None Include="key.snk" />
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{4cb000ff-0873-49aa-9b23-1d8a8e12a12d}</SharePointProjectItemId>
     </None>
+    <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{7cb2ec15-2c6c-4068-ae48-d997545ed9cf}</PackageId>
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="WebClients\Hefezopf\client.config" />
-    <None Include="WebClients\SharePointProjectItem.spdata">
+    <None Include="SPR_WebClients\Hefezopf\client.config" />
+    <None Include="SPR_WebClients\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{337ae790-8816-40a2-a792-71293aa5adac}</SharePointProjectItemId>
     </None>
-    <None Include="WebServices\Hefezopf\web.config" />
-    <None Include="WebServices\SharePointProjectItem.spdata">
+    <None Include="SPR_WebServices\Hefezopf\web.config" />
+    <None Include="SPR_WebServices\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{8020b5d4-f020-416f-8c4e-9f16cc73b80d}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\" />
     <Folder Include="Layouts\Hefezopf\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Features\HefezopfServiceAdministration\HefezopfServiceAdministration.EventReceiver.cs">
+      <DependentUpon>HefezopfServiceAdministration.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SPDiagnostics\HZSPDiagnosticsService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Features\HefezopfServiceAdministration\Resources.de-DE.resx" />
+    <EmbeddedResource Include="Features\HefezopfServiceAdministration\Resources.en-US.resx" />
+    <EmbeddedResource Include="Features\HefezopfServiceAdministration\Resources.resx" />
+    <EmbeddedResource Include="Resources\Hefezopf.Service.ServiceResources.de-DE.resx" />
+    <EmbeddedResource Include="Resources\Hefezopf.Service.ServiceResources.en-US.resx" />
+    <EmbeddedResource Include="Resources\Hefezopf.Service.ServiceResources.resx" />
+    <EmbeddedResource Include="SPR_Config_AdminResources\Hefezopf.Service.ServiceAdminResources.en-US.resx" />
+    <EmbeddedResource Include="SPR_Config_AdminResources\Hefezopf.Service.ServiceAdminResources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HefezopfContracts\HefezopfContracts.csproj">
+      <Project>{ff55164e-9a9c-472d-bf89-efb5b5d801b8}</Project>
+      <Name>HefezopfContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HefezopfFundament\HefezopfFundament.csproj">
+      <Project>{82a0db66-f923-4110-a478-050028fc2ff0}</Project>
+      <Name>HefezopfFundament</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HefezopfLibrary\HefezopfLibrary.csproj">
+      <Project>{1553a9cd-069b-47bd-973c-e74e08f57c5d}</Project>
+      <Name>HefezopfLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Hefezopf_Build\Hefezopf-Pre.targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

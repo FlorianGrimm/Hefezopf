@@ -33,7 +33,36 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePointFrontend2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfSharePointApplication2013", "HefezopfSharePointApplication2013\HefezopfSharePointApplication2013.csproj", "{55465240-9EB7-43D9-81CB-CAC646DCEB8F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{BC0BFF3B-E3C1-4EEF-8B91-7CA594DBA4A0}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.AssemblyInResource.Shared", "Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.shproj", "{E2C0E9C7-748B-47B1-B111-2826B6DEB565}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.Diagnostics.Shared", "Hefezopf.Diagnostics.Shared\Hefezopf.Diagnostics.Shared.shproj", "{D62DE2D9-322B-4B4F-B481-430B3173547B}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.SPDiagnostics.Shared", "Hefezopf.SPDiagnostics.Shared\Hefezopf.SPDiagnostics.Shared.shproj", "{F1D1C325-15BF-42D1-A446-7D907C0EFDEF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.WindowsService.Shared", "HefezopfWindowsService.Shared\Hefezopf.WindowsService.Shared.shproj", "{5601FD20-071A-4808-BFCF-BBFE1C226EBA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.SharePoint.Shared", "Hefezopf.SharePoint.Shared\Hefezopf.SharePoint.Shared.shproj", "{DC5F0524-2C46-46A3-B85A-03FBA17B4A38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsaelzbrotLibrary", "..\Gsaelzbrot\GsaelzbrotLibrary\GsaelzbrotLibrary.csproj", "{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Hefezopf.SharePoint.Shared\Hefezopf.SharePoint.Shared.projitems*{36439661-d28b-4c12-a102-3e8f59a38599}*SharedItemsImports = 4
+		Hefezopf.SPDiagnostics.Shared\Hefezopf.SPDiagnostics.Shared.projitems*{36439661-d28b-4c12-a102-3e8f59a38599}*SharedItemsImports = 4
+		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{5601fd20-071a-4808-bfcf-bbfe1c226eba}*SharedItemsImports = 13
+		Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems*{80d5ba1d-0136-4a06-801f-921d69d873b3}*SharedItemsImports = 4
+		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{80d5ba1d-0136-4a06-801f-921d69d873b3}*SharedItemsImports = 4
+		..\Funcstructor\FuncstructorLibrary.Implementation.Shared\FuncstructorLibrary.Implementation.Shared.projitems*{82a0db66-f923-4110-a478-050028fc2ff0}*SharedItemsImports = 4
+		Hefezopf.Diagnostics.Shared\Hefezopf.Diagnostics.Shared.projitems*{d62de2d9-322b-4b4f-b481-430b3173547b}*SharedItemsImports = 13
+		Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems*{d7f6ec50-3253-4f22-a8bd-58fad53cba84}*SharedItemsImports = 4
+		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{d7f6ec50-3253-4f22-a8bd-58fad53cba84}*SharedItemsImports = 4
+		Hefezopf.SharePoint.Shared\Hefezopf.SharePoint.Shared.projitems*{dc5f0524-2c46-46a3-b85a-03fba17b4a38}*SharedItemsImports = 13
+		Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems*{e2c0e9c7-748b-47b1-b111-2826b6deb565}*SharedItemsImports = 13
+		Hefezopf.SPDiagnostics.Shared\Hefezopf.SPDiagnostics.Shared.projitems*{f1d1c325-15bf-42d1-a446-7d907c0efdef}*SharedItemsImports = 13
+		..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.projitems*{ff55164e-9a9c-472d-bf89-efb5b5d801b8}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -107,8 +136,19 @@ Global
 		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55465240-9EB7-43D9-81CB-CAC646DCEB8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E2C0E9C7-748B-47B1-B111-2826B6DEB565} = {BC0BFF3B-E3C1-4EEF-8B91-7CA594DBA4A0}
+		{D62DE2D9-322B-4B4F-B481-430B3173547B} = {BC0BFF3B-E3C1-4EEF-8B91-7CA594DBA4A0}
+		{F1D1C325-15BF-42D1-A446-7D907C0EFDEF} = {BC0BFF3B-E3C1-4EEF-8B91-7CA594DBA4A0}
+		{5601FD20-071A-4808-BFCF-BBFE1C226EBA} = {BC0BFF3B-E3C1-4EEF-8B91-7CA594DBA4A0}
+		{DC5F0524-2C46-46A3-B85A-03FBA17B4A38} = {BC0BFF3B-E3C1-4EEF-8B91-7CA594DBA4A0}
 	EndGlobalSection
 EndGlobal

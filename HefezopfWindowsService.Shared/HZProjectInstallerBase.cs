@@ -1,4 +1,4 @@
-﻿namespace HefezopfWindowsService.Shared {
+﻿namespace Hefezopf.WindowsService.Shared {
     using System.Linq;
     //[RunInstaller(true)]
     public partial class HZProjectInstallerBase : System.Configuration.Install.Installer {

@@ -7,11 +7,12 @@
     <ProjectGuid>{D7F6EC50-3253-4F22-A8BD-58FAD53CBA84}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HefezopfSharepoint2013WindowsService</RootNamespace>
-    <AssemblyName>HefezopfSharepoint2013WindowsService</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>HefezopfSharepointWindowsService</RootNamespace>
+    <AssemblyName>HefezopfSharepointWindowsService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,8 +36,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,22 +53,33 @@
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <Import Project="..\HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems" Label="Shared" />
+  <Import Project="..\Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems" Label="Shared" />
   <ItemGroup>
     <Compile Include="..\HefezopfContracts\GlobalVersion.cs">
       <Link>GlobalVersion.cs</Link>
     </Compile>
-    <Compile Include="HZService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="HZService.Designer.cs">
-      <DependentUpon>HZService.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Assembly\HZAssemblyInResource.cs" />
+    <Compile Include="Consts.cs" />
+    <Compile Include="HZServiceImplementation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="key.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assembly\Release\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\HefezopfContracts\bin\Debug\Hefezopf.Contracts.dll">
+      <Link>Assembly\Debug\Hefezopf.Contracts.dll</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\HefezopfContracts\bin\Debug\Newtonsoft.Json.dll">
+      <Link>Assembly\Debug\Newtonsoft.Json.dll</Link>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
