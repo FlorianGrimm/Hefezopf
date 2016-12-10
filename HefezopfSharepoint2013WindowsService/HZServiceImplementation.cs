@@ -1,4 +1,4 @@
-﻿namespace HefezopfSharepoint2013WindowsService {
+﻿namespace Hefezopf.Sharepoint.WindowsService {
     using Hefezopf.WindowsService.Shared;
     using System;
     using System.ComponentModel;
@@ -6,7 +6,7 @@
 
     public class HZServiceImplementation : IHZService, IDisposable {
         private bool _IsDisposed;
-        private HefezopfSharepoint2013WindowsService.Assembly.HZAssemblyInResource _AssemblyInResource;
+        private Hefezopf.Sharepoint.WindowsService.Assembly.HZAssemblyInResource _AssemblyInResource;
         private string _ServiceName;
 
         public HZServiceImplementation() {
@@ -15,7 +15,7 @@
             this._ServiceName = owner.ServiceName;
         }
         public void Start(object args) {
-            this._AssemblyInResource = new HefezopfSharepoint2013WindowsService.Assembly.HZAssemblyInResource();
+            this._AssemblyInResource = new Hefezopf.Sharepoint.WindowsService.Assembly.HZAssemblyInResource();
             var binFolderPath = System.IO.Path.Combine(
                 System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)
                 , "bin");

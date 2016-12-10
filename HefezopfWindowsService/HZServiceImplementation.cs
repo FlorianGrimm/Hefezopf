@@ -1,4 +1,4 @@
-﻿namespace HefezopfWindowsService {
+﻿namespace Hefezopf.WindowsService {
     using Hefezopf.WindowsService.Shared;
     using System;
     using System.ComponentModel;
@@ -6,7 +6,7 @@
 
     public class HZServiceImplementation : IHZService, IDisposable {
         private bool _IsDisposed;
-        private HefezopfWindowsService.Assembly.HZAssemblyInResource _AssemblyInResource;
+        private Hefezopf.WindowsService.Assembly.HZAssemblyInResource _AssemblyInResource;
         private string _ServiceName;
 
         public HZServiceImplementation() {
@@ -15,7 +15,7 @@
             this._ServiceName = owner.ServiceName;
         }
         public void Start(object args) {
-            this._AssemblyInResource = new HefezopfWindowsService.Assembly.HZAssemblyInResource();
+            this._AssemblyInResource = new Hefezopf.WindowsService.Assembly.HZAssemblyInResource();
             var binFolderPath = System.IO.Path.Combine(
                 System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)
                 , "bin");

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Hefezopf.SharePoint.Frontend</RootNamespace>
-    <AssemblyName>HefezopfSharePointFrontend</AssemblyName>
+    <AssemblyName>Hefezopf.SharePoint.Frontend</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetOfficeVersion>15.0</TargetOfficeVersion>
     <FileAlignment>512</FileAlignment>

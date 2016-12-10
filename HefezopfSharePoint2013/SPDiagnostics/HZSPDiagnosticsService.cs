@@ -11,9 +11,9 @@
 
         public string InstanceName => "HefezopfDiagnosticsService";
 
-        public IEnumerable<string> CategoryNames => new string[] { "Common", "Database", "UI" };
+        public IEnumerable<string> CategoryNames => new string[] { Shared.Consts.CategoryCommon, Shared.Consts.CategoryDatabase, Shared.Consts.CategoryUI };
 
-        public string DefaultCategoryName => "Common";
+        public string DefaultCategoryName => Shared.Consts.CategoryCommon;
     }
 
     /// <summary>

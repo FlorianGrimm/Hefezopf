@@ -1,4 +1,4 @@
-﻿namespace HefezopfWindowsService {
+﻿namespace Hefezopf.WindowsService {
     public class Consts {
         public const string DefaultServiceName = "HefezopfService";
         public const string EventSourceName = "Hefezopf";

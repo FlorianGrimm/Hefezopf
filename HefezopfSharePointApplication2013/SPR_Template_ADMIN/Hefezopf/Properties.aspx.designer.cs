@@ -7,10 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hefezopf.SharePoint.Application.Administration
-{
-    public partial class PropertiesPage
-    {
+namespace Hefezopf.SharePoint.Application.Administration {
+    
+    
+    public partial class PropertiesPage {
+        
         /// <summary>
         /// literalDialogHeaderPageTitle control.
         /// </summary>
@@ -19,7 +20,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalDialogHeaderPageTitle;
-
+        
         /// <summary>
         /// literalDialogDescription control.
         /// </summary>
@@ -28,16 +29,34 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalDialogDescription;
-
+        
         /// <summary>
-        /// applicationPoolSection control.
+        /// LabelMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl applicationPoolSection;
-
+        protected global::System.Web.UI.WebControls.Label LabelMessage;
+        
+        /// <summary>
+        /// LabelErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelErrorMessage;
+        
+        /// <summary>
+        /// ValidationSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
+        
         /// <summary>
         /// textBoxServiceName control.
         /// </summary>
@@ -46,5 +65,32 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox textBoxServiceName;
+        
+        /// <summary>
+        /// requiredFieldValidatorServiceName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidatorServiceName;
+        
+        /// <summary>
+        /// customValidatorServiceNameDuplicate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator customValidatorServiceNameDuplicate;
+        
+        /// <summary>
+        /// applicationPoolSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UserControl applicationPoolSection;
     }
 }

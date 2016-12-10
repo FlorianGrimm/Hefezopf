@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-[assembly: AssemblyTitle("HefezopfWindowsService")]
+[assembly: AssemblyTitle("Hefezopf.WindowsService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

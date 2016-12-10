@@ -51,6 +51,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         protected void Page_Error(object sender, EventArgs e)
         {
             Exception ex = Server.GetLastError();
+
             if (ex != null)
             {
             }
@@ -91,7 +92,7 @@ namespace Hefezopf.SharePoint.Application.Administration
             string serviceName = e.Value;
 
             // Get the service
-            SOLVINUtilitiesService service = SOLVINUtilitiesService.GetOrCreateService();
+            HefezopfService service = HefezopfService.GetOrCreateService();
 
             // Try to get a duplicate service application
             HefezopfServiceApplication duplicate = SPFarm.Local.GetObject(serviceName, service.Id, typeof(HefezopfServiceApplication)) as HefezopfServiceApplication;
@@ -119,8 +120,8 @@ namespace Hefezopf.SharePoint.Application.Administration
 
                 try
                 {
-                    SOLVINUtilitiesService service = SOLVINUtilitiesService.GetOrCreateService();
-                    SOLVINUtilitiesServiceProxy serviceProxy = SOLVINUtilitiesServiceProxy.GetOrCreateServiceProxy();
+                    HefezopfService service = HefezopfService.GetOrCreateService();
+                    HefezopfServiceProxy serviceProxy = HefezopfServiceProxy.GetOrCreateServiceProxy();
 
                     // Create the application pool
                     IisWebServiceApplicationPoolSection applicationPoolSectionCasted = this.applicationPoolSection as IisWebServiceApplicationPoolSection;

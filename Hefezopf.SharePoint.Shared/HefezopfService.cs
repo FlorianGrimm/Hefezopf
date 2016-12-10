@@ -14,8 +14,6 @@ namespace Hefezopf.Service {
     /// </summary>
     [System.Runtime.InteropServices.Guid("AB1B197A-2F0C-40C1-80EF-456198EE088D")]
     public sealed class HefezopfService : SPIisWebService, IServiceAdministration {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="HefezopfService"/> class. Default constructor (required for SPPersistedObject serialization). Never call this directly.
         /// </summary>
@@ -31,22 +29,14 @@ namespace Hefezopf.Service {
             : base(farm) {
         }
 
-        #endregion
-
-        #region Properties
-
         /// <summary>
         /// Gets the name of the service. This will display on the Services on Server screen. You can localize this value.
         /// </summary>
         public override string TypeName {
             get {
-                return SPUtility.GetLocalizedString("$Resources:ServiceName", "SOLVINUtilities.Service.ServiceResources", (uint)System.Threading.Thread.CurrentThread.CurrentCulture.LCID);
+                return SPUtility.GetLocalizedString("$Resources:ServiceName", "Hefezopf.Service.ServiceResources", (uint)System.Threading.Thread.CurrentThread.CurrentCulture.LCID);
             }
         }
-
-        #endregion
-
-        #region Methods
 
         /// <summary>
         /// Returns the link to an ASPX page that can be used to create new Service Applications. Without this, you will not be able to create new service applications on the Manage Service Applications screen.
@@ -58,7 +48,7 @@ namespace Hefezopf.Service {
                 throw new NotSupportedException();
             }
 
-            return new SPAdministrationLink("/_admin/SOLVINUtilities.Service/CreateApplication.aspx");
+            return new SPAdministrationLink("/_admin/Hefezopf/CreateApplication.aspx");
         }
 
         /// <summary>
@@ -107,8 +97,8 @@ namespace Hefezopf.Service {
             }
 
             return new SPPersistedTypeDescription(
-                SPUtility.GetLocalizedString("$Resources:ServiceApplicationName", "SOLVINUtilities.Service.ServiceResources", (uint)System.Threading.Thread.CurrentThread.CurrentCulture.LCID),
-                SPUtility.GetLocalizedString("$Resources:ServiceApplicationDescription", "SOLVINUtilities.Service.ServiceResources", (uint)System.Threading.Thread.CurrentThread.CurrentCulture.LCID));
+                SPUtility.GetLocalizedString("$Resources:ServiceApplicationName", "Hefezopf.Service.ServiceResources", (uint)System.Threading.Thread.CurrentThread.CurrentCulture.LCID),
+                SPUtility.GetLocalizedString("$Resources:ServiceApplicationDescription", "Hefezopf.Service.ServiceResources", (uint)System.Threading.Thread.CurrentThread.CurrentCulture.LCID));
         }
 
         /// <summary>
@@ -117,6 +107,11 @@ namespace Hefezopf.Service {
         /// <returns>An array of supported service application types.</returns>
         public Type[] GetApplicationTypes() {
             return new Type[] { typeof(HefezopfServiceApplication) };
+        }
+
+        public HefezopfServiceApplication GetServiceApplication(Guid serviceApplicationId) {
+#warning GetServiceApplication Not Implemented
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -133,6 +128,16 @@ namespace Hefezopf.Service {
 
             return service;
         }
+
+        /// <summary>
+        /// Gets an existing service it if it doesn't exist.
+        /// </summary>
+        /// <returns>An instance of the Service.</returns>
+        public static HefezopfService GetService() {
+            HefezopfService service = SPFarm.Local.Services.GetValue<HefezopfService>();
+            return service;
+        }
+
 
         /// <summary>
         /// Removes the service and components from the farm.
@@ -176,7 +181,5 @@ namespace Hefezopf.Service {
                 SPFarm.Local.Services.Remove(service.Id);
             }
         }
-
-        #endregion
     }
 }

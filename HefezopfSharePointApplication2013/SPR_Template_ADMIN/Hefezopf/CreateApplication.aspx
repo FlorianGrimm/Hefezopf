@@ -16,7 +16,7 @@
 <asp:Content ID="contentHelpLink" ContentPlaceHolderID="PlaceHolderHelpLink" runat="server">
 </asp:Content>
 <asp:Content ID="contentDialogImage" ContentPlaceHolderID="PlaceHolderDialogImage" runat="server">
-    <img src="/_admin/SOLVINUtilities.Service/ca-icon.png" alt="" />
+    <img src="/_admin/Hefezopf/ca-icon.png" alt="" />
 </asp:Content>
 <asp:Content ID="contentDialogBodyMainSection" contentplaceholderid="PlaceHolderDialogBodyMainSection" runat="server">
     <asp:Panel ID="panelError" runat="server" Visible="false">

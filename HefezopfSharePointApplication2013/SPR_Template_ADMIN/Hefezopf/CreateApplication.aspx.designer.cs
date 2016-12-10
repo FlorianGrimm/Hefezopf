@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hefezopf.SharePoint.Application.Administration
-{
-
-
-    public partial class CreateApplicationPage
-    {
-
+namespace Hefezopf.SharePoint.Application.Administration {
+    
+    
+    public partial class CreateApplicationPage {
+        
         /// <summary>
         /// literalDialogHeaderPageTitle control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalDialogHeaderPageTitle;
-
+        
         /// <summary>
         /// literalDialogDescription control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalDialogDescription;
-
+        
         /// <summary>
         /// panelError control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelError;
-
+        
         /// <summary>
         /// labelError control.
         /// </summary>
@@ -49,34 +47,34 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelError;
-
+        
         /// <summary>
-        /// LabelMessage control.
+        /// labelMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelMessage;
-
+        
         /// <summary>
-        /// LabelErrorMessage control.
+        /// labelErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelErrorMessage;
-
+        
         /// <summary>
-        /// ValSummary control.
+        /// validationSummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary validationSummary;
-
+        
         /// <summary>
         /// textBoxServiceName control.
         /// </summary>
@@ -85,7 +83,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox textBoxServiceName;
-
+        
         /// <summary>
         /// requiredFieldValidatorServiceName control.
         /// </summary>
@@ -94,7 +92,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidatorServiceName;
-
+        
         /// <summary>
         /// customValidatorServiceNameDuplicate control.
         /// </summary>
@@ -103,16 +101,16 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator customValidatorServiceNameDuplicate;
-
+        
         /// <summary>
-        /// appPoolSection control.
+        /// applicationPoolSection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UserControl applicationPoolSection;
-
+        
         /// <summary>
         /// checkBoxIncludeInDefaultProxy control.
         /// </summary>

@@ -86,13 +86,13 @@
                             <Columns>
                                 <asp:TemplateField HeaderStyle-CssClass="ms-vh2-nofilter ms-vh2-gridview" ItemStyle-CssClass="ms-vb2" ItemStyle-Width="16px">
                                     <ItemTemplate>
-                                        <asp:Image runat="server" ImageUrl="/_admin/SOLVINUtilities.Service/ServiceApplication16.png"></asp:Image>
+                                        <asp:Image runat="server" ImageUrl="/_admin/Hefezopf/ServiceApplication16.png"></asp:Image>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderStyle-CssClass="ms-vh2-nofilter ms-vh2-gridview" ItemStyle-CssClass="ms-vb2" HeaderText="<%$ Resources: Hefezopf.SharePoint.Application.ServiceAdminResources, ManageServiceApplicationNameHeaderText %>" DataField="Name" />
                                 <asp:TemplateField HeaderStyle-CssClass="ms-vh2-nofilter ms-vh2-gridview" ItemStyle-CssClass="ms-vb2" HeaderText="<%$ Resources: Hefezopf.SharePoint.Application.ServiceAdminResources, ManageServiceApplicationManageHeaderText %>">
                                     <ItemTemplate>
-                                        <asp:HyperLink runat="Server" NavigateUrl='<%# Eval("Id", "/_admin/SOLVINUtilities.Service/ManageApplication.aspx?id={0}") %>' Text="<%$ Resources: Hefezopf.SharePoint.Application.ServiceAdminResources, ManageServiceApplicationManageHeaderText %>"></asp:HyperLink>
+                                        <asp:HyperLink runat="Server" NavigateUrl='<%# Eval("Id", "/_admin/Hefezopf/ManageApplication.aspx?id={0}") %>' Text="<%$ Resources: Hefezopf.SharePoint.Application.ServiceAdminResources, ManageServiceApplicationManageHeaderText %>"></asp:HyperLink>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

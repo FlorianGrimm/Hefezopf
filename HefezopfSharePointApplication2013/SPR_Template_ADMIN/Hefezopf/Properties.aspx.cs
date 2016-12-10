@@ -16,6 +16,7 @@ namespace Hefezopf.SharePoint.Application.Administration
     using Microsoft.SharePoint.Utilities;
     using Microsoft.SharePoint.WebControls;
     using Hefezopf.SharePoint.Application.Administration;
+    using Service;
 
     /// <summary>
     /// The Application Properties Page.
@@ -115,7 +116,7 @@ namespace Hefezopf.SharePoint.Application.Administration
             }
 
             // Get the service
-            SOLVINUtilitiesService service = SOLVINUtilitiesService.GetOrCreateService();
+            HefezopfService service = HefezopfService.GetOrCreateService();
 
             // Try to get a duplicate service application
             HefezopfServiceApplication duplicate = SPFarm.Local.GetObject(serviceName, service.Id, typeof(HefezopfServiceApplication)) as HefezopfServiceApplication;

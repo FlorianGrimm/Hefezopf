@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BaseServiceClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Consts.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HefezopfDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HefezopfIisWebService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HefezopfRestService.cs" />
@@ -20,6 +21,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceHostFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceInstance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HefezopfServiceProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfSPWindowsService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfSPWindowsServiceInstance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HefezopfSPWindowsServiceInstanceDeploymentJobDefinition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HefezopfWCFService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IHefezopfRESTService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IHefezopfWCFService.cs" />
@@ -28,5 +32,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Powershell\RemoveHefezopfService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Powershell\SetHefezopfServiceApplication.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Powershell\SetHefezopfServiceApplicationProxy.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SharePointDifferences.cs" />
   </ItemGroup>
 </Project>

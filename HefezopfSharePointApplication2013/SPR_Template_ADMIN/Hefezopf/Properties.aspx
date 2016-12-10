@@ -17,7 +17,7 @@
 <asp:Content ID="contentHelpLink" ContentPlaceHolderID="PlaceHolderHelpLink" runat="server">
 </asp:Content>
 <asp:Content ID="contentDialogImage" ContentPlaceHolderID="PlaceHolderDialogImage" runat="server">
-    <img src="/_admin/SOLVINUtilities.Service/ca-icon.png" alt="" />
+    <img src="/_admin/Hefezopf/ca-icon.png" alt="" />
 </asp:Content>
 <asp:Content ID="contentDialogBodyMainSection" ContentPlaceHolderID="PlaceHolderDialogBodyMainSection" runat="server">
     <table width="100%" class="propertysheet" cellspacing="0" cellpadding="0" border="0"> <tr> <td class="ms-descriptionText"> <asp:Label ID="LabelMessage" runat="server" EnableViewState="False" CssClass="ms-descriptionText"/> </td> </tr> <tr> <td class="ms-error"><asp:Label ID="LabelErrorMessage" runat="server" EnableViewState="False" /></td> </tr> <tr> <td class="ms-descriptionText"> <asp:ValidationSummary ID="ValidationSummary" HeaderText="<%$SPHtmlEncodedResources:spadmin, ValidationSummaryHeaderText%>" DisplayMode="BulletList" ShowSummary="True" runat="server"> </asp:ValidationSummary> </td> </tr> </table>

@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-[assembly: AssemblyTitle("HefezopfSharepoint2013WindowsService")]
+[assembly: AssemblyTitle("Hefezopf.Sharepoint.WindowsService for 2013")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]

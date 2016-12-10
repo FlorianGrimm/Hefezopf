@@ -7,12 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hefezopf.SharePoint.Application.Administration
-{
-
-
-    public partial class ManageServicePage
-    {
+namespace Hefezopf.SharePoint.Application.Administration {
+    
+    
+    public partial class ManageServicePage {
+        
         /// <summary>
         /// literalPageTitle control.
         /// </summary>
@@ -21,7 +20,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalPageTitle;
-
+        
         /// <summary>
         /// literalPageTitleInTitleArea control.
         /// </summary>
@@ -30,7 +29,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalPageTitleInTitleArea;
-
+        
         /// <summary>
         /// literalPageDescription control.
         /// </summary>
@@ -39,7 +38,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalPageDescription;
-
+        
         /// <summary>
         /// panelError control.
         /// </summary>
@@ -48,7 +47,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelError;
-
+        
         /// <summary>
         /// labelError control.
         /// </summary>
@@ -57,7 +56,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelError;
-
+        
         /// <summary>
         /// panelMain control.
         /// </summary>
@@ -66,25 +65,25 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelMain;
-
+        
         /// <summary>
-        /// LabelMessage control.
+        /// labelMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelMessage;
-
+        
         /// <summary>
-        /// LabelErrorMessage control.
+        /// labelErrorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelErrorMessage;
-
+        
         /// <summary>
         /// validationSummary control.
         /// </summary>
@@ -93,7 +92,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary validationSummary;
-
+        
         /// <summary>
         /// serviceStatusSection control.
         /// </summary>
@@ -102,7 +101,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UserControl serviceStatusSection;
-
+        
         /// <summary>
         /// imageServiceStatus control.
         /// </summary>
@@ -111,7 +110,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imageServiceStatus;
-
+        
         /// <summary>
         /// literalServiceStatus control.
         /// </summary>
@@ -120,7 +119,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalServiceStatus;
-
+        
         /// <summary>
         /// imageServiceProxyStatus control.
         /// </summary>
@@ -129,7 +128,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imageServiceProxyStatus;
-
+        
         /// <summary>
         /// literalServiceProxyStatus control.
         /// </summary>
@@ -138,25 +137,25 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal literalServiceProxyStatus;
-
+        
         /// <summary>
-        /// buttonProvisionService control.
+        /// buttonInstallService control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button buttonInstallService;
-
+        
         /// <summary>
-        /// buttonUnprovisionService control.
+        /// buttonRemoveService control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button buttonRemoveService;
-
+        
         /// <summary>
         /// serviceInstanceStatusSection control.
         /// </summary>
@@ -165,7 +164,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UserControl serviceInstanceStatusSection;
-
+        
         /// <summary>
         /// gridViewInstanceStatus control.
         /// </summary>
@@ -174,16 +173,16 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridViewInstanceStatus;
-
+        
         /// <summary>
-        /// buttonReprovisionServiceInstances control.
+        /// buttonInstallServiceInstances control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button buttonInstallServiceInstances;
-
+        
         /// <summary>
         /// serviceApplicationStatusSection control.
         /// </summary>
@@ -192,7 +191,7 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UserControl serviceApplicationStatusSection;
-
+        
         /// <summary>
         /// gridViewApplicationStatus control.
         /// </summary>
@@ -201,6 +200,5 @@ namespace Hefezopf.SharePoint.Application.Administration
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gridViewApplicationStatus;
-
     }
 }

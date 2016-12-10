@@ -1,4 +1,4 @@
-﻿namespace HefezopfSharepoint2013WindowsService.Assembly {
+﻿namespace Hefezopf.Sharepoint.WindowsService.Assembly {
 
     public class HZAssemblyInResource : global::Hefezopf.AssemblyInResource.Shared.HZAssemblyInResource {
 #if DEBUG

@@ -75,6 +75,9 @@
     <Compile Include="Comp\IStrategyExecutive.cs" />
     <Compile Include="GlobalVersion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HZLoggerSystemDiagnostics.cs" />
+    <Compile Include="Services\IHZLogger.cs" />
+    <Compile Include="Services\HZLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />

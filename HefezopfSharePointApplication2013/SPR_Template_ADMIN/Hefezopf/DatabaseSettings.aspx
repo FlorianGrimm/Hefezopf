@@ -14,7 +14,7 @@
 </asp:Content>
 <asp:Content ID="contentTitleInTitleArea" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server" >
     <a href="/_admin/ServiceApplications.aspx"><SharePoint:EncodedLiteral ID="EncodedLiteral1" runat="server" Text="<%$Resources:spadmin, svcappsadm_pagetitle%>" EncodeMethod='HtmlEncode'/></a> : 
-    <a href="/_admin/SOLVINUtilities.Service/ManageApplication.aspx?id=<%= Request.QueryString["id"] %>"><asp:Literal ID="literalManagePage" runat="server" Text='<%$ Resources: Hefezopf.SharePoint.Application.ServiceAdminResources, ApplicationManagementPageTitle %>'></asp:Literal></a> :
+    <a href="/_admin/Hefezopf/ManageApplication.aspx?id=<%= Request.QueryString["id"] %>"><asp:Literal ID="literalManagePage" runat="server" Text='<%$ Resources: Hefezopf.SharePoint.Application.ServiceAdminResources, ApplicationManagementPageTitle %>'></asp:Literal></a> :
     <asp:Literal ID="literalPageTitleInTitleArea" runat="server" Text='<%$ Resources: Hefezopf.SharePoint.Application.ServiceAdminResources, DatabaseSettingsPageTitleInTitleArea %>'></asp:Literal>
 </asp:Content>
 <asp:content ID="contentPageDescription" ContentPlaceHolderID="PlaceHolderPageDescription" runat="server">

@@ -1,4 +1,4 @@
-﻿namespace HefezopfWindowsService.Assembly {
+﻿namespace Hefezopf.WindowsService.Assembly {
     using System;
     using System.Collections.Generic;
     using System.Linq;

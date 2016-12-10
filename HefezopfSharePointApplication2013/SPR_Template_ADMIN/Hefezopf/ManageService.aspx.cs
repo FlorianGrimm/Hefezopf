@@ -13,7 +13,7 @@ namespace Hefezopf.SharePoint.Application.Administration
     using Microsoft.SharePoint;
     using Microsoft.SharePoint.Administration;
     using Microsoft.SharePoint.WebControls;
-    using SOLVINUtilities.Service;
+    using Service;
 
     /// <summary>
     /// This page is responsible for provisioning (installing) the Service, ServiceProxy, and ServiceInstances.
@@ -40,13 +40,13 @@ namespace Hefezopf.SharePoint.Application.Administration
             if (!Page.IsPostBack)
             {
                 // Populate the controls with default values
-                SOLVINUtilitiesService service = SPFarm.Local.Services.GetValue<SOLVINUtilitiesService>();
-                SOLVINUtilitiesServiceProxy proxy = SPFarm.Local.ServiceProxies.GetValue<SOLVINUtilitiesServiceProxy>();
+                HefezopfService service = SPFarm.Local.Services.GetValue<HefezopfService>();
+                HefezopfServiceProxy proxy = SPFarm.Local.ServiceProxies.GetValue<HefezopfServiceProxy>();
 
                 if (service != null)
                 {
                     this.literalServiceStatus.Text = HttpContext.GetGlobalResourceObject("Hefezopf.SharePoint.Application.ServiceAdminResources", "ManageServiceStatusLabelInstalled", CultureInfo.CurrentCulture).ToString();
-                    this.imageServiceStatus.ImageUrl = "/_admin/SOLVINUtilities.Service/ServiceInstalled.gif";
+                    this.imageServiceStatus.ImageUrl = "/_admin/Hefezopf/ServiceInstalled.gif";
                     this.buttonInstallService.Visible = false;
                     this.buttonRemoveService.Visible = true;
 
@@ -56,7 +56,7 @@ namespace Hefezopf.SharePoint.Application.Administration
                 else
                 {
                     this.literalServiceStatus.Text = HttpContext.GetGlobalResourceObject("Hefezopf.SharePoint.Application.ServiceAdminResources", "ManageServiceStatusLabelNotInstalled", CultureInfo.CurrentCulture).ToString();
-                    this.imageServiceStatus.ImageUrl = "/_admin/SOLVINUtilities.Service/ServiceNotInstalled.gif";
+                    this.imageServiceStatus.ImageUrl = "/_admin/Hefezopf/ServiceNotInstalled.gif";
                     this.buttonInstallService.Visible = true;
                     this.buttonRemoveService.Visible = false;
                     this.buttonInstallServiceInstances.Visible = false;
@@ -67,12 +67,12 @@ namespace Hefezopf.SharePoint.Application.Administration
 
                 if (proxy != null)
                 {
-                    this.imageServiceProxyStatus.ImageUrl = "/_admin/SOLVINUtilities.Service/ServiceInstalled.gif";
+                    this.imageServiceProxyStatus.ImageUrl = "/_admin/Hefezopf/ServiceInstalled.gif";
                     this.literalServiceProxyStatus.Text = HttpContext.GetGlobalResourceObject("Hefezopf.SharePoint.Application.ServiceAdminResources", "ManageServiceStatusLabelInstalled", CultureInfo.CurrentCulture).ToString();
                 }
                 else
                 {
-                    this.imageServiceProxyStatus.ImageUrl = "/_admin/SOLVINUtilities.Service/ServiceNotInstalled.gif";
+                    this.imageServiceProxyStatus.ImageUrl = "/_admin/Hefezopf/ServiceNotInstalled.gif";
                     this.literalServiceProxyStatus.Text = HttpContext.GetGlobalResourceObject("Hefezopf.SharePoint.Application.ServiceAdminResources", "ManageServiceStatusLabelNotInstalled", CultureInfo.CurrentCulture).ToString();
                 }
 
@@ -81,31 +81,31 @@ namespace Hefezopf.SharePoint.Application.Administration
 
                 foreach (SPServer server in SPFarm.Local.Servers)
                 {
-                    if (global::SOLVINUtilities.Library.SharePointDifferences.ServerHasRoleForServiceInstance(server))
+                    if (Shared.SharePointDifferences.ServerHasRoleForServiceInstance(server))
                     {
                         ServiceInstanceStatus serviceInstance = new ServiceInstanceStatus();
                         serviceInstance.ServerName = server.Name;
                         serviceInstance.ServerId = HttpUtility.UrlEncode(server.Id.ToString());
                         serviceInstances.Add(serviceInstance);
 
-                        SOLVINUtilitiesServiceInstance instance = server.ServiceInstances.GetValue<SOLVINUtilitiesServiceInstance>();
+                        HefezopfServiceInstance instance = server.ServiceInstances.GetValue<HefezopfServiceInstance>();
                         if (instance == null)
                         {
                             serviceInstance.ServerStatus = HttpContext.GetGlobalResourceObject("Hefezopf.SharePoint.Application.ServiceAdminResources", "ManageServiceInstanceStatusNotInstalled", CultureInfo.CurrentCulture).ToString();
                             serviceInstance.IsInstalled = false;
-                            serviceInstance.ServerStatusImage = "/_admin/SOLVINUtilities.Service/HLTHFAIL.PNG";
+                            serviceInstance.ServerStatusImage = "/_admin/Hefezopf/HLTHFAIL.PNG";
                         }
                         else if (instance.Status == SPObjectStatus.Online)
                         {
                             serviceInstance.ServerStatus = HttpContext.GetGlobalResourceObject("Hefezopf.SharePoint.Application.ServiceAdminResources", "ManageServiceInstanceStatusStarted", CultureInfo.CurrentCulture).ToString();
                             serviceInstance.IsInstalled = true;
-                            serviceInstance.ServerStatusImage = "/_admin/SOLVINUtilities.Service/HLTHSUCC.PNG";
+                            serviceInstance.ServerStatusImage = "/_admin/Hefezopf/HLTHSUCC.PNG";
                         }
                         else
                         {
                             serviceInstance.ServerStatus = HttpContext.GetGlobalResourceObject("Hefezopf.SharePoint.Application.ServiceAdminResources", "ManageServiceInstanceStatusStopped", CultureInfo.CurrentCulture).ToString();
                             serviceInstance.IsInstalled = true;
-                            serviceInstance.ServerStatusImage = "/_admin/SOLVINUtilities.Service/HLTHERR.PNG";
+                            serviceInstance.ServerStatusImage = "/_admin/Hefezopf/HLTHERR.PNG";
                         }
                     }
                 }
@@ -139,15 +139,15 @@ namespace Hefezopf.SharePoint.Application.Administration
                 operation.Begin();
 
                 // Install the service
-                SOLVINUtilitiesService service = SOLVINUtilitiesService.GetOrCreateService();
+                HefezopfService service = HefezopfService.GetOrCreateService();
 
                 // Install the service instances but do not start (provision) them (let the admin do this on the services on server screen).
-                SOLVINUtilitiesServiceInstance.CreateServiceInstances(service);
+                HefezopfServiceInstance.CreateServiceInstances(service);
 
                 // Install the service proxy
-                SOLVINUtilitiesServiceProxy.GetOrCreateServiceProxy();
+                HefezopfServiceProxy.GetOrCreateServiceProxy();
 
-                operation.End("/_admin/SOLVINUtilities.Service/ManageService.aspx");
+                operation.End("/_admin/Hefezopf/ManageService.aspx");
             }
         }
 
@@ -164,9 +164,9 @@ namespace Hefezopf.SharePoint.Application.Administration
                 operation.TrailingHTML = HttpContext.GetGlobalResourceObject("Hefezopf.SharePoint.Application.ServiceAdminResources", "ManageServiceRemoveOperationTrailingHtml", CultureInfo.CurrentCulture).ToString();
                 operation.Begin();
 
-                SOLVINUtilitiesService.RemoveService();
+                HefezopfService.RemoveService();
 
-                operation.End("/_admin/SOLVINUtilities.Service/ManageService.aspx");
+                operation.End("/_admin/Hefezopf/ManageService.aspx");
             }
         }
 
@@ -184,12 +184,12 @@ namespace Hefezopf.SharePoint.Application.Administration
                 operation.Begin();
 
                 // Get the service
-                SOLVINUtilitiesService service = SOLVINUtilitiesService.GetOrCreateService();
+                HefezopfService service = HefezopfService.GetOrCreateService();
 
                 // Create the service instances
-                SOLVINUtilitiesServiceInstance.CreateServiceInstances(service);
+                HefezopfServiceInstance.CreateServiceInstances(service);
 
-                operation.End("/_admin/SOLVINUtilities.Service/ManageService.aspx");
+                operation.End("/_admin/Hefezopf/ManageService.aspx");
             }
         }
 

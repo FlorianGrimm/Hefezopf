@@ -51,8 +51,6 @@
             return null;
         }
 
-        /// <summary>Converts <see cref="t:Solvin.Ots.Contracts.LogCategory"/> to SPDiagnosticsCategory.</summary>
-        /// <returns>the converted <see cref="t:Solvin.Ots.Contracts.LogCategory"/>.</returns>
         protected override IEnumerable<SPDiagnosticsArea> ProvideAreas() {
             var categoryNames = GetCategoryNames();
             var categories = categoryNames.Select(_ => new SPDiagnosticsCategory(_, TraceSeverity.Medium, EventSeverity.Error)).ToArray();
@@ -196,7 +194,42 @@
         /// <param name="severity"> The severity of the trace. </param>
         /// <param name="output">The message. Optionally, the message may contain format placeholders so that the string can be passed to System.String.Format(string, Object[]) for formatting.</param>
         /// <param name="data">The optional items to be replaced into the message format string.</param>
-        public static void WriteTrace(uint id, string categoryName, TraceSeverity severity, string output, params object[] data) {
+        public static void WriteTrace(uint id, string categoryName, TraceSeverity severity, string output, params object[] data) {        
+            var that = GetLocal();
+            SPDiagnosticsCategory category = that.GetCategory(categoryName);
+            that.WriteTrace(id, category, severity, output, data);
+        }
+
+
+        /// <summary>
+        /// Writes a trace to the Microsoft SharePoint Foundation trace log.
+        /// </summary>
+        /// <param name="id">The application-defined identifier for the trace.</param>
+        /// <param name="categoryName">The category of the trace.</param>
+        /// <param name="traceLevel"> The severity of the trace. </param>
+        /// <param name="output">The message. Optionally, the message may contain format placeholders so that the string can be passed to System.String.Format(string, Object[]) for formatting.</param>
+        /// <param name="data">The optional items to be replaced into the message format string.</param>        
+        public static void Log(uint id, string categoryName, System.Diagnostics.TraceLevel traceLevel, string output, params object[] data) {
+            TraceSeverity severity = TraceSeverity.Verbose;
+            switch (traceLevel) {
+                case System.Diagnostics.TraceLevel.Off:
+                    severity = TraceSeverity.None;
+                    break;
+                case System.Diagnostics.TraceLevel.Error:
+                    severity = TraceSeverity.Unexpected;
+                    break;
+                case System.Diagnostics.TraceLevel.Warning:
+                    severity = TraceSeverity.High;
+                    break;
+                case System.Diagnostics.TraceLevel.Info:
+                    severity = TraceSeverity.Medium;
+                    break;
+                case System.Diagnostics.TraceLevel.Verbose:
+                    severity = TraceSeverity.Verbose;
+                    break;
+                default:
+                    break;
+            }
             var that = GetLocal();
             SPDiagnosticsCategory category = that.GetCategory(categoryName);
             that.WriteTrace(id, category, severity, output, data);

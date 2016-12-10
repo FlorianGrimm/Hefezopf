@@ -14,7 +14,6 @@ namespace Hefezopf.SharePoint.Application.Administration
     using Microsoft.SharePoint.ApplicationPages;
     using Microsoft.SharePoint.Utilities;
     using Microsoft.SharePoint.WebControls;
-    using SOLVINUtilities.Service;
 
     /// <summary>
     /// The Database Settings Page
@@ -66,7 +65,7 @@ namespace Hefezopf.SharePoint.Application.Administration
                 if (this.ServiceApplication.Database == null)
                 {
                     // Set some default values
-                    databaseSectionControl.DatabaseName = "SOLVINUtilitiesService_DB";
+                    databaseSectionControl.DatabaseName = "HefezopfService_DB";
                     databaseSectionControl.Visible = true;
                 }
                 else
@@ -126,7 +125,7 @@ namespace Hefezopf.SharePoint.Application.Administration
                     if (string.Equals(this.ServiceApplication.Database.DatabaseConnectionString, databaseSectionControl.ConnectionString, StringComparison.OrdinalIgnoreCase))
                     {
                         // No change made, exit the application.
-                        operation.End(string.Format(CultureInfo.InvariantCulture, "/_admin/SOLVINUtilities.Service/ManageApplication.aspx?id={0}", SPHttpUtility.UrlKeyValueEncode(this.ServiceApplication.Id)));
+                        operation.End(string.Format(CultureInfo.InvariantCulture, "/_admin/Hefezopf/ManageApplication.aspx?id={0}", SPHttpUtility.UrlKeyValueEncode(this.ServiceApplication.Id)));
                     }
                     else
                     {
@@ -149,11 +148,11 @@ namespace Hefezopf.SharePoint.Application.Administration
                     this.ServiceApplication.Database.AddFailoverServiceInstance(databaseSectionControl.FailoverDatabaseServer);
 
                     this.ServiceApplication.Database.Update();
-                    operation.End(string.Format(CultureInfo.InvariantCulture, "/_admin/SOLVINUtilities.Service/ManageApplication.aspx?id={0}", SPHttpUtility.UrlKeyValueEncode(this.ServiceApplication.Id)));
+                    operation.End(string.Format(CultureInfo.InvariantCulture, "/_admin/Hefezopf/ManageApplication.aspx?id={0}", SPHttpUtility.UrlKeyValueEncode(this.ServiceApplication.Id)));
                 }
 
                 // Create the database
-                SOLVINUtilitiesDatabase database = new SOLVINUtilitiesDatabase(this.databaseParameters);
+                HefezopfDatabase database = new HefezopfDatabase(this.databaseParameters);
 
                 // Provision the database (runs the Create scripts)
                 database.Provision();
@@ -171,7 +170,7 @@ namespace Hefezopf.SharePoint.Application.Administration
                 this.ServiceApplication.Database = database;
                 this.ServiceApplication.Update();
 
-                operation.End(string.Format(CultureInfo.InvariantCulture, "/_admin/SOLVINUtilities.Service/ManageApplication.aspx?id={0}", SPHttpUtility.UrlKeyValueEncode(this.ServiceApplication.Id)));
+                operation.End(string.Format(CultureInfo.InvariantCulture, "/_admin/Hefezopf/ManageApplication.aspx?id={0}", SPHttpUtility.UrlKeyValueEncode(this.ServiceApplication.Id)));
             }
         }
 
