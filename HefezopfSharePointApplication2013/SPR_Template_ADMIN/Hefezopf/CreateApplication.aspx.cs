@@ -15,6 +15,7 @@ namespace Hefezopf.SharePoint.Application.Administration
     using Microsoft.SharePoint.Administration;
     using Microsoft.SharePoint.Utilities;
     using Microsoft.SharePoint.WebControls;
+    using Service;
 
     /// <summary>
     /// The Create Service Application page.

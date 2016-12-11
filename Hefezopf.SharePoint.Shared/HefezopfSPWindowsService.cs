@@ -11,8 +11,8 @@
     [SharePointPermission(System.Security.Permissions.SecurityAction.LinkDemand, ObjectModel = true)]
     [SharePointPermission(System.Security.Permissions.SecurityAction.InheritanceDemand, ObjectModel = true)]
     public class HefezopfSPWindowsService : SPWindowsService {
-        internal const string HostNameFormat = "OtsSPHost-{0}";
-        internal const string HostInstanceNameFormat = "OtsSPHost-{0}-{1}";
+        internal const string HostNameFormat = "HefezopfSPHost-{0}";
+        internal const string HostInstanceNameFormat = "HefezopfSPHost-{0}-{1}";
 
         [Persisted]
         private Guid _ServiceApplicationId;
@@ -93,7 +93,7 @@
                     var currentServers = new List<SPServer>();
                     var serversToProvision = new List<SPServer>();
                     if ((object)serviceApplication == null) {
-                        TODO.Now("remove all");
+#warning                        TODO.Now("remove all");
                     } else {
                         foreach (SPServiceInstance serviceInstance in this.Instances) {
                             if (serviceInstance.Server.Role != SPServerRole.Invalid) {
@@ -101,7 +101,7 @@
                                 currentServers.Add(serviceInstance.Server);
                             }
                         }
-                        serversToProvision.AddRange(serviceApplication.GetServersToProvision(currentServers.ToList(), this.Farm));
+#warning NOW                        serversToProvision.AddRange(serviceApplication.GetServersToProvision(currentServers.ToList(), this.Farm));
                     }
                     //Microsoft.SharePoint.Administration.SPWebServiceInstance.LocalAdministration.Server
                     if (serversToProvision.Count > 0) {
@@ -164,10 +164,11 @@
         /// <summary>Gets the DisplayName.</summary>
         public override string DisplayName => "Hefezopf Host Service";
 
+#warning NOW fix
 #if false
   
 
-        /// <summary>Get the name of the <see cref="OtsSPHostWindowsService"/> for the service application with the given id.</summary>
+        /// <summary>Get the name of the <see cref="HefezopfSPHostWindowsService"/> for the service application with the given id.</summary>
         /// <param name="serviceApplicationId">the <see cref="Microsoft.SharePoint.Administration.SPPersistedObject.Id"/> service application</param>
         /// <returns>the name</returns>
         public static string GetObjectNameOf(Guid serviceApplicationId) => string.Format(HostNameFormat, serviceApplicationId.ToString("N"));
@@ -175,21 +176,21 @@
         /// <summary>Gets an existing service .</summary>
         /// <param name="serviceApplicationId">the Id of the ServiceApplication</param>
         /// <returns>An instance of the Service or null.</returns>
-        public static OtsSPHostWindowsService GetService(Guid serviceApplicationId)
+        public static HefezopfSPHostWindowsService GetService(Guid serviceApplicationId)
         {
-            OtsSPHostWindowsService service = OtsSPFactory.Instance.GetOtsSPHostWindowsService(serviceApplicationId);
+            HefezopfSPHostWindowsService service = HefezopfSPFactory.Instance.GetHefezopfSPHostWindowsService(serviceApplicationId);
             return service;
         }
 
         /// <summary>Gets an existing service or creates it if it doesn't exist.</summary>
         /// <param name="serviceApplicationId">the Id of the ServiceApplication</param>
         /// <returns>An instance of the Service.</returns>
-        public static OtsSPHostWindowsService GetOrCreateService(Guid serviceApplicationId)
+        public static HefezopfSPHostWindowsService GetOrCreateService(Guid serviceApplicationId)
         {
-            OtsSPHostWindowsService service = OtsSPFactory.Instance.GetOtsSPHostWindowsService(serviceApplicationId);
+            HefezopfSPHostWindowsService service = HefezopfSPFactory.Instance.GetHefezopfSPHostWindowsService(serviceApplicationId);
             if ((object)service == null)
             {
-                service = OtsSPFactory.Instance.CreateOtsSPHostWindowsService(serviceApplicationId);
+                service = HefezopfSPFactory.Instance.CreateHefezopfSPHostWindowsService(serviceApplicationId);
                 service.Status = SPObjectStatus.Provisioning;
                 service.Update();
             }

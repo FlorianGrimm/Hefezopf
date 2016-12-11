@@ -29,4 +29,22 @@
         /// <param name="parent">The local farm.</param>
         public HZSPDiagnosticsService(string name, SPFarm parent) : base(name, parent) { }
     }
+
+    /// <summary>
+    /// Adapter to <see cref="HZSPDiagnosticsService"/>
+    /// </summary>
+    public class HZSPLogger : Hefezopf.SPDiagnostics.Shared.HZSPLoggerBase<HZSPDiagnosticsService, HZSPDiagnosticsServiceConfiguration> {
+        /// <summary>
+        /// default constructor
+        /// </summary>
+        public HZSPLogger() { }
+
+        /// <summary>
+        /// Get the local <see cref="HZSPDiagnosticsService"/> instance.
+        /// </summary>
+        /// <returns>the local <see cref="HZSPDiagnosticsService"/> instance.</returns>
+        public override HZSPDiagnosticsService GetLocal() {
+            return HZSPDiagnosticsService.GetLocal();
+        }
+    }
 }

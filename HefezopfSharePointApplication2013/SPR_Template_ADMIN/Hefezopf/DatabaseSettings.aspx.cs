@@ -14,6 +14,7 @@ namespace Hefezopf.SharePoint.Application.Administration
     using Microsoft.SharePoint.ApplicationPages;
     using Microsoft.SharePoint.Utilities;
     using Microsoft.SharePoint.WebControls;
+    using Service;
 
     /// <summary>
     /// The Database Settings Page

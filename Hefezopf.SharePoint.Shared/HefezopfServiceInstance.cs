@@ -7,6 +7,7 @@ namespace Hefezopf.Service
     using System;
     using System.ComponentModel;
     using Microsoft.SharePoint.Administration;
+    using Microsoft.SharePoint;
 
     /// <summary>
     /// The service instance. Appears on the Services on Server screen in SharePoint Central Administration. There can be
@@ -16,7 +17,9 @@ namespace Hefezopf.Service
     [System.Runtime.InteropServices.Guid("ba7b0518-9024-41b2-8132-26deafc28b5d")]
     public sealed class HefezopfServiceInstance : SPIisWebServiceInstance
     {
-        #region Constructors
+        public static HefezopfServiceInstance GetFromServer(SPServer server) {
+            return server.ServiceInstances.GetValue<HefezopfServiceInstance>();
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HefezopfServiceInstance"/> class. Default constructor (required for SPPersistedObject serialization). Never call this directly.
@@ -32,14 +35,10 @@ namespace Hefezopf.Service
         /// </summary>
         /// <param name="server">The SPServer to install the instance to.</param>
         /// <param name="service">The service to associate the service instance with.</param>
-        internal HefezopfServiceInstance(SPServer server, HefezopfIisWebService service)
+        internal HefezopfServiceInstance(SPServer server, HefezopfService service)
             : base(server, service)
         {
         }
-
-        #endregion
-
-        #region Properties
 
         /// <summary>
         /// Gets the management link. This property makes the Service Instance a clickable hyperlink on the Services on Server page.
@@ -52,15 +51,11 @@ namespace Hefezopf.Service
             }
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>
         /// Installs the service instances on servers in the farm (does not start them).
         /// </summary>
         /// <param name="service">The service associated with these instances.</param>
-        public static void CreateServiceInstances(HefezopfIisWebService service)
+        public static void CreateServiceInstances(HefezopfService service)
         {
             if (service == null)
             {
@@ -94,7 +89,25 @@ namespace Hefezopf.Service
 #endif
             }
         }
+        
+        /// <summary>Start the service instances.</summary>
+        public static void StartServiceInstances(HefezopfIisWebService service) {
+            if (service == null) { throw new ArgumentNullException(nameof(service)); }
+            var spServerLocalId = SPServer.Local.Id;
+            foreach (var serviceInstance in service.Instances) {
+                if (serviceInstance.Status == SPObjectStatus.Disabled) {
+                    if (spServerLocalId == serviceInstance.Server.Id) {
+                        serviceInstance.Provision();
+                        serviceInstance.Status = SPObjectStatus.Online;
+                        serviceInstance.Update();
+                    } else {
+                        new SPServiceInstanceJobDefinition(serviceInstance, true) {
+                            Schedule = new SPOneTimeSchedule(DateTime.Now)
+                        }.Update();
+                    }
+                }
 
-        #endregion
+            }
+        }
     }
 }

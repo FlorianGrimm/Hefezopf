@@ -41,9 +41,9 @@ namespace Hefezopf.Service {
         /// Initializes a new instance of the <see cref="HefezopfServiceApplication"/> class. Use this constructor when creating a new Service Application (e.g. from code in your Create page)
         /// </summary>
         /// <param name="name">The name of the service application.</param>
-        /// <param name="service">The <see cref="HefezopfIisWebService" />.</param>
+        /// <param name="service">The <see cref="HefezopfService" />.</param>
         /// <param name="applicationPool">The application pool.</param>
-        public HefezopfServiceApplication(string name, HefezopfIisWebService service, SPIisWebServiceApplicationPool applicationPool)
+        public HefezopfServiceApplication(string name, HefezopfService service, SPIisWebServiceApplicationPool applicationPool)
             : base(name, service, applicationPool) {
         }
 
@@ -51,10 +51,10 @@ namespace Hefezopf.Service {
         /// Initializes a new instance of the <see cref="HefezopfServiceApplication"/> class. Use this constructor when creating a new Service Application (e.g. from code in your Create page)
         /// </summary>
         /// <param name="name">The name of the service application.</param>
-        /// <param name="service">The <see cref="HefezopfIisWebService" />.</param>
+        /// <param name="service">The <see cref="HefezopfService" />.</param>
         /// <param name="customDatabase">A custom database to associate with this service application.</param>
         /// <param name="applicationPool">The application pool.</param>
-        public HefezopfServiceApplication(string name, HefezopfIisWebService service, HefezopfDatabase customDatabase, SPIisWebServiceApplicationPool applicationPool)
+        public HefezopfServiceApplication(string name, HefezopfService service, HefezopfDatabase customDatabase, SPIisWebServiceApplicationPool applicationPool)
             : base(name, service, applicationPool) {
             if (customDatabase == null) {
                 throw new ArgumentNullException("customDatabase");

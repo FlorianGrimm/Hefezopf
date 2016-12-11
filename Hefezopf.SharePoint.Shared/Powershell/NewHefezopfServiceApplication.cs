@@ -115,7 +115,7 @@ namespace Hefezopf.Service.PowerShell
             if (this.ShouldProcess(this.Name))
             {
                 // Get or create the service
-                HefezopfIisWebService service = HefezopfIisWebService.GetOrCreateService();
+                HefezopfService service = HefezopfService.GetOrCreateService();
 
                 // Get or create the service proxy
                 HefezopfServiceProxy.GetOrCreateServiceProxy();
