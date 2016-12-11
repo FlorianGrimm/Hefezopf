@@ -35,9 +35,15 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.Diagnostics.Shared
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.SPDiagnostics.Shared", "Hefezopf.SPDiagnostics.Shared\Hefezopf.SPDiagnostics.Shared.shproj", "{F1D1C325-15BF-42D1-A446-7D907C0EFDEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfLocalWebHost", "HefezopfLocalWebHost\HefezopfLocalWebHost.csproj", "{2D974291-E980-409D-B9F9-8D7BDD64A35C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWebHost", "HefezopfWebHost\HefezopfWebHost.csproj", "{75451911-112E-4840-B847-DCD4A3328FD5}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.projitems*{24336ea2-c6b4-4c97-b4de-b9dcb23f544a}*SharedItemsImports = 13
+		Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems*{2d974291-e980-409d-b9f9-8d7bdd64a35c}*SharedItemsImports = 4
+		Hefezopf.Diagnostics.Shared\Hefezopf.Diagnostics.Shared.projitems*{2d974291-e980-409d-b9f9-8d7bdd64a35c}*SharedItemsImports = 4
 		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{5601fd20-071a-4808-bfcf-bbfe1c226eba}*SharedItemsImports = 13
 		Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems*{80d5ba1d-0136-4a06-801f-921d69d873b3}*SharedItemsImports = 4
 		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{80d5ba1d-0136-4a06-801f-921d69d873b3}*SharedItemsImports = 4
@@ -89,6 +95,14 @@ Global
 		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D974291-E980-409D-B9F9-8D7BDD64A35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D974291-E980-409D-B9F9-8D7BDD64A35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D974291-E980-409D-B9F9-8D7BDD64A35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D974291-E980-409D-B9F9-8D7BDD64A35C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75451911-112E-4840-B847-DCD4A3328FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75451911-112E-4840-B847-DCD4A3328FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75451911-112E-4840-B847-DCD4A3328FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75451911-112E-4840-B847-DCD4A3328FD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

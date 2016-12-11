@@ -1,0 +1,30 @@
+﻿<Window x:Class="Hefezopf.LocalWebHost.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:LocalWebHost="clr-namespace:Hefezopf.LocalWebHost"
+        mc:Ignorable="d"        
+        d:DataContext="{d:DesignInstance Type=LocalWebHost:MainModel, IsDesignTimeCreatable=True}"
+        Title="MainWindow" Height="350" Width="525">
+    <DockPanel LastChildFill="True">
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="Top"></TextBlock>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom">
+            <TextBlock Text="Bottom"></TextBlock>
+        </StackPanel>
+        <StackPanel>
+            <StackPanel>
+                <Label>Port</Label>
+                <TextBox Text="2017"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <Label> </Label>
+            </StackPanel>
+            <StackPanel>
+                <Button Click="Button_Click">Start</Button>
+            </StackPanel>
+        </StackPanel>
+    </DockPanel>
+</Window>
