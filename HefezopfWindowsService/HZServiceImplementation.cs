@@ -15,12 +15,11 @@
             this._ServiceName = owner.ServiceName;
         }
         public void Start(object args) {
-            this._AssemblyInResource = new Hefezopf.WindowsService.Assembly.HZAssemblyInResource();
-            var binFolderPath = System.IO.Path.Combine(
-                System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)
-                , "bin");
-            this._AssemblyInResource.ExtractTo(binFolderPath);
-            var assembly = System.Reflection.Assembly.Load("Hefezopf.Contracts, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = 2d8ec664ab7d64f1");
+            this._AssemblyInResource = new Hefezopf.WindowsService.Assembly.HZAssemblyInResource();            
+            this._AssemblyInResource.ExtractTo("bin");
+            var assemblyContracts = System.Reflection.Assembly.Load("Hefezopf.Contracts, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = 2d8ec664ab7d64f1");
+            var assemblyFundament = System.Reflection.Assembly.Load("Hefezopf.Fundament, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = 2d8ec664ab7d64f1");
+            var assemblyLibrary = System.Reflection.Assembly.Load("Hefezopf.Library, Version = 1.0.0.0, Culture = neutral, PublicKeyToken = 2d8ec664ab7d64f1");
         }
 
         public void Stop() {

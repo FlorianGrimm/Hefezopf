@@ -23,7 +23,7 @@
                 <Label> </Label>
             </StackPanel>
             <StackPanel>
-                <Button Click="Button_Click">Start</Button>
+                <Button Click="Button_Start_Click">Start</Button>
             </StackPanel>
         </StackPanel>
     </DockPanel>

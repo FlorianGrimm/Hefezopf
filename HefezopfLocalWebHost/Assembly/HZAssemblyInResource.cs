@@ -12,7 +12,6 @@
         private const string SubPath = "Release";
 #endif
         public HZAssemblyInResource() : base(null, SubPath) {
-
         }
     }
 }

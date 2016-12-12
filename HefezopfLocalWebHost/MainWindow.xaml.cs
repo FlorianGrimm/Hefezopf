@@ -20,11 +20,12 @@ namespace Hefezopf.LocalWebHost {
     public partial class MainWindow : Window {
         public MainWindow() {
             this.DataContext = new MainModel();
-            InitializeComponent();
+            this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-
+        private void Button_Start_Click(object sender, RoutedEventArgs e) {
+            var mainModel = this.DataContext as MainModel;
+            mainModel?.Start();
         }
     }
 }

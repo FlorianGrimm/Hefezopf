@@ -27,9 +27,11 @@ namespace Hefezopf.AssemblyInResource.Shared {
                 this._ResourceNamespaceSubPath = this._ResourceNamespace + "." + subPath;
             }
         }
-        public void ExtractTo(string targetPath) {
-            if (string.IsNullOrEmpty(targetPath)) { return; }
-            targetPath = System.Environment.ExpandEnvironmentVariables(targetPath);
+        public void ExtractTo(string targetRelativePath) {
+            if (string.IsNullOrEmpty(targetRelativePath)) { targetRelativePath = ""; }
+            var targetPath = System.IO.Path.Combine(
+                System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location)
+                , targetRelativePath);
             if (System.IO.Directory.Exists(targetPath)) {
                 System.IO.Directory.CreateDirectory(targetPath);
             }
@@ -45,6 +47,8 @@ namespace Hefezopf.AssemblyInResource.Shared {
                     resourceNamespace = this._ResourceNamespaceSubPath;
                 } else if (manifestResourceName.StartsWith(this._ResourceNamespace)) {
                     resourceNamespace = this._ResourceNamespace;
+                } else {
+                    continue;
                 }
                 var relativeName = manifestResourceName.Substring(resourceNamespace.Length + 1);
                 var targetFilePathName = System.IO.Path.Combine(targetPath, relativeName);
