@@ -1,0 +1,110 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appService_Hefezopf_name": {
+      "type": "string"
+    },
+    "appServicePlan_Default1_location": {
+      "type": "string"
+    },
+    "appServicePlan_Default1_name": {
+      "type": "string"
+    },
+    "appServicePlan_Default1_resourceGroup": {
+      "type": "string"
+    },
+    "dbserver_hefezopfdbserver_name": {
+      "type": "string"
+    },
+    "dbserver_hefezopfdbserver_adminlogin": {
+      "type": "string"
+    },
+    "dbserver_hefezopfdbserver_adminpassword": {
+      "type": "securestring"
+    },
+    "dbserver_hefezopfdbserver_location": {
+      "type": "string"
+    },
+    "dbserver_hefezopfdbserver_HefezopfCentralDB_name": {
+      "type": "string"
+    },
+    "dbserver_hefezopfdbserver_HefezopfCentralDB_location": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "location": "[parameters('appServicePlan_Default1_location')]",
+      "name": "[parameters('appService_Hefezopf_name')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2015-08-01",
+      "tags": {
+        "[concat('hidden-related:', resourceId(parameters('appServicePlan_Default1_resourceGroup'),'Microsoft.Web/serverfarms', parameters('appServicePlan_Default1_name')))]": "empty"
+      },
+      "dependsOn": [
+        "[concat('Microsoft.Sql/servers/', parameters('dbserver_hefezopfdbserver_name'))]"
+      ],
+      "kind": "webApp",
+      "properties": {
+        "name": "[parameters('appService_Hefezopf_name')]",
+        "serverFarmId": "[resourceId(parameters('appServicePlan_Default1_resourceGroup'),'Microsoft.Web/serverfarms', parameters('appServicePlan_Default1_name'))]",
+        "kind": "webApp"
+      },
+      "resources": [
+        {
+          "name": "connectionstrings",
+          "type": "config",
+          "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[concat('Microsoft.Web/Sites/', parameters('appService_Hefezopf_name'))]"
+          ],
+          "properties": {
+            "HefezopfCentralDB": {
+              "value": "[concat('Data Source=tcp:', reference(concat('Microsoft.Sql/servers/', parameters('dbserver_hefezopfdbserver_name'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('dbserver_hefezopfdbserver_HefezopfCentralDB_name'), ';User Id=', parameters('dbserver_hefezopfdbserver_adminlogin'), '@', parameters('dbserver_hefezopfdbserver_name'), ';Password=', parameters('dbserver_hefezopfdbserver_adminpassword'))]",
+              "type": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "location": "[parameters('dbserver_hefezopfdbserver_location')]",
+      "name": "[parameters('dbserver_hefezopfdbserver_name')]",
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2014-04-01-preview",
+      "properties": {
+        "administratorLogin": "[parameters('dbserver_hefezopfdbserver_adminlogin')]",
+        "administratorLoginPassword": "[parameters('dbserver_hefezopfdbserver_adminpassword')]"
+      },
+      "resources": [
+        {
+          "location": "[parameters('dbserver_hefezopfdbserver_location')]",
+          "name": "AllowAllAzureIPs",
+          "type": "firewallrules",
+          "apiVersion": "2014-04-01",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', parameters('dbserver_hefezopfdbserver_name'))]"
+          ],
+          "properties": {
+            "endIpAddress": "0.0.0.0",
+            "startIpAddress": "0.0.0.0"
+          }
+        },
+        {
+          "location": "[parameters('dbserver_hefezopfdbserver_HefezopfCentralDB_location')]",
+          "name": "[parameters('dbserver_hefezopfdbserver_HefezopfCentralDB_name')]",
+          "type": "databases",
+          "apiVersion": "2014-04-01-preview",
+          "dependsOn": [
+            "[concat('Microsoft.Sql/servers/', parameters('dbserver_hefezopfdbserver_name'))]"
+          ],
+          "properties": {
+            "collation": "SQL_Latin1_General_CP1_CI_AS",
+            "maxSizeBytes": "1073741824"
+          }
+        }
+      ]
+    }
+  ]
+}

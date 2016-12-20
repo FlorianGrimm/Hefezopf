@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfLocalWebHost", "Hef
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWebHost", "HefezopfWebHost\HefezopfWebHost.csproj", "{75451911-112E-4840-B847-DCD4A3328FD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfAzure", "HefezopfAzure\HefezopfAzure.csproj", "{7B07B68E-4CE2-4A9F-B2A2-0DCA0C4767F6}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.projitems*{24336ea2-c6b4-4c97-b4de-b9dcb23f544a}*SharedItemsImports = 13
@@ -103,6 +105,10 @@ Global
 		{75451911-112E-4840-B847-DCD4A3328FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75451911-112E-4840-B847-DCD4A3328FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75451911-112E-4840-B847-DCD4A3328FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B07B68E-4CE2-4A9F-B2A2-0DCA0C4767F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B07B68E-4CE2-4A9F-B2A2-0DCA0C4767F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B07B68E-4CE2-4A9F-B2A2-0DCA0C4767F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B07B68E-4CE2-4A9F-B2A2-0DCA0C4767F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

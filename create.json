@@ -1,0 +1,35 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appService_Hefezopf_name": {
+      "type": "string"
+    },
+    "appServicePlan_Default1_location": {
+      "type": "string"
+    },
+    "appServicePlan_Default1_name": {
+      "type": "string"
+    },
+    "appServicePlan_Default1_resourceGroup": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "location": "[parameters('appServicePlan_Default1_location')]",
+      "name": "[parameters('appService_Hefezopf_name')]",
+      "type": "Microsoft.Web/sites",
+      "apiVersion": "2015-08-01",
+      "tags": {
+        "[concat('hidden-related:', resourceId(parameters('appServicePlan_Default1_resourceGroup'),'Microsoft.Web/serverfarms', parameters('appServicePlan_Default1_name')))]": "empty"
+      },
+      "kind": "webApp",
+      "properties": {
+        "name": "[parameters('appService_Hefezopf_name')]",
+        "serverFarmId": "[resourceId(parameters('appServicePlan_Default1_resourceGroup'),'Microsoft.Web/serverfarms', parameters('appServicePlan_Default1_name'))]",
+        "kind": "webApp"
+      }
+    }
+  ]
+}
