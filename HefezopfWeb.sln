@@ -1,0 +1,118 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWeb", "HefezopfWeb\HefezopfWeb.csproj", "{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWeb_Tests", "HefezopfWeb_Tests\HefezopfWeb_Tests.csproj", "{24627236-4789-4E76-A20F-CF8FDB4B3C53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfContracts", "HefezopfContracts\HefezopfContracts.csproj", "{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfFundament", "HefezopfFundament\HefezopfFundament.csproj", "{82A0DB66-F923-4110-A478-050028FC2FF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfLibrary", "HefezopfLibrary\HefezopfLibrary.csproj", "{1553A9CD-069B-47BD-973C-E74E08F57C5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWindowsService", "HefezopfWindowsService\HefezopfWindowsService.csproj", "{80D5BA1D-0136-4A06-801F-921D69D873B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hefezopf_Build", "Hefezopf_Build\Hefezopf_Build.csproj", "{8167AA72-606C-4297-80D5-BC2B26CAF943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfFundament_Tests", "HefezopfFundament_Tests\HefezopfFundament_Tests.csproj", "{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GsaelzbrotLibrary", "..\Gsaelzbrot\GsaelzbrotLibrary\GsaelzbrotLibrary.csproj", "{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{BB9595C7-8369-42C5-82DE-75792C8C0D71}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FuncstructorLibrary.Contracts.Shared", "..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.shproj", "{24336EA2-C6B4-4C97-B4DE-B9DCB23F544A}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "FuncstructorLibrary.Implementation.Shared", "..\Funcstructor\FuncstructorLibrary.Implementation.Shared\FuncstructorLibrary.Implementation.Shared.shproj", "{C75605CD-D1FA-453F-839D-84F26C070F63}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "HefezopfWindowsService.Shared", "HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.shproj", "{5601FD20-071A-4808-BFCF-BBFE1C226EBA}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.AssemblyInResource.Shared", "Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.shproj", "{E2C0E9C7-748B-47B1-B111-2826B6DEB565}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.Diagnostics.Shared", "Hefezopf.Diagnostics.Shared\Hefezopf.Diagnostics.Shared.shproj", "{D62DE2D9-322B-4B4F-B481-430B3173547B}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Hefezopf.SPDiagnostics.Shared", "Hefezopf.SPDiagnostics.Shared\Hefezopf.SPDiagnostics.Shared.shproj", "{F1D1C325-15BF-42D1-A446-7D907C0EFDEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfLocalWebHost", "HefezopfLocalWebHost\HefezopfLocalWebHost.csproj", "{2D974291-E980-409D-B9F9-8D7BDD64A35C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HefezopfWebHost", "HefezopfWebHost\HefezopfWebHost.csproj", "{75451911-112E-4840-B847-DCD4A3328FD5}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.projitems*{24336ea2-c6b4-4c97-b4de-b9dcb23f544a}*SharedItemsImports = 13
+		Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems*{2d974291-e980-409d-b9f9-8d7bdd64a35c}*SharedItemsImports = 4
+		Hefezopf.Diagnostics.Shared\Hefezopf.Diagnostics.Shared.projitems*{2d974291-e980-409d-b9f9-8d7bdd64a35c}*SharedItemsImports = 4
+		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{5601fd20-071a-4808-bfcf-bbfe1c226eba}*SharedItemsImports = 13
+		Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems*{80d5ba1d-0136-4a06-801f-921d69d873b3}*SharedItemsImports = 4
+		HefezopfWindowsService.Shared\HefezopfWindowsService.Shared.projitems*{80d5ba1d-0136-4a06-801f-921d69d873b3}*SharedItemsImports = 4
+		..\Funcstructor\FuncstructorLibrary.Implementation.Shared\FuncstructorLibrary.Implementation.Shared.projitems*{82a0db66-f923-4110-a478-050028fc2ff0}*SharedItemsImports = 4
+		..\Funcstructor\FuncstructorLibrary.Implementation.Shared\FuncstructorLibrary.Implementation.Shared.projitems*{c75605cd-d1fa-453f-839d-84f26c070f63}*SharedItemsImports = 13
+		Hefezopf.Diagnostics.Shared\Hefezopf.Diagnostics.Shared.projitems*{d62de2d9-322b-4b4f-b481-430b3173547b}*SharedItemsImports = 13
+		Hefezopf.AssemblyInResource.Shared\Hefezopf.AssemblyInResource.Shared.projitems*{e2c0e9c7-748b-47b1-b111-2826b6deb565}*SharedItemsImports = 13
+		Hefezopf.SPDiagnostics.Shared\Hefezopf.SPDiagnostics.Shared.projitems*{f1d1c325-15bf-42d1-a446-7d907c0efdef}*SharedItemsImports = 13
+		..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.projitems*{ff55164e-9a9c-472d-bf89-efb5b5d801b8}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD814E1E-8D69-4EC0-9AC2-24F8C9173B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24627236-4789-4E76-A20F-CF8FDB4B3C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24627236-4789-4E76-A20F-CF8FDB4B3C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24627236-4789-4E76-A20F-CF8FDB4B3C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24627236-4789-4E76-A20F-CF8FDB4B3C53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF55164E-9A9C-472D-BF89-EFB5B5D801B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82A0DB66-F923-4110-A478-050028FC2FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A0DB66-F923-4110-A478-050028FC2FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A0DB66-F923-4110-A478-050028FC2FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A0DB66-F923-4110-A478-050028FC2FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1553A9CD-069B-47BD-973C-E74E08F57C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1553A9CD-069B-47BD-973C-E74E08F57C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1553A9CD-069B-47BD-973C-E74E08F57C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1553A9CD-069B-47BD-973C-E74E08F57C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80D5BA1D-0136-4A06-801F-921D69D873B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D5BA1D-0136-4A06-801F-921D69D873B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D5BA1D-0136-4A06-801F-921D69D873B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D5BA1D-0136-4A06-801F-921D69D873B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8167AA72-606C-4297-80D5-BC2B26CAF943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8167AA72-606C-4297-80D5-BC2B26CAF943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8167AA72-606C-4297-80D5-BC2B26CAF943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8167AA72-606C-4297-80D5-BC2B26CAF943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C38BFA7-F36B-4534-9DEF-EA8D4CEA45A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA3DC61-FEEA-4BCB-867C-C67C4A6165D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D974291-E980-409D-B9F9-8D7BDD64A35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D974291-E980-409D-B9F9-8D7BDD64A35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D974291-E980-409D-B9F9-8D7BDD64A35C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D974291-E980-409D-B9F9-8D7BDD64A35C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75451911-112E-4840-B847-DCD4A3328FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75451911-112E-4840-B847-DCD4A3328FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75451911-112E-4840-B847-DCD4A3328FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75451911-112E-4840-B847-DCD4A3328FD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{24336EA2-C6B4-4C97-B4DE-B9DCB23F544A} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
+		{C75605CD-D1FA-453F-839D-84F26C070F63} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
+		{5601FD20-071A-4808-BFCF-BBFE1C226EBA} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
+		{E2C0E9C7-748B-47B1-B111-2826B6DEB565} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
+		{D62DE2D9-322B-4B4F-B481-430B3173547B} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
+		{F1D1C325-15BF-42D1-A446-7D907C0EFDEF} = {BB9595C7-8369-42C5-82DE-75792C8C0D71}
+	EndGlobalSection
+EndGlobal
