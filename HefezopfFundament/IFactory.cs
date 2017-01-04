@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Hefezopf.Fundament {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
 
-namespace Hefezopf.Fundament
-{
-    public interface IFactory
-    {
+    /// <summary>
+    /// TODO
+    /// </summary>
+    public interface IFactory {
     }
 }

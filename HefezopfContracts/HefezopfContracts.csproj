@@ -93,6 +93,8 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="..\..\Funcstructor\FuncstructorLibrary.Contracts.Shared\FuncstructorLibrary.Contracts.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\Gsaelzbrot\GsaelzbrotLibrarySQLInterface.Shared\GsaelzbrotLibrarySQLInterface.Shared.projitems" Label="Shared" />
+  <Import Project="..\..\Trampelpfad\Trampelpfad.Interface.Shared\Trampelpfad.Interface.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

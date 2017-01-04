@@ -22,7 +22,9 @@ namespace Hefezopf.Contracts.Services {
                     return _Current ?? (_Current = new HZLoggerSystemDiagnostics());
                 }
             }
-            set { _Current = value; }
+            set {
+                _Current = value;
+            }
         }
 
         /// <summary>
@@ -64,6 +66,7 @@ namespace Hefezopf.Contracts.Services {
         public static void Error(string categoryName, string output, params object[] data) {
             Current.Log(0, categoryName, System.Diagnostics.TraceLevel.Error, output, data);
         }
+
         /// <summary>
         /// log warning
         /// </summary>
